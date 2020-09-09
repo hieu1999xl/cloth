@@ -9,14 +9,14 @@
     "emailUser": "hi@markmoffat.com",
     "emailPassword": "this_is_the_smtp_password",
     "emailAddress": "hi@markmoffat.com",
-    "productsPerRow": 3,
+    "productsPerRow": 2,
     "productsPerPage": 6,
     "footerHtml": "&lt;h4 class=&quot;text-center&quot;&gt;Powered by expressCart&lt;/h4&gt;",
     "googleAnalytics": "",
     "injectJs": "",
     "customCss": "",
     "currencySymbol": "£",
-    "paymentGateway": "stripe",
+    "paymentGateway": "instore",
     "databaseConnectionString": "mongodb://127.0.0.1:27017/expresscart",
     "theme": "Cloth",
     "trackStock": false,
@@ -42,5 +42,9 @@
         }
     },
     "showRelatedProducts": true,
-    "showHomepageVariants": false
+    "showHomepageVariants": false,
+    "secretCookie": "a6135a6b8a9bffeaec2f58b76f297135c1b50b04",
+    "secretSession": "354a007e242dc23bda33781a69cdf2bd0ef6b30b",
+    "themeViews": "../views/themes/Cloth/",
+    "env": ""
 }
