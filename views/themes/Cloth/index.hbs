@@ -132,32 +132,30 @@
                                     <h3 class="product-title product-title-home top-pad-10">
                                         {{this.productTitle}}
                                     </h3>
-
-                                    {{/if}}
-                                    {{#if variants}}
-                                    <div class="col-md-12">
-                                        {{#if @root.config.showHomepageVariants}}
-                                        <select id="productVariant-{{this._id}}"
-                                            class="productVariant form-control mb-2">
-                                            {{#each variants}}
-                                            <option value="{{this._id}}" data-price="{{this.price}}">
-                                                {{this.title}} -
-                                                {{this.price}}{{currencySymbol @root.config.currencySymbol}}
-                                            </option>
-                                            {{/each}}
-                                        </select>
-                                        {{else}}
-                                        <h3 class="home-product-item__price-current">
-                                            {{formatAmount variants.0.price}}{{currencySymbol @root.config.currencySymbol}}
-                                        </h3>
-                                        {{/if}}
-                                    </div>
+                                </a>
+                                {{/if}}
+                                {{#if variants}}
+                                <div class="col-md-12">
+                                    {{#if @root.config.showHomepageVariants}}
+                                    <select id="productVariant-{{this._id}}" class="productVariant form-control mb-2">
+                                        {{#each variants}}
+                                        <option value="{{this._id}}" data-price="{{this.price}}">
+                                            {{this.title}} -
+                                            {{this.price}}{{currencySymbol @root.config.currencySymbol}}
+                                        </option>
+                                        {{/each}}
+                                    </select>
                                     {{else}}
                                     <h3 class="home-product-item__price-current">
-                                        {{formatAmount productPrice}}{{currencySymbol @root.config.currencySymbol}}
+                                        {{formatAmount variants.0.price}}{{currencySymbol @root.config.currencySymbol}}
                                     </h3>
                                     {{/if}}
-                                </a>
+                                </div>
+                                {{else}}
+                                <h3 class="home-product-item__price-current">
+                                    {{formatAmount productPrice}}{{currencySymbol @root.config.currencySymbol}}
+                                </h3>
+                                {{/if}}
                                 {{!-- <p class="text-center">
                                                 {{#if @root.config.showHomepageVariants}}
                                                 <a class="home-fitter__btn btn btn__primary add-variant-to-cart"
