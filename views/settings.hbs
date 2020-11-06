@@ -1,10 +1,11 @@
 {{> partials/menu}}
 <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-  <form id="settingsForm" data-toggle="validator">
-    <div class="col-sm-12">
-        <h2>{{ @root.__ "General settings" }} <span class="float-right"><button type="submit" id="btnSettingsUpdate" class="btn btn-outline-success">{{ @root.__ "Update" }}</button></span></h2>
-    </div>
-    <div class="col-md-12">
+    <form id="settingsForm" data-toggle="validator">
+        <div class="col-sm-12">
+            <h2>{{ @root.__ "General settings" }} <span class="float-right"><button type="submit" id="btnSettingsUpdate"
+                        class="btn btn__success">{{ @root.__ "Update" }}</button></span></h2>
+        </div>
+        <div class="col-md-12">
             <div class="form-group">
                 <label>{{ @root.__ "Cart name" }} *</label>
                 <input type="text" class="form-control" name="cartTitle" value="{{config.cartTitle}}" required>
@@ -14,8 +15,10 @@
             </div>
             <div class="form-group">
                 <label>{{ @root.__ "Cart description" }} *</label>
-                <input type="text" class="form-control" name="cartDescription" value="{{config.cartDescription}}" required>
-                <p class="help-block">{{ @root.__ "This description shows when your website is listed in search engine results." }}</p>
+                <input type="text" class="form-control" name="cartDescription" value="{{config.cartDescription}}"
+                    required>
+                <p class="help-block">
+                    {{ @root.__ "This description shows when your website is listed in search engine results." }}</p>
             </div>
             <div class="form-group">
                 <label>{{ @root.__ "Cart image/logo" }}</label>
@@ -24,12 +27,15 @@
             <div class="form-group">
                 <label>{{ @root.__ "Cart URL" }} *</label>
                 <input type="text" class="form-control" name="baseUrl" value="{{config.baseUrl}}" required>
-                <p class="help-block">{{ @root.__ "This URL is used in sitemaps and when your customer returns from completing their payment." }}</p>
+                <p class="help-block">
+                    {{ @root.__ "This URL is used in sitemaps and when your customer returns from completing their payment." }}
+                </p>
             </div>
             <div class="form-group">
                 <label>{{ @root.__ "Cart Email" }} *</label>
                 <input type="email" class="form-control" name="emailAddress" value="{{config.emailAddress}}" required>
-                <p class="help-block">{{ @root.__ "This is used as the \"from\" email when sending receipts to your customers." }}</p>
+                <p class="help-block">
+                    {{ @root.__ "This is used as the \"from\" email when sending receipts to your customers." }}</p>
             </div>
             <div class="form-group">
                 <label>{{ @root.__ "Payment gateway" }}</label>
@@ -37,15 +43,18 @@
                     <option {{selectState 'paypal' config.paymentGateway}} value="paypal">Paypal</option>
                     <option {{selectState 'stripe' config.paymentGateway}} value="stripe">Stripe</option>
                     <option {{selectState 'adyen' config.paymentGateway}} value="adyen">Adyen</option>
-                    <option {{selectState 'authorizenet' config.paymentGateway}} value="authorizenet">Authorize.Net</option>
+                    <option {{selectState 'authorizenet' config.paymentGateway}} value="authorizenet">Authorize.Net
+                    </option>
                     <option {{selectState 'instore' config.paymentGateway}} value="instore">Instore</option>
-                    <option {{selectState 'blockonomics' config.paymentGateway}} value="blockonomics">Blockonomics</option>
+                    <option {{selectState 'blockonomics' config.paymentGateway}} value="blockonomics">Blockonomics
+                    </option>
                 </select>
                 <p class="help-block">{{ @root.__ "Payment_Gateway_Info" }}</p>
             </div>
             <div class="form-group">
                 <label>{{ @root.__ "Currency symbol" }}</label>
-                <input type="text" class="form-control" name="currencySymbol" value="{{currencySymbol config.currencySymbol}}">
+                <input type="text" class="form-control" name="currencySymbol"
+                    value="{{currencySymbol config.currencySymbol}}">
                 <p class="help-block">{{ @root.__ "Set this to your currency symbol. Eg: $, £, €" }}</p>
             </div>
             {{#ifCond config.paymentGateway '==' 'blockonomics'}}
@@ -58,7 +67,7 @@
                 </select>
                 <p class="help-block">{{ @root.__ "Currency used for Blockonomics conversion" }}</p>
             </div>
-            {{/ifCond}}          
+            {{/ifCond}}
             <div class="form-group">
                 <label>{{ @root.__ "Theme" }}</label>
                 <select class="form-control" name="theme">
@@ -71,7 +80,8 @@
             <div class="form-group">
                 <label>{{ @root.__ "Products per row" }}</label>
                 <select class="form-control" name="productsPerRow">
-                    <option value="{{config.productsPerRow}}" hidden="hidden" selected="selected">{{config.productsPerRow}}</option>
+                    <option value="{{config.productsPerRow}}" hidden="hidden" selected="selected">
+                        {{config.productsPerRow}}</option>
                     <option {{selectState '1' config.productsPerRow}}>1</option>
                     <option {{selectState '2' config.productsPerRow}}>2</option>
                     <option {{selectState '3' config.productsPerRow}}>3</option>
@@ -90,24 +100,29 @@
                     <option {{selectState 'date' config.productOrderBy}} value="date">{{ @root.__ "Date" }}</option>
                     <option {{selectState 'title' config.productOrderBy}} value="title">{{ @root.__ "Title" }}</option>
                 </select>
-                <p class="help-block">{{ @root.__ "Select the field by which the product should be sorted when displayed in store." }}</p>
+                <p class="help-block">
+                    {{ @root.__ "Select the field by which the product should be sorted when displayed in store." }}</p>
             </div>
             <div class="form-group">
                 <label>{{ @root.__ "Product Order" }}</label>
                 <select class="form-control" name="productOrder">
-                    <option {{selectState 'descending' config.productOrder}} value="descending">{{ @root.__ "Descending" }}</option>
-                    <option {{selectState 'ascending' config.productOrder}} value="ascending">{{ @root.__ "Ascending" }}</option>
+                    <option {{selectState 'descending' config.productOrder}} value="descending">
+                        {{ @root.__ "Descending" }}</option>
+                    <option {{selectState 'ascending' config.productOrder}} value="ascending">{{ @root.__ "Ascending" }}
+                    </option>
                 </select>
                 <p class="help-block">{{ @root.__ "Select the order in which the products should be sorted." }}</p>
             </div>
             <div class="form-group">
                 <label>Footer HTML</label>
-                <textarea class="form-control codemirrorArea" rows="5" id="footerHtml" name="footerHtml">{{footerHtml}}</textarea>
+                <textarea class="form-control codemirrorArea" rows="5" id="footerHtml"
+                    name="footerHtml">{{footerHtml}}</textarea>
                 <input type="hidden" id="footerHtml_input" name="footerHtml_input">
             </div>
             <div class="form-group">
                 <label>Google analytics</label>
-                <textarea class="form-control" rows="3" id="googleAnalytics" name="googleAnalytics">{{googleAnalytics}}</textarea>
+                <textarea class="form-control" rows="3" id="googleAnalytics"
+                    name="googleAnalytics">{{googleAnalytics}}</textarea>
                 <input type="hidden" id="googleAnalytics_input" name="googleAnalytics_input">
                 <p class="help-block">{{{ @root.__ "Google_Analytics_Info" }}}
                 </p>
@@ -119,11 +134,13 @@
             </div>
             <div class="form-group">
                 <label>Email SMTP Host</label>
-                <input type="text" class="form-control" name="emailHost" value="{{config.emailHost}}" autocomplete="off" required>
+                <input type="text" class="form-control" name="emailHost" value="{{config.emailHost}}" autocomplete="off"
+                    required>
             </div>
             <div class="form-group">
                 <label>Email SMTP Port</label>
-                <input type="text" class="form-control" name="emailPort" value="{{config.emailPort}}" autocomplete="off" required>
+                <input type="text" class="form-control" name="emailPort" value="{{config.emailPort}}" autocomplete="off"
+                    required>
             </div>
             <div class="form-group">
                 <label>Email SMTP secure </label>
@@ -135,15 +152,17 @@
             </div>
             <div class="form-group">
                 <label>Email SMTP Username</label>
-                <input type="text" class="form-control" name="emailUser" value="{{config.emailUser}}" autocomplete="off" required>
+                <input type="text" class="form-control" name="emailUser" value="{{config.emailUser}}" autocomplete="off"
+                    required>
             </div>
             <div class="form-group">
                 <label>Email SMTP Password</label>
-                <input type="password" class="form-control" name="emailPassword" value="{{config.emailPassword}}" autocomplete="off" required>
+                <input type="password" class="form-control" name="emailPassword" value="{{config.emailPassword}}"
+                    autocomplete="off" required>
             </div>
             <div class="form-group">
-                <button id="sendTestEmail" class="btn btn-outline-success">{{ @root.__ "Send test email" }}</button>
+                <button id="sendTestEmail" class="btn btn__success">{{ @root.__ "Send test email" }}</button>
             </div>
-    </div>
-  </form>
+        </div>
+    </form>
 </main>

@@ -1,7 +1,7 @@
 {
 	"Languages": "Languages",
 	"en": "English",
-	"it": "Italiano",
+	"vi": "Vi",
 	"Cart": "Cart",
 	"Name": "Name",
 	"New": "New",
@@ -218,5 +218,6 @@
 	"Product Order": "Product Order",
 	"Descending": "Descending",
 	"Ascending": "Ascending",
-	"Select the order in which the products should be sorted.": "Select the order in which the products should be sorted."
+	"Select the order in which the products should be sorted.": "Select the order in which the products should be sorted.",
+	"it": "Vietnamese"
 }

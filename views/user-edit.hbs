@@ -3,7 +3,7 @@
 	<div class="col-md-12">
 		<div class="page-header">
 			<div class="float-right">
-				<button type="submit" id="btnUserEdit" class="btn btn-outline-success">{{ @root.__ "Update" }}</button>
+				<button type="submit" id="btnUserEdit" class="btn btn__success">{{ @root.__ "Update" }}</button>
 			</div>
 			<h2>{{ @root.__ "User edit" }}</h2>
 		</div>
@@ -19,27 +19,33 @@
 			</div>
 			<div class="form-group">
 				<label>{{ @root.__ "User password" }} {{#ifCond session.user '==' user.userEmail}}*{{/ifCond}}</label>
-				<input autocomplete="off" type="password" class="form-control" id="userPassword" {{#ifCond session.user '==' user.userEmail}}required{{/ifCond}}>
+				<input autocomplete="off" type="password" class="form-control" id="userPassword"
+					{{#ifCond session.user '==' user.userEmail}}required{{/ifCond}}>
 			</div>
 			<div class="form-group">
-				<label>{{ @root.__ "Password confirm" }} {{#ifCond session.user '==' user.userEmail}}*{{/ifCond}}</label>
-				<input autocomplete="off" type="password" data-validation-match-match="userPassword" data-validation-match-message="Password values to not match" class="form-control" {{#ifCond session.user '==' user.userEmail}}required{{/ifCond}}>
+				<label>{{ @root.__ "Password confirm" }}
+					{{#ifCond session.user '==' user.userEmail}}*{{/ifCond}}</label>
+				<input autocomplete="off" type="password" data-validation-match-match="userPassword"
+					data-validation-match-message="Password values to not match" class="form-control"
+					{{#ifCond session.user '==' user.userEmail}}required{{/ifCond}}>
 			</div>
 			{{#isAnAdmin @root.session.isAdmin}}
-				{{#ifCond @root.session.user '!=' user.userEmail}}
-					<div class="checkbox">
-						<label>
-							<input id="userAdmin" {{#checkedState @root.user.isAdmin}}{{/checkedState}} type="checkbox"> {{ @root.__ "User is admin?" }}
-						</label>
-					</div>
-				{{/ifCond}}
+			{{#ifCond @root.session.user '!=' user.userEmail}}
+			<div class="checkbox">
+				<label>
+					<input id="userAdmin" {{#checkedState @root.user.isAdmin}}{{/checkedState}} type="checkbox">
+					{{ @root.__ "User is admin?" }}
+				</label>
+			</div>
+			{{/ifCond}}
 			{{/isAnAdmin}}
 			<div class="form-group">
 				<label>API Key</label>
 				<div class="input-group">
-					<input type="text" class="form-control" id="apiKey" value="{{user.apiKey}}" aria-label="..." readonly>
+					<input type="text" class="form-control" id="apiKey" value="{{user.apiKey}}" aria-label="..."
+						readonly>
 					<div class="input-group-append">
-						<button id="btnGenerateAPIkey" class="btn btn-outline-success">{{ @root.__ "Generate" }}</button>
+						<button id="btnGenerateAPIkey" class="btn btn__success">{{ @root.__ "Generate" }}</button>
 					</div>
 				</div>
 			</div>

@@ -10,21 +10,24 @@
     </nav>
     <div class="row">
         {{#if paymentMessage}}
-            <p class="text-danger text-center">{{paymentMessage}}</p>
+        <p class="text-danger text-center">{{paymentMessage}}</p>
         {{/if}}
         <div class="col-md-5">
             <div class="card top-marg-15">
-                <div class="card-body" id="blockonomics_div" data-address="{{@root.session.blockonomicsParams.address}}" data-amount="{{@root.session.blockonomicsParams.expectedBtc}}" data-timestamp="{{@root.session.blockonomicsParams.timestamp}}" data-orderid="{{@root.session.blockonomicsParams.pendingOrderId}}">
+                <div class="card-body" id="blockonomics_div" data-address="{{@root.session.blockonomicsParams.address}}"
+                    data-amount="{{@root.session.blockonomicsParams.expectedBtc}}"
+                    data-timestamp="{{@root.session.blockonomicsParams.timestamp}}"
+                    data-orderid="{{@root.session.blockonomicsParams.pendingOrderId}}">
                     <h5 class="card-title">{{ @root.__ "Blockonomics payment details" }}</h5>
                     <ul class="list-group bottom-pad-15">
                         <li class="list-group-item">
-                            {{@root.session.customerFirstname}} {{@root.session.customerLastname}} - 
+                            {{@root.session.customerFirstname}} {{@root.session.customerLastname}} -
                             {{@root.session.customerEmail}}
                         </li>
                     </ul>
                     {{#ifCond @root.session.totalCartShipping '>' 0}}
                     <ul class="list-group bottom-pad-15">
-                        
+
                         <li class="list-group-item">
                             <div class="row">
                                 <div class="col-md-6">
@@ -49,18 +52,19 @@
                             </div>
                         </li>
 
-                    </ul>                    
+                    </ul>
                     <ul class="list-group bottom-pad-15">
                         <li class="list-group-item">
                             <div class="row">
                                 <div class="col-md-12" }>
                                     Address:<br>
-                                    <span style="font-size:14px;"><strong>{{@root.session.blockonomicsParams.address}}</strong></span>
+                                    <span
+                                        style="font-size:14px;"><strong>{{@root.session.blockonomicsParams.address}}</strong></span>
                                 </div>
                             </div>
                         </li>
 
-                    </ul>         
+                    </ul>
                     <ul class="list-group bottom-pad-15">
                         <li class="list-group-item">
                             <div class="row">
@@ -72,8 +76,8 @@
                             </div>
                         </li>
 
-                    </ul>  
-                  </div>
+                    </ul>
+                </div>
             </div>
         </div>
         <div id="cart" class="col-md-7">

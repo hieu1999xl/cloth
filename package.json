@@ -116,7 +116,7 @@
   "homepage": "https://expresscart.markmoffat.com",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mrvautin/expressCart.git"
+    "url": "git+https://github.com/hieu1999xl/Node_cart.git"
   },
   "license": "MIT",
   "bugs": {
