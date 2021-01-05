@@ -2,7 +2,11 @@
     "properties": {
         "orderStatus": {
             "type": "string",
-            "enum": ["Completed", "Paid", "Pending"]
+            "enum": [
+                "Completed",
+                "Paid",
+                "Pending"
+            ]
         },
         "buttonText": {
             "type": "string"

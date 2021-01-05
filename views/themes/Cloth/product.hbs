@@ -11,7 +11,7 @@
             </div>
             {{else}}
             <div class="title-image-container">
-                <img src="/uploads/placeholder.png" id="product-title-image" class="product-title-image img-fluid"
+                <img src="/uploads/unplash1.jpg" id="product-title-image" class="product-title-image img-fluid"
                     alt="...">
             </div>
             {{/if}}
@@ -76,8 +76,8 @@
                 </div>
                 {{/if}}
                 <div class="col-md-10 btnAddToCart">
-                    <button class="btn btn__primary btn-block product-add-to-cart"
-                        type="button">{{ @root.__ "Add to cart" }}</button>
+                    <button class="btn btn__primary btn-block product-add-to-cart" type="button">{{ @root.__ "Add to
+                        cart" }}</button>
                 </div>
                 <div class="col-md-10 body_text">
                     {{{fixTags result.productDescription}}}
@@ -88,7 +88,7 @@
     {{#if config.showRelatedProducts}}
     {{#if relatedProducts}}
     <div class="col-sm-12 mt-5">
-        <h4>Related products</h4>
+        <h4>Sẩn phẩm liên quan</h4>
         <div class="row">
             {{#each relatedProducts}}
             <div class="col-md-3">
@@ -100,7 +100,7 @@
                                 {{#if productImage}}
                                 <img class="img-fluid" src="{{this.productImage}}" alt="...">
                                 {{else}}
-                                <img class="img-fluid" src="/uploads/placeholder.png" alt="...">
+                                <img class="img-fluid" src="/uploads/unplash1.jpg" alt="...">
                                 {{/if}}
                             </div>
                             <h3 class="product-title product-title-home top-pad-10">
@@ -114,7 +114,7 @@
                             {{#if productImage}}
                             <img class="img-fluid" src="{{this.productImage}}" alt="...">
                             {{else}}
-                            <img class="img-fluid" src="/uploads/placeholder.png" alt="...">
+                            <img class="img-fluid" src="/uploads/unplash1.jpg" alt="...">
                             {{/if}}
                         </div>
                         <h3 class="product-title product-title-home top-pad-10">
@@ -139,6 +139,28 @@
     </div>
     {{/if}}
     {{/if}}
+    <p>aaaaaaaaaaa</p>
+    {{#if @root.config.modules.enabled.reviews}}
+    <div class="col-md-10 mb-3">
+        <button class="btn btn-warning" id="add-review">Add review</button>
+        <div class="d-inline-block align-middle">{{{@root.reviews.ratingHtml}}}</div>
+        {{#if @root.reviews.reviews}}
+        <a href="#collapseReviews" data-toggle="collapse" class="d-inline-block align-middle ml-3">Recent reviews</a>
+        {{/if}}
+    </div>
+    <div class="col-md-10">
+        <ul class="list-group collapse" id="collapseReviews">
+            {{#each @root.reviews.reviews}}
+            <li class="list-group-item">
+                <p class="text-muted small text-right">{{timeAgo this.date}}</p>
+                <p><b>Rating:</b> {{this.rating}}</p>
+                <p><b>Title:</b> {{this.title}}</p>
+                <p><b>Description:</b> {{this.description}}</p>
+            </li>
+            {{/each}}
+        </ul>
+    </div>
+    {{/if}}
 </div>
 <div id="Question" class="specifications">
     <h1 class="Question__h1">Hỏi đáp về sản phẩm {{result.productTitle}} </h1>
@@ -150,5 +172,6 @@
             data-numposts="5"></div>
     </div>
 </div>
+
 <input type="hidden" id="productId" value="{{result._id}}">
 <input type="hidden" id="currencySymbol" value="{{currencySymbol config.currencySymbol}}">

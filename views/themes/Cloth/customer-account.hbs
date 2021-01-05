@@ -2,7 +2,7 @@
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="/">Home</a></li>
-            <li class="breadcrumb-item active" aria-current="page"><a href="/customer/account">Orders</a></li>
+            <li class="breadcrumb-item active" aria-current="page"><a href="/customer/account">Đặt hàng</a></li>
         </ol>
     </nav>
     <div class="row">
@@ -37,8 +37,7 @@
                         {{> themes/Cloth/shipping-form}}
                         <div class="row">
                             <div class="col-sm-12">
-                                <a href="/checkout/cart" id="customerSave" class="btn btn__primary float-left">Save
-                                    details</a>
+                                <a href="/checkout/cart" id="customerSave" class="btn btn__primary float-left">Lưu</a>
                             </div>
                         </div>
                     </form>
@@ -54,8 +53,8 @@
                             {{#unless orders}}
                             <div class="card mb-3">
                                 <div class="card-body">
-                                    There are no orders for this account. <a class="text-success" href="/">Order
-                                        here</a>
+                                    Không có đơn đặt hàng nào cho tài khoản này. <a class="text-success" href="/">Đặt
+                                        hàng tại dây</a>
                                 </div>
                             </div>
                             {{/unless}}
@@ -101,15 +100,14 @@
                                             {{/if}}
                                             <li class="list-group-item"><strong> {{ @root.__ "Order net amount" }}:
                                                 </strong><span
-                                                    class="float-right">{{currencySymbol config.currencySymbol}}{{formatAmount (math this.orderTotal '-' this.orderShipping)}}</span>
+                                                    class="float-right">{{ math this.orderTotal '-' this.orderShipping}}
+                                                    ₫</span>
                                             </li>
                                             <li class="list-group-item"><strong> {{ @root.__ "Order shipping amount" }}:
-                                                </strong><span
-                                                    class="float-right">{{currencySymbol config.currencySymbol}}{{formatAmount this.orderShipping}}</span>
+                                                </strong><span class="float-right">{{this.orderShipping}} ₫</span>
                                             </li>
                                             <li class="list-group-item"><strong> {{ @root.__ "Order total amount" }}:
-                                                </strong><span
-                                                    class="float-right">{{currencySymbol config.currencySymbol}}{{formatAmount this.orderTotal}}</span>
+                                                </strong><span class="float-right">{{ this.orderTotal}} ₫</span>
                                             </li>
                                             <li class="list-group-item"><strong> {{ @root.__ "Email address" }}:
                                                 </strong><span class="float-right">{{this.orderEmail}}</span></li>
@@ -143,7 +141,7 @@
                                                 {{this.variantTitle}}
                                                 {{/if}}
                                                 <div class="float-right">
-                                                    {{currencySymbol @root.config.currencySymbol}}{{formatAmount this.totalItemPrice}}
+                                                    {{ this.totalItemPrice}} ₫
                                                 </div>
                                                 {{#if productComment}}
                                                 <h4><span class="text-danger">Comment:</span> {{this.productComment}}

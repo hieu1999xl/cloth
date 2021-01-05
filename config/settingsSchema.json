@@ -70,7 +70,7 @@
         },
         "paymentGateway": {
             "type": "string",
-            "enum": ["paypal", "blockonomics", "stripe", "authorizenet", "adyen", "payway", "instore"]
+            "enum": ["paypal", "blockonomics", "stripe", "authorizenet", "vnpay", "payway", "instore"]
         },
         "databaseConnectionString": {
             "type": "string"

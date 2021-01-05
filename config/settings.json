@@ -1,8 +1,8 @@
 {
-    "cartTitle": "Ka",
-    "cartDescription": "Gior hang",
-    "cartLogo": "https://image.freepik.com/free-vector/abstract-logo-flame-shape_1043-44.jpg",
-    "baseUrl": "http://localhost:3000",
+    "cartTitle": "Vintage",
+    "cartDescription": "Vintage",
+    "cartLogo": "",
+    "baseUrl": "http://localhost:4000",
     "emailHost": "smtp-mail.outlook.com",
     "emailPort": 587,
     "emailSecure": false,
@@ -29,16 +29,18 @@
     "maxQuantity": 25,
     "twitterHandle": "",
     "facebookAppId": "",
-    "productOrderBy": "date",
+    "productOrderBy": "title",
     "productOrder": "descending",
     "modules": {
         "enabled": {
             "shipping": "shipping-basic",
-            "discount": "discount-voucher"
+            "discount": "discount-voucher",
+            "reviews": "reviews-basic"
         },
         "loaded": {
             "shipping": {},
-            "discount": {}
+            "discount": {},
+            "reviews": {}
         }
     },
     "showRelatedProducts": true,

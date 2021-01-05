@@ -53,7 +53,8 @@ const product = require('./routes/product');
 const customer = require('./routes/customer');
 const order = require('./routes/order');
 const user = require('./routes/user');
-
+const vnpay = require('./routes/vnpay');
+const reviews = require('./routes/reviews');
 // Add the payment route
 const paymentRoute = require(`./lib/payments/${config.paymentGateway}`);
 
@@ -389,6 +390,8 @@ app.use('/', product);
 app.use('/', order);
 app.use('/', user);
 app.use('/', admin);
+app.use('/ordervn', vnpay);
+app.use('/', reviews);
 
 // Payment route
 app.use(`/${config.paymentGateway}`, paymentRoute);

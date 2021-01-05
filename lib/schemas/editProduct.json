@@ -16,8 +16,7 @@
             "minLength": 5
         },
         "productPrice": {
-            "type": "string",
-            "format": "amount"
+            "type": "string"
         },
         "productDescription": {
             "type": "string",
@@ -34,7 +33,10 @@
             "type": "boolean"
         },
         "productStock": {
-            "type": ["number", "null"]
+            "type": [
+                "number",
+                "null"
+            ]
         },
         "productStockDisable": {
             "type": "boolean"

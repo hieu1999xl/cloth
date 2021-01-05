@@ -1,7 +1,6 @@
 {{> themes/Cloth/front-menu}}
 <div class="sugges">
     <div class="row app__content">
-
         <div class="col l-2 m-0 c-0">
             <nav class="category">
                 <h3 class="category__heading">
@@ -110,53 +109,54 @@
                                     <a href="/product/{{this.productPermalink}}">
                                         <div class="home-product-item__img">
                                             {{#if productImage}}
-                                            <img class="img-fluid" src="{{this.productImage}}" alt="...">
+                                            <img class="img-fluid img-min" src="{{this.productImage}}" alt="...">
                                             {{else}}
-                                            <img class="img-fluid" src="/uploads/placeholder.png" alt="...">
+                                            <img class="img-fluid img-min" src="/uploads/unplash2.jpg" alt="...">
                                             {{/if}}
                                         </div>
                                         <h3 class="home-product-item__name">
                                             {{this.productTitle}}
                                         </h3>
                                     </a>
-                                </div>
-                                {{else}}
-                                <a href="/product/{{this._id}}">
-                                    <div class="home-product-item__img">
-                                        {{#if productImage}}
-                                        <img class="img-fluid" src="{{this.productImage}}" alt="...">
+
+                                    {{else}}
+                                    <a href="/product/{{this._id}}">
+                                        <div class="home-product-item__img">
+                                            {{#if productImage}}
+                                            <img class="img-fluid img-min" src="{{this.productImage}}" alt="...">
+                                            {{else}}
+                                            <img class="img-fluid img-min" src="/uploads/unplash1.jpg" alt="...">
+                                            {{/if}}
+                                        </div>
+                                        <h3 class="product-title product-title-home top-pad-10">
+                                            {{this.productTitle}}
+                                        </h3>
+                                    </a>
+                                    {{/if}}
+                                    {{#if variants}}
+                                    <div class="col-md-12">
+                                        {{#if @root.config.showHomepageVariants}}
+                                        <select id="productVariant-{{this._id}}"
+                                            class="productVariant form-control mb-2">
+                                            {{#each variants}}
+                                            <option value="{{this._id}}" data-price="{{this.price}}">
+                                                {{this.title}} -
+                                                {{this.price}}{{currencySymbol @root.config.currencySymbol}}
+                                            </option>
+                                            {{/each}}
+                                        </select>
                                         {{else}}
-                                        <img class="img-fluid" src="/uploads/placeholder.png" alt="...">
+                                        <h3 class="home-product-item__price-current">
+                                            {{variants.0.price}}{{currencySymbol @root.config.currencySymbol}}
+                                        </h3>
                                         {{/if}}
                                     </div>
-                                    <h3 class="product-title product-title-home top-pad-10">
-                                        {{this.productTitle}}
-                                    </h3>
-                                </a>
-                                {{/if}}
-                                {{#if variants}}
-                                <div class="col-md-12">
-                                    {{#if @root.config.showHomepageVariants}}
-                                    <select id="productVariant-{{this._id}}" class="productVariant form-control mb-2">
-                                        {{#each variants}}
-                                        <option value="{{this._id}}" data-price="{{this.price}}">
-                                            {{this.title}} -
-                                            {{this.price}}{{currencySymbol @root.config.currencySymbol}}
-                                        </option>
-                                        {{/each}}
-                                    </select>
                                     {{else}}
                                     <h3 class="home-product-item__price-current">
-                                        {{formatAmount variants.0.price}}{{currencySymbol @root.config.currencySymbol}}
+                                        {{productPrice}}{{currencySymbol @root.config.currencySymbol}}
                                     </h3>
                                     {{/if}}
-                                </div>
-                                {{else}}
-                                <h3 class="home-product-item__price-current">
-                                    {{formatAmount productPrice}}{{currencySymbol @root.config.currencySymbol}}
-                                </h3>
-                                {{/if}}
-                                {{!-- <p class="text-center">
+                                    {{!-- <p class="text-center">
                                                 {{#if @root.config.showHomepageVariants}}
                                                 <a class="home-fitter__btn btn btn__primary add-variant-to-cart"
                                                     data-id="{{this._id}}"
@@ -168,7 +168,7 @@
                                                     role="button">{{ @root.__ "Add to cart" }}</a>
                                                 {{/if}}
                                             </p> --}}
-
+                                </div>
                             </div>
                             {{/each}}
                         </div>
@@ -185,6 +185,7 @@
 <input type="hidden" id="totalItemCount" value="{{totalProductCount}}">
 <input type="hidden" id="paginateUrl" value="{{paginateUrl}}">
 <input type="hidden" id="searchTerm" value="{{searchTerm}}">
+
 <div class="col-md-12">
     <div id="pager" class="d-flex justify-content-center"></div>
 </div>

@@ -11,7 +11,7 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Order Status</label>
+                                <label for="exampleInputEmail1">Trạng thái đơn hàng</label>
                                 <select class="form-control" id="orderStatus">
                                     <option>{{ @root.__ "Completed" }}</option>
                                     <option>{{ @root.__ "Paid" }}</option>
@@ -24,7 +24,7 @@
                         </div>
                         <div class="col-12">
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Customer email address</label>
+                                <label for="exampleInputEmail1">Địa chỉ Email khách hàng</label>
                                 <div class="input-group">
                                     <input type="email" class="form-control" id="customerEmail"
                                         aria-describedby="emailHelp" placeholder="Customer email address">
@@ -119,10 +119,10 @@
                 {{> (getTheme 'cart')}}
                 {{else}}
                 <div class="alert alert-warning" role="alert">
-                    <h5 class="text-center">The cart is empty.</h5>
+                    <h5 class="text-center">Giỏ hàng trống.</h5>
                     <hr>
-                    <h6 class="text-center">Add some products <a target="_blank" href="/">here</a> then come back to
-                        complete the order.</h6>
+                    <h6 class="text-center">Thêm sản phẩm <a target="_blank" href="/">Tại đây</a>Sau đó quay lại hoàn
+                        thành đơn đặt hàng.</h6>
                 </div>
                 {{/if}}
             </div>

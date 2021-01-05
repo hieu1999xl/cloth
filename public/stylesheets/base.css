@@ -174,6 +174,28 @@ html {
     line-height: 1.6rem;
 }
 
+
+
+.btn-plus {
+    min-width: 70px;
+    height: 36px;
+    border: none;
+    border-radius: 2px;
+    text-decoration: none;
+    font-size: 1.5rem;
+    padding: 0;
+    outline: none;
+    cursor: pointer;
+    color: var(--text-color);
+    background-color: var(--white-color);
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    line-height: 1.6rem;
+}
+
+
+
 .btn--btn-normal:hover {
     background-color: rgba(0, 0, 0, 0.05);
 }
@@ -182,6 +204,13 @@ html {
     color: var(--white-color);
     background-color: var(--primary-color);
 }
+
+
+.btn-plus.btn__primary {
+    color: var(--white-color);
+    background-color: var(--primary-color);
+}
+
 
 .btn.btn__success {
     color: var(--white-color);
@@ -217,6 +246,39 @@ button.btn.btn__warning.editVariant {
     height: 32px;
 }
 
+button.btn.btn-primary.btn-qty-minus {
+    min-width: 55px;
+    background-color: var(--primary-color);
+}
+
+button.btn.btn-primary.btn-qty-minus:hover {
+    min-width: 55px;
+    background-color: var(--primary-color);
+}
+
+button.btn.btn-primary.btn-qty-minus:focus {
+    min-width: 55px;
+    background-color: var(--primary-color);
+}
+
+button.btn.btn-primary.btn-qty-add {
+    min-width: 55px;
+    background-color: var(--primary-color);
+}
+
+button.btn.btn-primary.btn-qty-add:focus {
+    min-width: 55px;
+    background-color: var(--primary-color);
+}
+
+button.btn.btn-primary.btn-qty-add:hover {
+    min-width: 55px;
+    background-color: var(--primary-color);
+}
+
+button.btn.btn-danger.btn-delete-from-cart {
+    background-color: var(--danger-color);
+}
 
 /* selection */
 
@@ -331,4 +393,19 @@ button.btn.btn__warning.editVariant {
 div#container {
     padding-left: 0;
     padding-right: 0;
+}
+/* max height */
+img.img-fluid.img-min {
+    min-height: 178px;
+    max-height: 178px;
+}
+
+/* img.thumbnail-image.img-fluid {
+    max-height: 128px;
+} */
+
+img.thumbnail-image.img-fluid {
+    min-height: 178px;
+    max-height: 178px;
+    max-width: 237px;
 }

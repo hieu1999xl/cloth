@@ -1,13 +1,13 @@
-<script type="text/javascript"
+{{!-- <script type="text/javascript"
 {{#ifCond @root.paymentConfig.mode '==' 'test'}}
     src="https://jstest.authorize.net/v3/AcceptUI.js"
 {{else}}
     src="https://js.authorize.net/v3/AcceptUI.js"
 {{/ifCond}}
     charset="utf-8">
-</script>
+    </script>
 <script>
-    function responseHandler(data){
+    function responseHandler(data) {
         // Set fields from the form
         data.shipEmail = $('#shipEmail').val();
         data.shipCompany = $('#shipCompany').val();
@@ -26,20 +26,20 @@
             contentType: 'application/json',
             data: JSON.stringify(data)
         })
-        .done(function(data){
-            if(data.orderId){
-                window.location = '/payment/' + data.orderId;
-            }else{
-                showNotification('Transaction approved', 'success', true);
-            }
-        })
-        .fail(function(data){
-            if(data.orderId){
-                window.location = '/payment/' + data.orderId;
-            }else{
-                showNotification('Your payment has declined. Please try again.', 'danger');
-            }
-        });
+            .done(function (data) {
+                if (data.orderId) {
+                    window.location = '/payment/' + data.orderId;
+                } else {
+                    showNotification('Transaction approved', 'success', true);
+                }
+            })
+            .fail(function (data) {
+                if (data.orderId) {
+                    window.location = '/payment/' + data.orderId;
+                } else {
+                    showNotification('Your payment has declined. Please try again.', 'danger');
+                }
+            });
     }
 </script>
 <div class="col-sm-12 text-center">
@@ -56,4 +56,4 @@
             data-responseHandler="responseHandler">Pay Now
         </button>
     </form>
-</div>
+</div> --}}

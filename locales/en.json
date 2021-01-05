@@ -153,7 +153,7 @@
 	"Your payment has failed. Please try again or contact us.": "Your payment has failed. Please try again or contact us.",
 	"Please retain the details above as a reference of payment.": "Please retain the details above as a reference of payment.",
 	"Quantity": "Quantity",
-	"Leave a comment?": "Leave a comment?",
+	"Leave a comment?": "Note",
 	"Cart contents": "Cart contents",
 	"Shipping": "Shipping:",
 	"Empty cart": "Empty cart",
@@ -219,5 +219,8 @@
 	"Descending": "Descending",
 	"Ascending": "Ascending",
 	"Select the order in which the products should be sorted.": "Select the order in which the products should be sorted.",
-	"it": "Vietnamese"
+	"it": "Vietnamese",
+	"Add to\r\n                        cart": "Add to\r\n                        cart",
+	"Reviews can be filtered by: review title or review description\r\n            keywords": "Reviews can be filtered by: review title or review description\r\n            keywords",
+	"Recent reviews": "Recent reviews"
 }

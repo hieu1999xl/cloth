@@ -239,6 +239,7 @@
     transition: tranform linear 0.1s;
     will-change: tranform;
     margin: 0 6px;
+    margin-bottom: 10px;
 }
 
 .home-product-item:hover {
@@ -262,8 +263,8 @@
     font-weight: bold;
     color: var(--text-color);
     line-height: 1.8rem;
-    height: 3.6rem;
-    margin: 10px 10px 6px 10px;
+    height: 2.6rem;
+    margin: 10px 10px 0px 10px;
     overflow: hidden;
     display: block;
     display: -webkit-box;
@@ -300,7 +301,7 @@
 .home-product-item__price-current {
     font-size: 1.6rem;
     color: var(--primary-color);
-    margin-left: 10px;
+    padding-bottom:6px;
 }
 
 .home-product-item__action {

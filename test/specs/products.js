@@ -14,9 +14,9 @@ test('[Success] Get products JSON', async t => {
     const res = await g.request
         .get('?json=true')
         .expect(200);
-    if(res.body.length < g.config.productsPerPage){
+    if (res.body.length < g.config.productsPerPage) {
         t.is(res.body.length, g.products.length);
-    }else{
+    } else {
         t.is(res.body.length, g.config.productsPerPage);
     }
 });
@@ -65,7 +65,7 @@ test('[Success] Add a product', async t => {
     const product = {
         productPermalink: 'test-jacket',
         productTitle: 'Test Jacket',
-        productPrice: '100.00',
+        productPrice: '100',
         productDescription: 'Test product description used to describe the product',
         productPublished: true,
         productTags: 'organic, jacket',
@@ -87,7 +87,7 @@ test('[Fail] Add a product - Duplicate permalink', async t => {
     const product = {
         productPermalink: 'test-jacket',
         productTitle: 'Test Jacket - blue',
-        productPrice: '100.00',
+        productPrice: '100',
         productDescription: 'Test product description used to describe the product',
         productPublished: true,
         productTags: 'organic, jacket, blue',
@@ -109,7 +109,7 @@ test('[Success] Update a product', async t => {
     const product = {
         productId: g.products[0]._id,
         productTitle: 'Test Jacket',
-        productPrice: '200.00',
+        productPrice: '200',
         productDescription: 'Test product description used to describe the product',
         productPublished: true,
         productTags: 'organic, jacket',

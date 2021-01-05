@@ -1,4 +1,4 @@
-<form action="/payway/checkout_action" method="post">
+{{!-- <form action="/payway/checkout_action" method="post">
     <div id="payway-credit-card"></div>
     <input id="payway-cc-submit" class="btn btn-outline-success" type="submit" disabled="true" />
 </form>
@@ -11,17 +11,17 @@
 </script>
 <script type="text/javascript">
     var style = {
-        'div.payway-card': { 'width' : '100% !important', 'background-color': '#f8f9fa', 'border-radius': '.25rem', 'border': 'none' },
-        '#payway-cardNumber': { 'height' : '20px !important' },
-        '.payway-card input' : { 'height': '20px !important', 'font-size': '1rem', 'border-radius': '.25rem' },
+        'div.payway-card': { 'width': '100% !important', 'background-color': '#f8f9fa', 'border-radius': '.25rem', 'border': 'none' },
+        '#payway-cardNumber': { 'height': '20px !important' },
+        '.payway-card input': { 'height': '20px !important', 'font-size': '1rem', 'border-radius': '.25rem' },
         '.payway-card select': { 'height': '38px !important' }
     };
     var submit = document.getElementById('payway-cc-submit');
     payway.createCreditCardFrame({
         publishableApiKey: '{{@root.paymentConfig.publishableApiKey}}',
         style,
-        layout:'wide',
+        layout: 'wide',
         onValid: function () { submit.disabled = false; },
         onInvalid: function () { submit.disabled = true; }
     });
-</script>
+</script> --}}
