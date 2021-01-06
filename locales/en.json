@@ -1,7 +1,7 @@
 {
 	"Languages": "Languages",
 	"en": "English",
-	"vi": "Vi",
+	"it": "Italiano",
 	"Cart": "Cart",
 	"Name": "Name",
 	"New": "New",
@@ -153,7 +153,7 @@
 	"Your payment has failed. Please try again or contact us.": "Your payment has failed. Please try again or contact us.",
 	"Please retain the details above as a reference of payment.": "Please retain the details above as a reference of payment.",
 	"Quantity": "Quantity",
-	"Leave a comment?": "Note",
+	"Leave a comment?": "Leave a comment?",
 	"Cart contents": "Cart contents",
 	"Shipping": "Shipping:",
 	"Empty cart": "Empty cart",
@@ -219,8 +219,14 @@
 	"Descending": "Descending",
 	"Ascending": "Ascending",
 	"Select the order in which the products should be sorted.": "Select the order in which the products should be sorted.",
-	"it": "Vietnamese",
+	"Recent reviews": "Recent reviews",
+	"Reviews can be filtered by: review title or review description keywords": "Reviews can be filtered by: review title or review description keywords",
+	"Reviews": "Reviews",
+	"Product GTIN": "Product GTIN",
+	"The Serial number, GTIN or Barcode": "The Serial number, GTIN or Barcode",
+	"Product Brand": "Product Brand",
+	"The brand of the product": "The brand of the product",
 	"Add to\r\n                        cart": "Add to\r\n                        cart",
-	"Reviews can be filtered by: review title or review description\r\n            keywords": "Reviews can be filtered by: review title or review description\r\n            keywords",
-	"Recent reviews": "Recent reviews"
+	" Search shop": " Search shop",
+	"Empty\r\n                                cart": "Empty\r\n                                cart"
 }

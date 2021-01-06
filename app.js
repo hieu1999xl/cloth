@@ -53,7 +53,7 @@ const product = require('./routes/product');
 const customer = require('./routes/customer');
 const order = require('./routes/order');
 const user = require('./routes/user');
-const vnpay = require('./routes/vnpay');
+// const vnpay = require('./routes/vnpay');
 const reviews = require('./routes/reviews');
 // Add the payment route
 const paymentRoute = require(`./lib/payments/${config.paymentGateway}`);
@@ -300,6 +300,9 @@ handlebars = handlebars.create({
             html = html.replace(/&lt;/g, '<');
             return html;
         },
+        timeAgo: (date) => {
+            return moment(date).fromNow();
+        },
         feather: (icon) => {
             // eslint-disable-next-line keyword-spacing
             return `<svg
@@ -390,7 +393,7 @@ app.use('/', product);
 app.use('/', order);
 app.use('/', user);
 app.use('/', admin);
-app.use('/ordervn', vnpay);
+// app.use('/ordervn', vnpay);
 app.use('/', reviews);
 
 // Payment route

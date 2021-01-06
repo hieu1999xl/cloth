@@ -2,7 +2,10 @@
     "properties": {
         "mode": {
             "type": "string",
-            "enum": ["sandbox", "live"]
+            "enum": [
+                "sandbox",
+                "live"
+            ]
         },
         "client_id": {
             "type": "string"

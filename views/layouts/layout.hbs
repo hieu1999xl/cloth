@@ -135,32 +135,58 @@
     {{else}}
     <meta property="twitter:url" content="{{config.baseUrl}}" />
     {{/if}}
-    {{#unless result.productTitle}}
+    {{#if result.productTitle}}
     <script type="application/ld+json">
             {
                 "@context": "https://schema.org/",
-                {{#if result.productTitle}}
                 "@type": "Product",
                 "name": "{{result.productTitle}}",
                 "offers": {
                     "price": "{{result.productPrice}}",
                     "priceCurrency": "{{config.currencyISO}}",
-                    "description": "{{snip productDescription}}",
-                    "sku": "{{result._id}}",
+                    {{#ifCond result.productStock '>' 0}}
+                    "availability": "https://schema.org/InStock",
+                    {{else}}
+                    "availability": "https://schema.org/SoldOut",
+                    {{/ifCond}}
                     "url": "{{pageUrl}}"
                 },
-                {{else}}
-                "publisher": "{{config.cartTitle}}",
-                "@type": "WebSite",
+                "sku": "{{result._id}}",
+                {{#if result.productGtin}}
+                "gtin": "{{result.productGtin}}",
                 {{/if}}
                 {{#if result.productImage}}
                 "image": "{{config.baseUrl}}{{result.productImage}}",
+                {{else}}
+                "image": "{{config.baseUrl}}uploads/placeholder.png",
                 {{/if}}
+                {{#if result.productBrand}}
+                "brand": {
+                    "@type": "Organization",
+                    "name": "{{result.productBrand}}"
+                },
+                {{/if}}
+                {{#ifCond reviews.count '>' 0}}
+                "review": {
+                    "@type": "Review",
+                    "reviewRating": {
+                        "@type": "Rating",
+                        "ratingValue": "{{@root.reviews.featured.review.rating}}",
+                        "bestRating": "{{@root.reviews.highestRating}}"
+                    },
+                    "author": {
+                        "@type": "Person",
+                        "name": "{{@root.reviews.featured.customer.firstName}} {{@root.reviews.featured.customer.lastName}}"
+                    }
+                },
+                {{/ifCond}}
+                "aggregateRating": {
+                    "@type": "AggregateRating",
+                    "ratingValue": "{{@root.reviews.average}}",
+                    "reviewCount": "{{@root.reviews.count}}"
+                },
                 {{#if productDescription}}
                 "description": "{{snip productDescription}}",
-                {{/if}}
-                {{#if result.productTitle}}
-                "sku": "{{result._id}}",
                 {{/if}}
                 {{#if pageUrl}}
                 "url": "{{pageUrl}}"
@@ -169,7 +195,7 @@
                 {{/if}}
             }
         </script>
-    {{/unless}}
+    {{/if}}
     <!-- SEO data -->
     {{~#if config.googleAnalytics}}{{{config.googleAnalytics}}}{{/if}}
     {{~#if config.customCss}}<style>
@@ -309,7 +335,8 @@
                         </div>
                         {{else}}
                         <li class="nav-item ml-3"><a href="/customer/account"
-                                class="header__navbar-item header__navbar-item--strong header__navbar-item--separate">{{{feather 'user'}}}</a>
+                                class="header__navbar-item header__navbar-item--strong header__navbar-item--separate">{{{feather
+                                'user'}}}</a>
                         </li>
                         {{/if}}
                     </ul>
@@ -390,8 +417,9 @@
                             </svg>
                             {{/if}}
                         </a>
-                        {{!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMenu"
-                            aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle navigation">
+                        {{!-- <button class="navbar-toggler" type="button" data-toggle="collapse"
+                            data-target="#navbarMenu" aria-controls="navbarMenu" aria-expanded="false"
+                            aria-label="Toggle navigation">
                             {{{feather 'menu'}}}
                         </button> --}}
                     </div>
@@ -402,7 +430,7 @@
                                 placeholder="Tìm trong shop"> --}}
 
                             <input class=" header__search-input" name="frm_search" id="frm_search" type="search"
-                                placeholder="{{ @root.__ "Search shop" }}" aria-label="Search">
+                                placeholder="{{ @root.__ " Search shop" }}" aria-label="Search">
 
                             <!-- Search history -->
                             <div id="header__search-historys" class="header__search-history">
@@ -486,8 +514,8 @@
                     {{> (getTheme 'cart')}}
                     <div class="row">
                         <div class="col-sm-12 {{showCartButtons @root.session.cart}} cart-buttons">
-                            <button class="btn btn__danger float-left" id="empty-cart"
-                                type="button">{{ @root.__ "Empty cart" }}</button>
+                            <button class="btn btn__danger float-left" id="empty-cart" type="button">{{ @root.__ "Empty
+                                cart" }}</button>
                             <a href="/checkout/information" class="btn btn__primary float-right">Checkout</a>
                         </div>
                     </div>
@@ -655,6 +683,9 @@
             {{> partials/variantEditModal}}
             {{/if}}
             {{> partials/confirmModal}}
+            {{#if @root.config.modules.enabled.reviews}}
+            {{> partials/reviewModal}}
+            {{/if}}
             <script>
                 feather.replace();
             </script>

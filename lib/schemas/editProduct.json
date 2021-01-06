@@ -16,12 +16,22 @@
             "minLength": 5
         },
         "productPrice": {
-            "type": "string"
+            "type": "string",
+            "format": "amount"
         },
         "productDescription": {
             "type": "string",
             "isNotEmpty": true,
             "minLength": 25
+        },
+        "productGtin": {
+            "type": "string",
+            "format": "alphanumeric",
+            "maxLength": 16
+        },
+        "productBrand": {
+            "type": "string",
+            "maxLength": 50
         },
         "productPublished": {
             "type": "boolean"
@@ -33,10 +43,7 @@
             "type": "boolean"
         },
         "productStock": {
-            "type": [
-                "number",
-                "null"
-            ]
+            "type": ["number", "null"]
         },
         "productStockDisable": {
             "type": "boolean"
