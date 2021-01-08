@@ -220,5 +220,11 @@
 	"Ascending": "Tăng dần",
 	"Select the order in which the products should be sorted.": "Select the order in which the products should be sorted..",
 	"Customers can be filtered by: email, name or phone number": "Customers can be filtered by: email, name or phone number",
-	"it": "Vietnamese"
+	"it": "Vietnamese",
+	" Search shop": " Search shop",
+	"Empty\r\n                                cart": "Empty\r\n                                cart",
+	"Add to\r\n                        cart": "Add to\r\n                        cart",
+	"Change\r\n                                customer": "Change\r\n                                customer",
+	"Reviews can be filtered by: review title or review description\r\n            keywords": "Reviews can be filtered by: review title or review description\r\n            keywords",
+	"Recent reviews": "Recent reviews"
 }

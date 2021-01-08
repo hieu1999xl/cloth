@@ -17,11 +17,11 @@
         },
         "start": {
             "type": "object",
-            "format" : "datetime"
+            "format": "datetime"
         },
         "end": {
             "type": "object",
-            "format" : "datetime"
+            "format": "datetime"
         }
     },
     "required": [

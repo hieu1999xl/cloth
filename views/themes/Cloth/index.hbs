@@ -1,4 +1,137 @@
 {{> themes/Cloth/front-menu}}
+<div class="wrap_all">
+    <div class="body1">
+
+        <div class="body_upper">
+
+            <div class="body_upper_part1">
+                <img src="/images/banner_main.png" alt="cover" style="width: 100%; height: 100%;">
+            </div>
+            <div class="body_upper_part2">
+                <img src="/images/banner.png" alt="promotion" style="width: 100%; height: 100%;">
+            </div>
+            <div class="body_upper_part3">
+                <img src="/images/banners.png" alt="promotion" style="width: 100%; height: 100%;">
+            </div>
+            <div style="clear: both;"></div>
+        </div>
+
+        <div class="body_upper_part4">
+            <a href="#">
+                <div class="box">
+                    <div class="pic">
+                        <img src="https://cf.shopee.vn/file/7e062c634bd67ce1c78096160f0a920b_xhdpi" alt="logo"
+                            style="width: 100%; height: 100%;">
+                    </div>
+                    <div class="text">
+                        0H-12H-21H
+                    </div>
+                    <div class="test" style="width: 100px; height: 50px; background: white; display: none;">
+                        Đây là nội dung test xem nó có hiện ra hay không
+                    </div>
+                </div>
+            </a>
+
+            <div class="box">
+                <div class="pic">
+                    <img src="https://cf.shopee.vn/file/d62ed4a90246daf3c9e14ae26a191bcb_xxhdpi" alt="logo"
+                        style="width: 100%; height: 100%;">
+                </div>
+                <div class="text">
+                    Trăm Tỷ Voucher
+                </div>
+            </div>
+
+            <div class="box">
+                <div class="pic">
+                    <img src="https://cf.shopee.vn/file/07ee4296b0a33885418670f2e3ffeca0_xxhdpi" alt="logo"
+                        style="width: 100%; height: 100%;">
+                </div>
+                <div class="text">
+                    Freeship Extra
+                </div>
+            </div>
+
+            <div class="box">
+                <div class="pic">
+                    <img src="https://cf.shopee.vn/file/a08ab28962514a626195ef0415411585_xxhdpi" alt="logo"
+                        style="width: 1005; height: 100%;">
+                </div>
+                <div class="text">
+                    Hàng Quốc Tế
+                </div>
+            </div>
+
+            <div class="box">
+                <div class="pic">
+                    <img src="https://cf.shopee.vn/file/c68804e5aaad26526093bb863fc96fd3_xxhdpi" alt="logo"
+                        style="width: 1005; height: 100%;">
+                </div>
+                <div class="text">
+                    Shopee Mall
+                </div>
+            </div>
+
+            <div class="box">
+                <div class="pic">
+                    <img src="https://cf.shopee.vn/file/16f5dd1348f2a30d3bd83bf2c7e9e682_xxhdpi" alt="logo"
+                        style="width: 1005; height: 100%;">
+                </div>
+                <div class="text">
+                    Shopee Games
+                </div>
+            </div>
+
+            <div class="box">
+                <div class="pic">
+                    <img src="https://cf.shopee.vn/file/9ac705a2e9861e3897ef82e9ca2a238b_xxhdpi" alt="logo"
+                        style="width: 1005; height: 100%;">
+                </div>
+                <div class="text">
+                    Deal Sốc Từ 1k
+                </div>
+            </div>
+
+            <div class="box">
+                <div class="pic">
+                    <img src="https://cf.shopee.vn/file/fc47ae60c9f2a22c6532647f24b4e293_xxhdpi" alt="logo"
+                        style="width: 1005; height: 100%;">
+                </div>
+                <div class="text">
+                    Siêu Thị Điện Tử
+                </div>
+            </div>
+
+            <div class="box">
+                <div class="pic">
+                    <img src="https://cf.shopee.vn/file/70a8063327186dc6ff9a2dd15d464a83_xxhdpi" alt="logo"
+                        style="width: 1005; height: 100%;">
+                </div>
+                <div class="text">
+                    Săn Xu Mỗi Ngày
+                </div>
+            </div>
+
+            <div class="box">
+                <div class="pic">
+                    <img src="https://cf.shopee.vn/file/ecaebea2948274ba71520fb66a601fba_xxhdpi" alt="logo"
+                        style="width: 1005; height: 100%;">
+                </div>
+                <div class="text">
+                    Shopee Mum's Club
+                </div>
+            </div>
+
+            <div style="clear: both;"></div>
+        </div>
+
+        <div style="clear: both;"></div>
+    </div>
+
+    <div class="body2">
+        <img src="/images/banner_long.png" alt="banner" style="width: 100%; height: 100%;">
+    </div>
+</div>
 <div class="sugges">
     <div class="row app__content">
         <div class="col l-2 m-0 c-0">
@@ -11,8 +144,8 @@
                         <a href="/" class="category-item__link">Home</a>
                     </li>
                     {{#each menu.items}}
-                    <li class="nav-item" {{#menuMatch this.title @root.searchTerm}}{{/menuMatch}}
-                        {{#menuMatch this.title @root.title}}{{/menuMatch}}>
+                    <li class="nav-item" {{#menuMatch this.title @root.searchTerm}}{{/menuMatch}} {{#menuMatch
+                        this.title @root.title}}{{/menuMatch}}>
                         <a class="nav-link" href="{{this.link}}">{{this.title}}</a>
                     </li>
                     {{/each}}
@@ -111,7 +244,7 @@
                                             {{#if productImage}}
                                             <img class="img-fluid img-min" src="{{this.productImage}}" alt="...">
                                             {{else}}
-                                            <img class="img-fluid img-min" src="/uploads/unplash2.jpg" alt="...">
+                                            <img class="img-fluid img-min" src="/uploads/placeholder2.jpg" alt="...">
                                             {{/if}}
                                         </div>
                                         <h3 class="home-product-item__name">
@@ -125,7 +258,7 @@
                                             {{#if productImage}}
                                             <img class="img-fluid img-min" src="{{this.productImage}}" alt="...">
                                             {{else}}
-                                            <img class="img-fluid img-min" src="/uploads/unplash1.jpg" alt="...">
+                                            <img class="img-fluid img-min" src="/uploads/placeholder2.jpg" alt="...">
                                             {{/if}}
                                         </div>
                                         <h3 class="product-title product-title-home top-pad-10">
@@ -157,17 +290,16 @@
                                     </h3>
                                     {{/if}}
                                     {{!-- <p class="text-center">
-                                                {{#if @root.config.showHomepageVariants}}
-                                                <a class="home-fitter__btn btn btn__primary add-variant-to-cart"
-                                                    data-id="{{this._id}}"
-                                                    role="button">{{ @root.__ "Add to cart" }}</a>
-                                                {{else}}
-                                                <a class="home-fitter__btn btn btn__primary add-to-cart"
-                                                    data-id="{{this._id}}" data-link="{{this.productPermalink}}"
-                                                    data-has-variants="{{checkProductVariants this.variants}}"
-                                                    role="button">{{ @root.__ "Add to cart" }}</a>
-                                                {{/if}}
-                                            </p> --}}
+                                        {{#if @root.config.showHomepageVariants}}
+                                        <a class="home-fitter__btn btn btn__primary add-variant-to-cart"
+                                            data-id="{{this._id}}" role="button">{{ @root.__ "Add to cart" }}</a>
+                                        {{else}}
+                                        <a class="home-fitter__btn btn btn__primary add-to-cart" data-id="{{this._id}}"
+                                            data-link="{{this.productPermalink}}"
+                                            data-has-variants="{{checkProductVariants this.variants}}" role="button">{{
+                                            @root.__ "Add to cart" }}</a>
+                                        {{/if}}
+                                    </p> --}}
                                 </div>
                             </div>
                             {{/each}}

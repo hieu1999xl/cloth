@@ -23,7 +23,7 @@
                 <div class="card-body customer-details-login">
                     <h5 class="card-heading">{{ @root.__ "Customer details" }}</h5>
                     {{#unless @root.session.customerPresent}}
-                    <div class="row">
+                    {{!-- <div class="row">
                         <div class="col-sm-12 bottom-marg-15">
                             <p>{{ @root.__ "Existing customer" }}</p>
                             <div class="form-group">
@@ -35,21 +35,21 @@
                                     name="loginPassword" minlength="5" placeholder="Password" required>
                             </div>
                             <div class="form-group">
-                                <a href="/customer/forgotten"
-                                    class="btn btn__primary float-left">{{ @root.__ "Forgotten" }}</a>
+                                <a href="/customer/forgotten" class="btn btn__primary float-left">{{ @root.__
+                                    "Forgotten" }}</a>
                             </div>
                             <div class="form-group">
                                 <button id="customerLogin" class="btn btn__primary float-right"
                                     type="submit">Login</button>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                     {{/unless}}
                     {{#if @root.session.customerPresent}}
                     <div class="row bottom-marg-15">
                         <div class="col-sm-12">
-                            <button id="customerLogout"
-                                class="btn btn__primary float-right">{{ @root.__ "Change customer" }}</button>
+                            <button id="customerLogout" class="btn btn__primary float-right">{{ @root.__ "Change
+                                customer" }}</button>
                         </div>
                     </div>
                     {{/if}}
@@ -58,11 +58,8 @@
                         {{> themes/Cloth/shipping-form}}
                         <div class="row">
                             {{#unless @root.session.customerPresent}}
-                            <div class="col-sm-12">
-                                <p class="text-muted">
-                                    {{ @root.__ "Enter a password to create an account for next time" }}</p>
-                            </div>
-                            <div class="col-sm-6">
+
+                            {{!-- <div class="col-sm-6">
                                 <div class="form-group">
                                     <input type="password" class="form-control customerDetails" id="newCustomerPassword"
                                         name="newCustomerPassword" placeholder="Password">
@@ -74,7 +71,7 @@
                                         <input type="checkbox" id="createAccountCheckbox"> Create an account
                                     </label>
                                 </div>
-                            </div>
+                            </div> --}}
                             {{/unless}}
                             <div class="col-sm-12">
                                 <a href="/checkout/cart" class="btn btn__primary float-left">Return to cart</a>
@@ -91,37 +88,10 @@
             {{#if @root.session.cart}}
             <div class="row">
                 <div class="col-sm-12 {{showCartButtons @root.session.cart}} cart-buttons">
-                    <button class="btn btn__danger float-right" id="empty-cart"
-                        type="button">{{ @root.__ "Empty cart" }}</button>
+                    <button class="btn btn__danger float-right" id="empty-cart" type="button">{{ @root.__ "Empty cart"
+                        }}</button>
                 </div>
                 {{/if}}
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-    Launch demo modal
-</button>
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                {{> (getTheme 'cart')}}
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
             </div>
         </div>
     </div>
