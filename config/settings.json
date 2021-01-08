@@ -17,7 +17,7 @@
     "customCss": "",
     "currencySymbol": "₫",
     "paymentGateway": "instore",
-    "databaseConnectionString": "mongodb://127.0.0.1:27017/expresscart",
+    "databaseConnectionString": "mongodb+srv://dbUser:Prototype.9@cluster0.rysjo.mongodb.net/expresscart?retryWrites=true&w=majority",
     "theme": "Cloth",
     "trackStock": false,
     "orderHook": "",
