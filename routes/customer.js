@@ -3,6 +3,16 @@ const router = express.Router();
 const colors = require('colors');
 const randtoken = require('rand-token');
 const bcrypt = require('bcryptjs');
+
+const passport = require('passport');
+const FacebookStrategy = require('passport-facebook').Strategy;
+const session = require('express-session');
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
+const config = require('../config/config');
+
+const app = express();
+
 const {
     getId,
     clearSessionValue,
@@ -20,6 +30,85 @@ const apiLimiter = rateLimit({
     windowMs: 300000, // 5 minutes
     max: 5
 });
+
+// Passport session setup.
+passport.serializeUser(function (user, done) {
+    done(null, user);
+});
+
+passport.deserializeUser(function (obj, done) {
+    done(null, obj);
+});
+
+// Use the FacebookStrategy within Passport.
+
+app.use(session({ secret: 'keyboard cat', key: 'sid' }));
+app.use(passport.initialize());
+app.use(passport.session());
+
+//faceboook
+router.get('/', function (req, res) {
+    res.render('index', { user: req.user });
+});
+
+router.get('/login', function (req, res) {
+    //render page login html
+});
+
+router.get('/account', ensureAuthenticated, function (req, res) {
+    res.render('account', { user: req.user });
+});
+
+router.get('/auth/facebook', passport.authenticate('facebook', { scope: 'email' }));
+
+router.get('/auth/facebook/callback',
+    passport.authenticate('facebook', { successRedirect: '/', failureRedirect: '/login' }),
+    function (req, res) {
+        res.redirect('/');
+    });
+
+router.get('/logout', function (req, res) {
+    req.logout();
+    res.redirect('/');
+});
+
+function ensureAuthenticated(req, res, next) {
+    if (req.isAuthenticated()) { return next(); }
+    res.redirect('/login')
+}
+passport.use(new FacebookStrategy({
+    clientID: config.facebook_api_key,
+    clientSecret: config.facebook_api_secret,
+    callbackURL: config.callback_url
+},
+    function (accessToken, refreshToken, profile, done) {
+        process.nextTick(async function () {
+            const db = req.app.db;
+            const customerObj = {
+                _id: req.user.id,
+                email: req.user.email,
+                company: req.body.company,
+                firstName: req.body.firstName,
+                lastName: req.user.displayName,
+                address1: req.body.address1,
+                address2: req.body.address2,
+                country: req.body.country,
+                state: req.body.state,
+                postcode: req.body.postcode,
+                phone: req.body.phone,
+                created: new Date()
+            };
+            const newCustomer = await db.customers.insertOne(customerObj)
+                .then(() => {
+                    return done(null, profile);
+                    console.log(accessToken, refreshToken, profile, lastName, email, done);
+
+                })
+        });
+        console.log(lastName)
+    }
+
+));
 
 // insert a customer
 router.post('/customer/create', async (req, res) => {
@@ -41,47 +130,47 @@ router.post('/customer/create', async (req, res) => {
     };
 
     const schemaResult = validateJson('newCustomer', customerObj);
-    if(!schemaResult.result){
+    if (!schemaResult.result) {
         res.status(400).json(schemaResult.errors);
         return;
     }
 
     // check for existing customer
     const customer = await db.customers.findOne({ email: req.body.email });
-    if(customer){
+    if (customer) {
         res.status(400).json({
             message: 'A customer already exists with that email address'
         });
         return;
     }
     // email is ok to be used.
-    try{
+    try {
         const newCustomer = await db.customers.insertOne(customerObj);
         indexCustomers(req.app)
-        .then(() => {
-            // Return the new customer
-            const customerReturn = newCustomer.ops[0];
-            delete customerReturn.password;
+            .then(() => {
+                // Return the new customer
+                const customerReturn = newCustomer.ops[0];
+                delete customerReturn.password;
 
-            // Set the customer into the session
-            req.session.customerPresent = true;
-            req.session.customerId = customerReturn._id;
-            req.session.customerEmail = customerReturn.email;
-            req.session.customerCompany = customerReturn.company;
-            req.session.customerFirstname = customerReturn.firstName;
-            req.session.customerLastname = customerReturn.lastName;
-            req.session.customerAddress1 = customerReturn.address1;
-            req.session.customerAddress2 = customerReturn.address2;
-            req.session.customerCountry = customerReturn.country;
-            req.session.customerState = customerReturn.state;
-            req.session.customerPostcode = customerReturn.postcode;
-            req.session.customerPhone = customerReturn.phone;
-            req.session.orderComment = req.body.orderComment;
+                // Set the customer into the session
+                req.session.customerPresent = true;
+                req.session.customerId = customerReturn._id;
+                req.session.customerEmail = customerReturn.email;
+                req.session.customerCompany = customerReturn.company;
+                req.session.customerFirstname = customerReturn.firstName;
+                req.session.customerLastname = customerReturn.lastName;
+                req.session.customerAddress1 = customerReturn.address1;
+                req.session.customerAddress2 = customerReturn.address2;
+                req.session.customerCountry = customerReturn.country;
+                req.session.customerState = customerReturn.state;
+                req.session.customerPostcode = customerReturn.postcode;
+                req.session.customerPhone = customerReturn.phone;
+                req.session.orderComment = req.body.orderComment;
 
-            // Return customer oject
-            res.status(200).json(customerReturn);
-        });
-    }catch(ex){
+                // Return customer oject
+                res.status(200).json(customerReturn);
+            });
+    } catch (ex) {
         console.error(colors.red('Failed to insert customer: ', ex));
         res.status(400).json({
             message: 'Customer creation failed.'
@@ -104,7 +193,7 @@ router.post('/customer/save', async (req, res) => {
     };
 
     const schemaResult = validateJson('saveCustomer', customerObj);
-    if(!schemaResult.result){
+    if (!schemaResult.result) {
         res.status(400).json(schemaResult.errors);
         return;
     }
@@ -131,7 +220,7 @@ router.get('/customer/account', async (req, res) => {
     const db = req.app.db;
     const config = req.app.config;
 
-    if(!req.session.customerPresent){
+    if (!req.session.customerPresent) {
         res.redirect('/customer/login');
         return;
     }
@@ -139,8 +228,8 @@ router.get('/customer/account', async (req, res) => {
     const orders = await db.orders.find({
         orderCustomer: getId(req.session.customerId)
     })
-    .sort({ orderDate: -1 })
-    .toArray();
+        .sort({ orderDate: -1 })
+        .toArray();
     res.render(`${config.themeViews}customer-account`, {
         title: 'Orders',
         session: req.session,
@@ -157,7 +246,7 @@ router.get('/customer/account', async (req, res) => {
 router.post('/customer/update', async (req, res) => {
     const db = req.app.db;
 
-    if(!req.session.customerPresent){
+    if (!req.session.customerPresent) {
         res.redirect('/customer/login');
         return;
     }
@@ -176,7 +265,7 @@ router.post('/customer/update', async (req, res) => {
     };
 
     const schemaResult = validateJson('editCustomer', customerObj);
-    if(!schemaResult.result){
+    if (!schemaResult.result) {
         console.log('errors', schemaResult.errors);
         res.status(400).json(schemaResult.errors);
         return;
@@ -184,14 +273,14 @@ router.post('/customer/update', async (req, res) => {
 
     // check for existing customer
     const customer = await db.customers.findOne({ _id: getId(req.session.customerId) });
-    if(!customer){
+    if (!customer) {
         res.status(400).json({
             message: 'Customer not found'
         });
         return;
     }
     // Update customer
-    try{
+    try {
         const updatedCustomer = await db.customers.findOneAndUpdate(
             { _id: getId(req.session.customerId) },
             {
@@ -199,23 +288,23 @@ router.post('/customer/update', async (req, res) => {
             }, { multi: false, returnOriginal: false }
         );
         indexCustomers(req.app)
-        .then(() => {
-            // Set the customer into the session
-            req.session.customerEmail = customerObj.email;
-            req.session.customerCompany = customerObj.company;
-            req.session.customerFirstname = customerObj.firstName;
-            req.session.customerLastname = customerObj.lastName;
-            req.session.customerAddress1 = customerObj.address1;
-            req.session.customerAddress2 = customerObj.address2;
-            req.session.customerCountry = customerObj.country;
-            req.session.customerState = customerObj.state;
-            req.session.customerPostcode = customerObj.postcode;
-            req.session.customerPhone = customerObj.phone;
-            req.session.orderComment = req.body.orderComment;
+            .then(() => {
+                // Set the customer into the session
+                req.session.customerEmail = customerObj.email;
+                req.session.customerCompany = customerObj.company;
+                req.session.customerFirstname = customerObj.firstName;
+                req.session.customerLastname = customerObj.lastName;
+                req.session.customerAddress1 = customerObj.address1;
+                req.session.customerAddress2 = customerObj.address2;
+                req.session.customerCountry = customerObj.country;
+                req.session.customerState = customerObj.state;
+                req.session.customerPostcode = customerObj.postcode;
+                req.session.customerPhone = customerObj.phone;
+                req.session.orderComment = req.body.orderComment;
 
-            res.status(200).json({ message: 'Customer updated', customer: updatedCustomer.value });
-        });
-    }catch(ex){
+                res.status(200).json({ message: 'Customer updated', customer: updatedCustomer.value });
+            });
+    } catch (ex) {
         console.error(colors.red(`Failed updating customer: ${ex}`));
         res.status(400).json({ message: 'Failed to update customer' });
     }
@@ -239,10 +328,10 @@ router.post('/admin/customer/update', restrict, async (req, res) => {
     };
 
     // Handle optional values
-    if(req.body.password){ customerObj.password = bcrypt.hashSync(req.body.password, 10); }
+    if (req.body.password) { customerObj.password = bcrypt.hashSync(req.body.password, 10); }
 
     const schemaResult = validateJson('editCustomer', customerObj);
-    if(!schemaResult.result){
+    if (!schemaResult.result) {
         console.log('errors', schemaResult.errors);
         res.status(400).json(schemaResult.errors);
         return;
@@ -250,14 +339,14 @@ router.post('/admin/customer/update', restrict, async (req, res) => {
 
     // check for existing customer
     const customer = await db.customers.findOne({ _id: getId(req.body.customerId) });
-    if(!customer){
+    if (!customer) {
         res.status(400).json({
             message: 'Customer not found'
         });
         return;
     }
     // Update customer
-    try{
+    try {
         const updatedCustomer = await db.customers.findOneAndUpdate(
             { _id: getId(req.body.customerId) },
             {
@@ -265,12 +354,12 @@ router.post('/admin/customer/update', restrict, async (req, res) => {
             }, { multi: false, returnOriginal: false }
         );
         indexCustomers(req.app)
-        .then(() => {
-            const returnCustomer = updatedCustomer.value;
-            delete returnCustomer.password;
-            res.status(200).json({ message: 'Customer updated', customer: updatedCustomer.value });
-        });
-    }catch(ex){
+            .then(() => {
+                const returnCustomer = updatedCustomer.value;
+                delete returnCustomer.password;
+                res.status(200).json({ message: 'Customer updated', customer: updatedCustomer.value });
+            });
+    } catch (ex) {
         console.error(colors.red(`Failed updating customer: ${ex}`));
         res.status(400).json({ message: 'Failed to update customer' });
     }
@@ -282,20 +371,20 @@ router.delete('/admin/customer', restrict, async (req, res) => {
 
     // check for existing customer
     const customer = await db.customers.findOne({ _id: getId(req.body.customerId) });
-    if(!customer){
+    if (!customer) {
         res.status(400).json({
             message: 'Failed to delete customer. Customer not found'
         });
         return;
     }
     // Update customer
-    try{
+    try {
         await db.customers.deleteOne({ _id: getId(req.body.customerId) });
         indexCustomers(req.app)
-        .then(() => {
-            res.status(200).json({ message: 'Customer deleted' });
-        });
-    }catch(ex){
+            .then(() => {
+                res.status(200).json({ message: 'Customer deleted' });
+            });
+    } catch (ex) {
         console.error(colors.red(`Failed deleting customer: ${ex}`));
         res.status(400).json({ message: 'Failed to delete customer' });
     }
@@ -307,9 +396,9 @@ router.get('/admin/customer/view/:id?', restrict, async (req, res) => {
 
     const customer = await db.customers.findOne({ _id: getId(req.params.id) });
 
-    if(!customer){
-         // If API request, return json
-        if(req.apiAuthenticated){
+    if (!customer) {
+        // If API request, return json
+        if (req.apiAuthenticated) {
             return res.status(400).json({ message: 'Customer not found' });
         }
         req.session.message = 'Customer not found';
@@ -318,7 +407,7 @@ router.get('/admin/customer/view/:id?', restrict, async (req, res) => {
     }
 
     // If API request, return json
-    if(req.apiAuthenticated){
+    if (req.apiAuthenticated) {
         return res.status(200).json(customer);
     }
 
@@ -343,7 +432,7 @@ router.get('/admin/customers', restrict, async (req, res) => {
     const customers = await db.customers.find({}).limit(20).sort({ created: -1 }).toArray();
 
     // If API request, return json
-    if(req.apiAuthenticated){
+    if (req.apiAuthenticated) {
         return res.status(200).json(customers);
     }
 
@@ -374,7 +463,7 @@ router.get('/admin/customers/filter/:search', restrict, async (req, res, next) =
     const customers = await db.customers.find({ _id: { $in: lunrIdArray } }).sort({ created: -1 }).toArray();
 
     // If API request, return json
-    if(req.apiAuthenticated){
+    if (req.apiAuthenticated) {
         return res.status(200).json({
             customers
         });
@@ -400,7 +489,7 @@ router.post('/admin/customer/lookup', restrict, async (req, res, next) => {
     // Search for a customer
     const customer = await db.customers.findOne({ email: customerEmail });
 
-    if(customer){
+    if (customer) {
         req.session.customerPresent = true;
         req.session.customerId = customer._id;
         req.session.customerEmail = customer.email;
@@ -443,7 +532,7 @@ router.post('/customer/login_action', async (req, res) => {
 
     const customer = await db.customers.findOne({ email: mongoSanitize(req.body.loginEmail) });
     // check if customer exists with that email
-    if(customer === undefined || customer === null){
+    if (customer === undefined || customer === null) {
         res.status(400).json({
             message: 'A customer with that email does not exist.'
         });
@@ -451,39 +540,39 @@ router.post('/customer/login_action', async (req, res) => {
     }
     // we have a customer under that email so we compare the password
     bcrypt.compare(req.body.loginPassword, customer.password)
-    .then((result) => {
-        if(!result){
-            // password is not correct
+        .then((result) => {
+            if (!result) {
+                // password is not correct
+                res.status(400).json({
+                    message: 'Access denied. Check password and try again.'
+                });
+                return;
+            }
+
+            // Customer login successful
+            req.session.customerPresent = true;
+            req.session.customerId = customer._id;
+            req.session.customerEmail = customer.email;
+            req.session.customerCompany = customer.company;
+            req.session.customerFirstname = customer.firstName;
+            req.session.customerLastname = customer.lastName;
+            req.session.customerAddress1 = customer.address1;
+            req.session.customerAddress2 = customer.address2;
+            req.session.customerCountry = customer.country;
+            req.session.customerState = customer.state;
+            req.session.customerPostcode = customer.postcode;
+            req.session.customerPhone = customer.phone;
+
+            res.status(200).json({
+                message: 'Successfully logged in',
+                customer: customer
+            });
+        })
+        .catch((err) => {
             res.status(400).json({
                 message: 'Access denied. Check password and try again.'
             });
-            return;
-        }
-
-        // Customer login successful
-        req.session.customerPresent = true;
-        req.session.customerId = customer._id;
-        req.session.customerEmail = customer.email;
-        req.session.customerCompany = customer.company;
-        req.session.customerFirstname = customer.firstName;
-        req.session.customerLastname = customer.lastName;
-        req.session.customerAddress1 = customer.address1;
-        req.session.customerAddress2 = customer.address2;
-        req.session.customerCountry = customer.country;
-        req.session.customerState = customer.state;
-        req.session.customerPostcode = customer.postcode;
-        req.session.customerPhone = customer.phone;
-
-        res.status(200).json({
-            message: 'Successfully logged in',
-            customer: customer
         });
-    })
-    .catch((err) => {
-        res.status(400).json({
-            message: 'Access denied. Check password and try again.'
-        });
-    });
 });
 
 // customer forgotten password
@@ -508,8 +597,8 @@ router.post('/customer/forgotten_action', apiLimiter, async (req, res) => {
 
     // find the user
     const customer = await db.customers.findOne({ email: req.body.email });
-    try{
-        if(!customer){
+    try {
+        if (!customer) {
             // if don't have an email on file, silently fail
             res.status(200).json({
                 message: 'If your account exists, a password reset has been sent to your email'
@@ -534,7 +623,7 @@ router.post('/customer/forgotten_action', apiLimiter, async (req, res) => {
         res.status(200).json({
             message: 'If your account exists, a password reset has been sent to your email'
         });
-    }catch(ex){
+    } catch (ex) {
         res.status(400).json({
             message: 'Password reset failed.'
         });
@@ -547,7 +636,7 @@ router.get('/customer/reset/:token', async (req, res) => {
 
     // Find the customer using the token
     const customer = await db.customers.findOne({ resetToken: req.params.token, resetTokenExpiry: { $gt: Date.now() } });
-    if(!customer){
+    if (!customer) {
         req.session.message = 'Password reset token is invalid or has expired';
         req.session.message_type = 'danger';
         res.redirect('/forgot');
@@ -573,7 +662,7 @@ router.post('/customer/reset/:token', async (req, res) => {
 
     // get the customer
     const customer = await db.customers.findOne({ resetToken: req.params.token, resetTokenExpiry: { $gt: Date.now() } });
-    if(!customer){
+    if (!customer) {
         req.session.message = 'Password reset token is invalid or has expired';
         req.session.message_type = 'danger';
         return res.redirect('/forgot');
@@ -581,7 +670,7 @@ router.post('/customer/reset/:token', async (req, res) => {
 
     // update the password and remove the token
     const newPassword = bcrypt.hashSync(req.body.password, 10);
-    try{
+    try {
         await db.customers.updateOne({ email: customer.email }, { $set: { password: newPassword, resetToken: undefined, resetTokenExpiry: undefined } }, { multi: false });
         const mailOpts = {
             to: customer.email,
@@ -594,7 +683,7 @@ router.post('/customer/reset/:token', async (req, res) => {
         req.session.message = 'Password successfully updated';
         req.session.message_type = 'success';
         return res.redirect('/checkout/payment');
-    }catch(ex){
+    } catch (ex) {
         console.log('Unable to reset password', ex);
         req.session.message = 'Unable to reset password';
         req.session.message_type = 'danger';
@@ -604,7 +693,7 @@ router.post('/customer/reset/:token', async (req, res) => {
 
 // logout the customer
 router.post('/customer/check', (req, res) => {
-    if(!req.session.customerPresent){
+    if (!req.session.customerPresent) {
         return res.status(400).json({
             message: 'Not logged in'
         });

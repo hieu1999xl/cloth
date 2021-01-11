@@ -83,7 +83,9 @@
     "stripe": "^7.12.0",
     "uglifycss": "0.0.27",
     "xml-js": "^1.6.11",
-    "yenv": "^2.1.1"
+    "yenv": "^2.1.1",
+    "passport": "^0.4.0",
+    "passport-facebook": "^3.0.0"
   },
   "devDependencies": {
     "ava": "^3.13.0",
