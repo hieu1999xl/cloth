@@ -4,8 +4,8 @@ const colors = require('colors');
 const randtoken = require('rand-token');
 const bcrypt = require('bcryptjs');
 
-const passport = require('passport');
-const FacebookStrategy = require('passport-facebook').Strategy;
+// const passport = require('passport');
+// const FacebookStrategy = require('passport-facebook').Strategy;
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
@@ -31,84 +31,84 @@ const apiLimiter = rateLimit({
     max: 5
 });
 
-// Passport session setup.
-passport.serializeUser(function (user, done) {
-    done(null, user);
-});
+// // Passport session setup.
+// passport.serializeUser(function (user, done) {
+//     done(null, user);
+// });
 
-passport.deserializeUser(function (obj, done) {
-    done(null, obj);
-});
+// passport.deserializeUser(function (obj, done) {
+//     done(null, obj);
+// });
 
-// Use the FacebookStrategy within Passport.
+// // Use the FacebookStrategy within Passport.
 
-app.use(session({ secret: 'keyboard cat', key: 'sid' }));
-app.use(passport.initialize());
-app.use(passport.session());
+// app.use(session({ secret: 'keyboard cat', key: 'sid' }));
+// app.use(passport.initialize());
+// app.use(passport.session());
 
-//faceboook
-router.get('/', function (req, res) {
-    res.render('index', { user: req.user });
-});
+// //faceboook
+// router.get('/', function (req, res) {
+//     res.render('index', { user: req.user });
+// });
 
-router.get('/login', function (req, res) {
-    //render page login html
-});
+// router.get('/login', function (req, res) {
+//     //render page login html
+// });
 
-router.get('/account', ensureAuthenticated, function (req, res) {
-    res.render('account', { user: req.user });
-});
+// router.get('/account', ensureAuthenticated, function (req, res) {
+//     res.render('account', { user: req.user });
+// });
 
-router.get('/auth/facebook', passport.authenticate('facebook', { scope: 'email' }));
+// router.get('/auth/facebook', passport.authenticate('facebook', { scope: 'email' }));
 
-router.get('/auth/facebook/callback',
-    passport.authenticate('facebook', { successRedirect: '/', failureRedirect: '/login' }),
-    function (req, res) {
-        res.redirect('/');
-    });
+// router.get('/auth/facebook/callback',
+//     passport.authenticate('facebook', { successRedirect: '/', failureRedirect: '/login' }),
+//     function (req, res) {
+//         res.redirect('/');
+//     });
 
-router.get('/logout', function (req, res) {
-    req.logout();
-    res.redirect('/');
-});
+// router.get('/logout', function (req, res) {
+//     req.logout();
+//     res.redirect('/');
+// });
 
-function ensureAuthenticated(req, res, next) {
-    if (req.isAuthenticated()) { return next(); }
-    res.redirect('/login')
-}
-passport.use(new FacebookStrategy({
-    clientID: config.facebook_api_key,
-    clientSecret: config.facebook_api_secret,
-    callbackURL: config.callback_url
-},
-    function (accessToken, refreshToken, profile, done) {
-        process.nextTick(async function () {
-            const db = req.app.db;
-            const customerObj = {
-                _id: req.user.id,
-                email: req.user.email,
-                company: req.body.company,
-                firstName: req.body.firstName,
-                lastName: req.user.displayName,
-                address1: req.body.address1,
-                address2: req.body.address2,
-                country: req.body.country,
-                state: req.body.state,
-                postcode: req.body.postcode,
-                phone: req.body.phone,
-                created: new Date()
-            };
-            const newCustomer = await db.customers.insertOne(customerObj)
-                .then(() => {
-                    return done(null, profile);
-                    console.log(accessToken, refreshToken, profile, lastName, email, done);
+// function ensureAuthenticated(req, res, next) {
+//     if (req.isAuthenticated()) { return next(); }
+//     res.redirect('/login')
+// }
+// passport.use(new FacebookStrategy({
+//     clientID: config.facebook_api_key,
+//     clientSecret: config.facebook_api_secret,
+//     callbackURL: config.callback_url
+// },
+//     function (accessToken, refreshToken, profile, done) {
+//         process.nextTick(async function () {
+//             const db = req.app.db;
+//             const customerObj = {
+//                 _id: req.user.id,
+//                 email: req.user.email,
+//                 company: req.body.company,
+//                 firstName: req.body.firstName,
+//                 lastName: req.user.displayName,
+//                 address1: req.body.address1,
+//                 address2: req.body.address2,
+//                 country: req.body.country,
+//                 state: req.body.state,
+//                 postcode: req.body.postcode,
+//                 phone: req.body.phone,
+//                 created: new Date()
+//             };
+//             const newCustomer = await db.customers.insertOne(customerObj)
+//                 .then(() => {
+//                     return done(null, profile);
+//                     console.log(accessToken, refreshToken, profile, lastName, email, done);
 
-                })
-        });
-        console.log(lastName)
-    }
+//                 })
+//         });
+//         console.log(lastName)
+//     }
 
-));
+// ));
 
 // insert a customer
 router.post('/customer/create', async (req, res) => {
