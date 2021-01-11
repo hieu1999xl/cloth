@@ -23,9 +23,6 @@ const { addSchemas } = require('./lib/schema');
 const { initDb, getDbUri } = require('./lib/db');
 let handlebars = require('express-handlebars');
 const i18n = require('i18n');
-const passport = require('passport');
-const FacebookStrategy = require('passport-facebook').Strategy;
-const config1 = require('./config/config')
 
 // Validate our settings schema
 const Ajv = require('ajv');
@@ -78,32 +75,6 @@ i18n.configure({
 });
 
 
-// Passport session setup.
-passport.serializeUser(function (user, done) {
-    done(null, user);
-});
-
-passport.deserializeUser(function (obj, done) {
-    done(null, obj);
-});
-
-// Use the FacebookStrategy within Passport.
-passport.use(new FacebookStrategy({
-    clientID: config1.facebook_api_key,
-    clientSecret: config1.facebook_api_secret,
-    callbackURL: config1.callback_url
-},
-    function (accessToken, refreshToken, profile, done) {
-        process.nextTick(function () {
-            console.log(accessToken, refreshToken, profile, done);
-            return done(null, profile);
-        });
-    }
-));
-
-app.use(session({ secret: 'keyboard cat', key: 'sid' }));
-app.use(passport.initialize());
-app.use(passport.session());
 
 
 // view engine setup
