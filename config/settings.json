@@ -29,7 +29,7 @@
     "maxQuantity": 25,
     "twitterHandle": "",
     "facebookAppId": "",
-    "productOrderBy": "title",
+    "productOrderBy": "date",
     "productOrder": "descending",
     "modules": {
         "enabled": {

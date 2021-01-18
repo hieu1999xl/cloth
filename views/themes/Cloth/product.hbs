@@ -1,176 +1,534 @@
 {{> themes/Cloth/front-menu}}
-<div class="product-layout col-sm-12">
-    <div class="row">
-        <div class="col-sm-12 col-md-6 mr-auto">
-            {{#if result.productImage}}
-            <div class="title-image-container">
-                <div class="image-prev image-button"> {{{feather 'chevron-left'}}}</div>
-                <img src="{{result.productImage}}" id="product-title-image" class="product-title-image img-fluid"
-                    alt="...">
-                <div class="image-next image-button"> {{{feather 'chevron-right'}}}</div>
+<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+<div class="app__container product-details">
+    <div class="grid wide">
+        <div class="product__details">
+            <div class="product__details-title">
+                <ul class="product__details-title-list">
+                    <li class="product__details-title-item">
+                        <a href="/" class="product__details-title-link">Trang chủ</a>
+                    </li>
+                    <li class="product__details-title-item">
+                        <a href="" class="product__details-title-link">Sản phẩm</a>
+                    </li>
+                    <li class="product__details-title-item">
+                        <a href="" class="product__details-title-link">{{result.productTitle}}</a>
+                    </li>
+                </ul>
             </div>
-            {{else}}
-            <div class="title-image-container">
-                <img src="/uploads/unplash1.jpg" id="product-title-image" class="product-title-image img-fluid"
-                    alt="...">
-            </div>
-            {{/if}}
-            {{#ifCond @root.images.length '>' 1}}
-            <div class="row">
-                {{#each @root.images}}
-                <div class="vertical-center top-pad-20 col-6">
-                    <img src="{{this.path}}" class="thumbnail-image img-fluid">
-                </div>
-                {{/each}}
-            </div>
-            {{/ifCond}}
-        </div>
-        <div class="col-sm-12 col-md-6 ml-auto">
-            <div class="row">
-                <h1 class="col-md-10 product-title text-truncate">{{result.productTitle}}</h1>
-                {{#if variants}}
-                <h4 class="col-md-10 product-price mp-0">{{variants.0.price}} {{currencySymbol config.currencySymbol}}
-                </h4>
-                {{else}}
+            <div class="product__details-content">
+                <div class="product__details-content-wapper">
+                    <div class="row">
+                        <div class="col l-4 m-12 c-12">
+                            <div class="product__details-img-wapper">
+                                <!-- <div class="product__details-img" style="background-image: url(assets/img/laptop1.jpg);">
 
-                <h4 class="col-md-10 product-price mp-0">{{result.productPrice}}
-                    {{currencySymbol config.currencySymbol}}
-                </h4>
-                {{/if}}
-                {{#if variants}}
-                <h4 class="col-md-10 product-option">{{ @root.__ "Options" }}</h4>
-                <div class="col-md-10">
-                    <select id="product_variant" class="form-control">
-                        {{#each variants}}
-                        <option value="{{this._id}}" data-price="{{this.price}}">{{this.title}}</option>
-                        {{/each}}
-                    </select>
-                </div>
-                {{/if}}
-                {{#if config.trackStock}}
-                {{#ifCond result.productStock '==' 0}}
-                <div class="col-md-10">
-                    <h4 class="text-danger text-center">
-                        Out of stock
-                    </h4>
-                </div>
-                {{/ifCond}}
-                {{/if}}
-                <div class="col-md-10 productOptions">
-                    <p class="product-option-text">{{ @root.__ "Quantity" }}</p>
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <button class="btn btn__primary qty-btn-minus" type="button">-</button>
-                        </div>
-                        <input type="number" class="form-control add-color text-center" id="product_quantity"
-                            maxlength="3" value="1">
-                        <div class="input-group-append">
-                            <button class="btn btn__primary qty-btn-plus" type="button">+</button>
-                        </div>
-                    </div>
-                </div>
-                {{#if result.productComment}}
-                <div class="col-md-10">
-                    {{ @root.__ "Leave a comment?" }}
-                    <textarea class="form-control" id="product_comment"></textarea>
-                </div>
-                {{/if}}
-                <div class="col-md-10 btnAddToCart">
-                    <button class="btn btn__primary btn-block product-add-to-cart" type="button">{{ @root.__ "Add to
-                        cart" }}</button>
-                </div>
-                <div class="col-md-10 body_text">
-                    {{{fixTags result.productDescription}}}
-                </div>
-            </div>
-        </div>
-    </div>
-    {{#if config.showRelatedProducts}}
-    {{#if relatedProducts}}
-    <div class="col-sm-12 mt-5">
-        <h4>Sẩn phẩm liên quan</h4>
-        <div class="row">
-            {{#each relatedProducts}}
-            <div class="col-md-3">
-                <div>
-                    {{#if productPermalink}}
-                    <div class="product-wrapper">
-                        <a href="/product/{{this.productPermalink}}">
-                            <div class="vertical-center img-thumbnail">
-                                {{#if productImage}}
-                                <img class="img-fluid" src="{{this.productImage}}" alt="...">
-                                {{else}}
-                                <img class="img-fluid" src="/uploads/unplash1.jpg" alt="...">
-                                {{/if}}
+                                        </div> -->
+                                <div class="bzoom_wrap">
+                                    <ul id="bzoom">
+                                        {{!-- <li>
+                                            {{#if result.productImage}}
+                                            <div class="title-image-container">
+                                                <div class="image-prev image-button"> {{{feather 'chevron-left'}}}</div>
+                                                <img class="bzoom_thumb_image" src="{{result.productImage}}"
+                                                    title="first img" />
+                                                <img class="bzoom_big_image" src="{{result.productImage}}" />
+                                                <div class="image-next image-button"> {{{feather 'chevron-right'}}}
+                                                </div>
+                                            </div>
+                                            {{else}}
+                                            <div class="title-image-container">
+                                                <img src="/uploads/unplash1.jpg" id="product-title-image"
+                                                    class="product-title-image img-fluid" alt="...">
+                                            </div>
+                                            {{/if}} --}}
+
+                                        </li>
+                                        {{#ifCond @root.images.length '>' 0}}
+
+                                        {{#each @root.images}}
+
+                                        <li>
+                                            <img class="bzoom_thumb_image" src="{{this.path}}" />
+                                            <img class="bzoom_big_image" src="{{this.path}}" />
+
+                                        </li>
+
+                                        {{/each}}
+
+                                        {{/ifCond}}
+
+
+                                    </ul>
+                                </div>
                             </div>
-                            <h3 class="product-title product-title-home top-pad-10">
-                                {{this.productTitle}}
-                            </h3>
-                        </a>
-                    </div>
-                    {{else}}
-                    <a href="/product/{{this._id}}">
-                        <div class="vertical-center img-thumbnail">
-                            {{#if productImage}}
-                            <img class="img-fluid" src="{{this.productImage}}" alt="...">
-                            {{else}}
-                            <img class="img-fluid" src="/uploads/unplash1.jpg" alt="...">
-                            {{/if}}
                         </div>
-                        <h3 class="product-title product-title-home top-pad-10">
-                            {{this.productTitle}}
-                        </h3>
-                    </a>
-                    {{/if}}
-                    <h3 class="product-price mp-0 text-center">
-                        {{currencySymbol ../config.currencySymbol}}{{formatAmount productPrice}}
-                    </h3>
-                    <p class="text-center">
-                        {{#if productPermalink}}
-                        <a class="btn btn__primary" href="/product/{{this.productPermalink}}">{{ @root.__ "View" }}</a>
-                        {{else}}
-                        <a class="btn btn__primary" href="/product/{{this._id}}">{{ @root.__ "View" }}</a>
-                        {{/if}}
-                    </p>
+                        <div class="col l-8 m-12 c-12">
+                            <div class="product__details-name">
+                                <h1>{{result.productTitle}}
+                                </h1>
+                            </div>
+                            {{!-- <div class="evaluate">
+                                <p class="evaluate-content product-code">MÃ SP:<span>latop01</span></p>
+                                <p class="evaluate-content product-evaluate"><span>99</span>Đánh giá</p>
+                                <p class="evaluate-content product-view">Lượt xem<span>298.998</span></p>
+                                <div class="evaluate-content evaluate-btn">
+                                    <button><i class="fas fa-check"></i> Thích 989</button>
+                                    <button><i class="fab fa-facebook"></i> Chia sẻ</button>
+                                </div>
+                            </div> --}}
+                            <div class="row">
+                                <div class="col l-8 m-12 c-12">
+                                    <div class="specifi">
+                                        <h1>Thông số sản phẩm</h1>
+                                        <ul class="specifi__list">
+                                            {{{fixTags result.productDescription}}}
+                                        </ul>
+
+                                    </div>
+                                    <div class="guar-price-promotion">
+                                        <h1 class="guar">Đổi trả:
+                                            <span>7 ngày</span>
+                                        </h1>
+                                        <div class="price">
+                                            <table style="width:100%; border-radius: 5px; padding: 10px 20px;">
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Giá bán:</td>
+                                                        <td style="position:relative;">
+
+                                                            {{#if variants}}
+
+                                                            <b class="" style="font-size: 24px;color: #666;">
+                                                                {{variants.0.price}} {{currencySymbol
+                                                                config.currencySymbol}}
+                                                            </b>
+                                                            {{else}}
+
+                                                            <b class="" style="font-size: 24px;color: #666;">
+                                                                {{formatAmount result.productPrice}}
+                                                                {{currencySymbol config.currencySymbol}}
+                                                            </b>
+                                                            {{/if}}
+                                                        </td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Số lượng</td>
+                                                        <td>
+                                                            <div class="col-md-10 productOptions">
+                                                                <div class="input-group">
+                                                                    <div class="input-group-prepend">
+                                                                        <button class=" btn__primary qty-btn-minus"
+                                                                            type="button">-</button>
+                                                                    </div>
+                                                                    <input type="number"
+                                                                        class="form-control add-color text-center"
+                                                                        id="product_quantity" maxlength="3" value="1">
+                                                                    <div class="input-group-append">
+                                                                        <button class=" btn__primary qty-btn-plus"
+                                                                            type="button">+</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td>{{#if result.productComment}}Ghi chú {{/if}}</td>
+                                                        <td>
+                                                            {{#if result.productComment}}
+                                                            <div class="col-md-10">
+
+                                                                <textarea class="form-control"
+                                                                    id="product_comment"></textarea>
+                                                            </div>
+                                                            {{/if}}
+                                                        </td>
+                                                    </tr>
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+                                        <div class="price-hot">
+                                            <p>
+                                                <span class="price-hot__hot">Hot</span>
+                                                <span><a href="">Chính sách bảo hành vàng dành cho doanh
+                                                        nghiệp</a></span>
+                                            </p>
+                                            <p>
+                                                <span class="price-hot__hot">Hot</span>
+                                                <span><a href="">Vận chuyển hàng nhanh chóng cho bạn</a></span>
+                                            </p>
+                                        </div>
+                                        <div class="promotion">
+                                            <div class="promotion__present">
+                                                <span>
+                                                    <i class="fas fa-gift"></i>
+                                                    Chương trình khuyến mãi
+                                                </span>
+                                            </div>
+                                            <ul class="promotion__present-content">
+                                                <h2>Giảm ngay 15% với mọi đơn hàng</h2>
+                                                <li class="promotion__present-content-item">
+                                                    Mua 1 tặng 1 với khách hàng thân thiết.
+                                                </li>
+                                                <li class="promotion__present-content-item">
+                                                    Tặng ngay voucher cho <span>01</span> lần mua hàng tiếp theo
+
+                                                </li>
+
+
+                                            </ul>
+                                        </div>
+                                        <div class="btn-purchase">
+                                            {{#if variants}}
+                                            <h4 class="col-md-10 product-option">{{ @root.__ "Options" }}</h4>
+                                            <div class="col-md-10">
+                                                <select id="product_variant" class="form-control">
+                                                    {{#each variants}}
+                                                    <option value="{{this._id}}" data-price="{{this.price}}">
+                                                        {{this.title}}</option>
+                                                    {{/each}}
+                                                </select>
+                                            </div>
+                                            {{/if}}
+                                            {{#if config.trackStock}}
+                                            {{#ifCond result.productStock '==' 0}}
+                                            <div class="col-md-10">
+                                                <h4 class="text-danger text-center">
+                                                    Out of stock
+                                                </h4>
+                                            </div>
+                                            {{/ifCond}}
+                                            {{/if}}
+
+
+                                            <div class="btn-purchase-top  btnAddToCart">
+
+                                                <a class="buynow btn-block product-add-to-cart" href="#">
+                                                    <span>Đặt mua ngay</span>Giao hàng tận nơi nhanh chóng
+                                                </a>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col l-4 m-0 c-0">
+                                    <div class="showroom">
+                                        <div class="showroom__title">
+                                            <h1><i class="fas fa-warehouse"></i>Thông tin cửa hàng</h1>
+
+                                        </div>
+                                        <div class="showroom__content">
+                                            <span>Hàng đang có tại showroom:</span>
+                                            <ul class="showroom__list">
+                                                <li class="showroom__item">
+                                                    <a href="" class="showroom__link">191 Lê văn cường - Hai
+                                                        bà trưng - Hà nội</a>
+                                                </li>
+                                                <li class="showroom__item">
+                                                    <a href="" class="showroom__link">291 Lê văn cường -
+                                                        Đống đa - Hà nội</a>
+                                                </li>
+                                                <li class="showroom__item">
+                                                    <a href="" class="showroom__link">391 Lê văn cường - Cầu
+                                                        giấy - Hà nội</a>
+                                                </li>
+                                                <li class="showroom__item">
+                                                    <a href="" class="showroom__link">491 Lê văn cường - Nam
+                                                        từ liêm - Hà nội</a>
+                                                </li>
+                                                <li class="showroom__item">
+                                                    <a href="" class="showroom__link">591 Lê văn cường -
+                                                        Thái hà - Hà nội</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="showroom">
+                                        <div class="showroom__title">
+                                            <h1><i class="fas fa-money-bill-wave"></i>Chính sách bán hàng
+                                            </h1>
+
+                                        </div>
+                                        <div class="showroom__content">
+                                            <ul class="showroom__list">
+                                                <li class="showroom__item">
+                                                    <a href="" class="showroom__link showroom__link-sales">Sản phẩm
+                                                        chính hãng 100%</a>
+                                                </li>
+                                                <li class="showroom__item">
+                                                    <a href="" class="showroom__link showroom__link-sales">Bán hàng
+                                                        online toàn quốc</a>
+                                                </li>
+                                                <li class="showroom__item">
+                                                    <a href="" class="showroom__link showroom__link-sales">Mua hàng
+                                                        trả góp lãi suất 0%</a>
+                                                </li>
+                                                <li class="showroom__item">
+                                                    <a href="" class="showroom__link showroom__link-sales">Trả bảo
+                                                        hành tận nơi sử dụng</a>
+                                                </li>
+                                                <li class="showroom__item">
+                                                    <a href="" class="showroom__link showroom__link-sales">Bảo hành
+                                                        tận nơi cho doanh nghiệp</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="showroom">
+                                        <div class="showroom__title">
+                                            <h1><i class="fas fa-shipping-fast"></i>Chính sách giao hàng
+                                            </h1>
+
+                                        </div>
+                                        <div class="showroom__content">
+
+                                            <ul class="showroom__list">
+                                                <li class="showroom__item">
+                                                    <a href="" class="showroom__link showroom__link-impart">Giao
+                                                        hàng trước trả tiền sau COD</a>
+                                                </li>
+                                                <li class="showroom__item">
+                                                    <a href="" class="showroom__link showroom__link-impart">Miễn
+                                                        phí giao hàng (bán kính 20km) với đơn hàng trên
+                                                        500.000 đ</a>
+                                                </li>
+                                                <li class="showroom__item">
+                                                    <a href="" class="showroom__link showroom__link-impart">
+                                                        Miễn phí giao hàng 300km với khách hàng Games Net,
+                                                        Doanh Nghiệp, Dự Án</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            {{/each}}
+            <div class="product-introduction">
+                <div id="btn-active" class="product-introduction__link">
+                    <a href="#Detailed-introduction-id" class="product-intro__btn product-intro__btn--active">Giới thiệu
+                        sản phẩm</a>
+
+                    <a href="#video" class="product-intro__btn">Sản phẩm liên quan</a>
+                    <a href="#product-reviews" class="product-intro__btn">Đánh giá</a>
+                    <a href="#Question" class="product-intro__btn">Hỏi đáp</a>
+                </div>
+                <div id="Detailed-introduction-id" class="Detailed-introduction">
+                    <p>{{{fixTags result.productDescription}}}</p>
+                    <p>
+                        <img src="{{result.productImage}}" alt="">
+                    </p>
+
+                </div>
+
+                <div id="video" class="specifications">
+                    {{#if config.showRelatedProducts}}
+                    {{#if relatedProducts}}
+                    <div class="col-sm-12 mt-5">
+                        <h4>Sẩn phẩm liên quan</h4>
+                        <div class="row">
+                            {{#each relatedProducts}}
+                            <div class="col-md-3">
+                                <div>
+                                    {{#if productPermalink}}
+                                    <div class="product-wrapper">
+                                        <a href="/product/{{this.productPermalink}}">
+                                            <div class="vertical-center img-thumbnail">
+                                                {{#if productImage}}
+                                                <img class="img-fluid" src="{{this.productImage}}" alt="...">
+                                                {{else}}
+                                                <img class="img-fluid" src="/uploads/unplash1.jpg" alt="...">
+                                                {{/if}}
+                                            </div>
+                                            <h3 class="product-title product-title-home top-pad-10">
+                                                {{this.productTitle}}
+                                            </h3>
+                                        </a>
+                                    </div>
+                                    {{else}}
+                                    <a href="/product/{{this._id}}">
+                                        <div class="vertical-center img-thumbnail">
+                                            {{#if productImage}}
+                                            <img class="img-fluid" src="{{this.productImage}}" alt="...">
+                                            {{else}}
+                                            <img class="img-fluid" src="/uploads/unplash1.jpg" alt="...">
+                                            {{/if}}
+                                        </div>
+                                        <h3 class="product-title product-title-home top-pad-10">
+                                            {{this.productTitle}}
+                                        </h3>
+                                    </a>
+                                    {{/if}}
+                                    <h3 class="product-price mp-0 text-center">
+                                        {{currencySymbol ../config.currencySymbol}}{{formatAmount productPrice}}
+                                    </h3>
+                                    <p class="text-center">
+                                        {{#if productPermalink}}
+                                        <a class="btn btn__primary" href="/product/{{this.productPermalink}}">{{
+                                            @root.__ "View" }}</a>
+                                        {{else}}
+                                        <a class="btn btn__primary" href="/product/{{this._id}}">{{ @root.__ "View"
+                                            }}</a>
+                                        {{/if}}
+                                    </p>
+                                </div>
+                            </div>
+                            {{/each}}
+                        </div>
+                    </div>
+                    {{/if}}
+                    {{/if}}
+                </div>
+                <div id="product-reviews" class="specifications">
+                    <h1 class="product-reviews-title">Đánh giá và nhận xét về {{result.productTitle}}</h1>
+                    <div class="comment">
+                        <div class="comment-form">
+                            {{!-- <div class="comment-form__img">
+                                <img src="assets/img/custom.jpg" alt="">
+                            </div> --}}
+
+                            <form action="" class="rating-form">
+
+                                <div class="comment-form__content">
+                                    <input type="text" class="form-control" id="review-title" placeholder="Love it.">
+                                    {{!-- <input type="number" class="form-control" id="review-rating" placeholder="5">
+                                    --}}
+
+                                    <textarea onclick="funtionform()" name="" placeholder="Mời bạn để lại bình luận"
+                                        id="review-description" name="review-description"></textarea>
+                                    <!-- <input type="checkbox" class="check-comment-form" id="check-comment"> -->
+
+                                    <div id="form-input--hide" class="form-input">
+                                        <div class="form-input__rating">
+
+                                            <fieldset class="form-group" id="review-rating">
+
+                                                <legend class="form-legend">Rating:</legend>
+
+                                                <div class="form-item">
+
+                                                    <input id="rating-5" name="rating" type="radio" value="5" />
+                                                    <label for="rating-5">
+                                                        <span class="rating-star">
+                                                            <i class="fa fa-star-o"></i>
+                                                            <i class="fa fa-star"></i>
+                                                        </span>
+
+                                                    </label>
+                                                    <input id="rating-4" name="rating" type="radio" value="4" />
+                                                    <label for="rating-4">
+                                                        <span class="rating-star">
+                                                            <i class="fa fa-star-o"></i>
+                                                            <i class="fa fa-star"></i>
+                                                        </span>
+
+                                                    </label>
+                                                    <input id="rating-3" name="rating" type="radio" value="3" />
+                                                    <label for="rating-3">
+                                                        <span class="rating-star">
+                                                            <i class="fa fa-star-o"></i>
+                                                            <i class="fa fa-star"></i>
+                                                        </span>
+
+                                                    </label>
+                                                    <input id="rating-2" name="rating" type="radio" value="2" />
+                                                    <label for="rating-2" data-value="2">
+                                                        <span class="rating-star">
+                                                            <i class="fa fa-star-o"></i>
+                                                            <i class="fa fa-star"></i>
+                                                        </span>
+
+                                                    </label>
+                                                    <input id="rating-1" name="rating" type="radio" value="1" />
+                                                    <label for="rating-1">
+                                                        <span class="rating-star">
+                                                            <i class="fa fa-star-o"></i>
+                                                            <i class="fa fa-star"></i>
+                                                        </span>
+
+                                                    </label>
+
+
+                                                </div>
+
+                                            </fieldset>
+
+                                        </div>
+                                        <div class="form-input__button" id="addReview">
+                                            <button>Gửi bình luận</button>
+                                        </div>
+                                        <div class="form-input__link">
+                                            <a onclick="funtionclose()">Đóng bình luận</a>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </form>
+
+                        </div>
+
+                        <!-- comment và trả lời comment -->
+                        <div class="reply-comment">
+                            <div class="item-comment">
+                                <div class="item-comment__avatar">
+                                    <div class="comment-form__img">
+                                        {{!-- <img src="assets/img/custom.jpg" alt=""> --}}
+                                    </div>
+                                </div>
+                                {{#each @root.reviews.reviews}}
+                                <div class="item-comment__content">
+                                    <div class="item-comment__name">
+                                        <span>{{this.title}}</span>
+                                        <p>{{this.description}}</p>
+                                    </div>
+                                    <div class="item-comment__info">
+                                        <span>2{{timeAgo this.date}}</span>
+                                        <div class="item-comment__rep">
+                                            <a href="">Trả lời</a>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                                {{/each}}
+                            </div>
+                        </div>
+                        <!-- comment và trả lời comment -->
+                    </div>
+                </div>
+                <div id="Question" class="specifications">
+                    <h1 class="Question__h1">Hỏi đáp về{{result.productTitle}}</h1>
+                    <div class="comment-facebook">
+                        <div id="fb-root"></div>
+                        <script async defer crossorigin="anonymous"
+                            src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v6.0&appId=580750925983459&autoLogAppEvents=1"></script>
+                        <div class="fb-comments" data-href="https://facebook.com/hieuhieu/" data-width="100%"
+                            data-numposts="5"></div>
+                    </div>
+                </div>
+
+            </div>
         </div>
-    </div>
-    {{/if}}
-    {{/if}}
-    {{#if @root.config.modules.enabled.reviews}}
-    <div class="col-md-10 mb-3">
-        <button class="btn btn-warning" id="add-review">Add review</button>
-        <div class="d-inline-block align-middle">{{{@root.reviews.ratingHtml}}}</div>
-        {{#if @root.reviews.reviews}}
-        <a href="#collapseReviews" data-toggle="collapse" class="d-inline-block align-middle ml-3">Recent reviews</a>
-        {{/if}}
-    </div>
-    <div class="col-md-10">
-        <ul class="list-group collapse" id="collapseReviews">
-            {{#each @root.reviews.reviews}}
-            <li class="list-group-item">
-                <p class="text-muted small text-right">{{timeAgo this.date}}</p>
-                <p><b>Rating:</b> {{this.rating}}</p>
-                <p><b>Title:</b> {{this.title}}</p>
-                <p><b>Description:</b> {{this.description}}</p>
-            </li>
-            {{/each}}
-        </ul>
-    </div>
-    {{/if}}
-</div>
-<div id="Question" class="specifications">
-    <h1 class="Question__h1">Hỏi đáp về sản phẩm {{result.productTitle}} </h1>
-    <div class="comment-facebook">
-        <div id="fb-root"></div>
-        <script async defer crossorigin="anonymous"
-            src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v6.0&appId=580750925983459&autoLogAppEvents=1"></script>
-        <div class="fb-comments" data-href="https://facebook.com/{{result.productTitle}}/" data-width="100%"
-            data-numposts="5"></div>
     </div>
 </div>
 
+<script type="text/javascript">
+    $("#bzoom").zoom({
+        zoom_area_width: 300,
+        autoplay_interval: 3000,
+        small_thumbs: 4,
+        autoplay: false
+    });
+</script>
+<script>
+    new WOW().init();
+</script>
 <input type="hidden" id="productId" value="{{result._id}}">
 <input type="hidden" id="currencySymbol" value="{{currencySymbol config.currencySymbol}}">

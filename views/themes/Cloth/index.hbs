@@ -156,8 +156,10 @@
             <div class="home-fitter hide-on-mobile-tablet">
                 <span class="home-fitter__label">Sắp xếp theo</span>
                 <button class="home-fitter__btn btn">Phổ biến</button>
-                <button class="home-fitter__btn btn btn__primary">Mới nhất</button>
-                <button class="home-fitter__btn btn">Bán chạy</button>
+                <button class="home-fitter__btn btn btn__primary" {{selectState 'date' config.productOrderBy}}
+                    value="date">Mới nhất</button>
+                <button class="home-fitter__btn btn" {{selectState 'title' config.productOrderBy}} value="title">Bán
+                    chạy</button>
                 <div class="select-input">
                     <span class="select-input__label">Giá</span>
                     <i class="select-input__icon fas fa-angle-down"></i>
@@ -286,7 +288,7 @@
                                     </div>
                                     {{else}}
                                     <h3 class="home-product-item__price-current">
-                                        {{productPrice}}{{currencySymbol @root.config.currencySymbol}}
+                                        {{formatAmount productPrice}} {{currencySymbol @root.config.currencySymbol}}
                                     </h3>
                                     {{/if}}
                                     {{!-- <p class="text-center">

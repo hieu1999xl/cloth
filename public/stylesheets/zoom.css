@@ -24,9 +24,7 @@
     display: none
 }
 
-.bzoom .bzoom_thumb {
-    background: #fff url(./img/loading.gif) center no-repeat;
-}
+/*  */
 
 .bzoom,
 .bzoom ul,
