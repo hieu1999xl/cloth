@@ -1,7 +1,7 @@
 {
 	"Languages": "Languages",
 	"en": "English",
-	"it": "Italiano",
+	"it": "Viet Nam",
 	"Cart": "Cart",
 	"Name": "Name",
 	"New": "New",
@@ -230,5 +230,13 @@
 	" Search shop": " Search shop",
 	"Empty\r\n                                cart": "Empty\r\n                                cart",
 	"Reviews can be filtered by: review title or review description\r\n            keywords": "Reviews can be filtered by: review title or review description\r\n            keywords",
-	"Change\r\n                                customer": "Change\r\n                                customer"
+	"Change\r\n                                customer": "Change\r\n                                customer",
+	"Add to\r\n                                            cart": "Add to\r\n                                            cart",
+	"Add to\r\n                                        cart": "Add to\r\n                                        cart",
+	"Add to\r\n                            cart": "Add to\r\n                            cart",
+	"Add to\r\n                    cart": "Add to\r\n                    cart",
+	"Add to\r\n                                    cart": "Add to\r\n                                    cart",
+	"This element is critical for search engine optimisation. Cart title is displayed if\r\n                    your logo is hidden.": "This element is critical for search engine optimisation. Cart title is displayed if\r\n                    your logo is hidden.",
+	"This URL is used in sitemaps and when your customer returns from completing their\r\n                    payment.": "This URL is used in sitemaps and when your customer returns from completing their\r\n                    payment.",
+	" Discount code": " Discount code"
 }

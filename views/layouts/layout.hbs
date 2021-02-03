@@ -1,16 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zxx">
+
 
 <head>
+
     {{~#if config.injectJs}}{{{config.injectJs}}}{{/if}}
     <title>{{title}}</title>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="UTF-8">
+    <meta name="description" content="Ogani Template">
+    <meta name="keywords" content="Ogani, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
     {{#if admin}}
-    <link rel="icon" type="image/png" href="/images/logo.png" />
+    <link rel="icon" type="image/png" href="img/logo.png" />
     <!--[if IE]><link rel="SHORTCUT ICON" href="/images/favicon.png"/><![endif]-->
     {{else}}
-    <link rel="icon" type="image/png" href="/images/logo.png" />
+    <link rel="icon" type="image/png" href="img/logo.png" />
     <!--[if IE]><link rel="SHORTCUT ICON" href="/favicon.ico"/><![endif]-->
     {{/if}}
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -25,8 +31,9 @@
     {{/if}}
     <meta name="csrfToken" content="{{csrfToken}}">
     <meta name="keywords" content="{{config.cartTitle}}">
+    {{!--
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css"
-        integrity="sha256-L/W5Wfqfa0sdBNIKN9cG6QA5F2qx4qICmU2VgLruv9Y=" crossorigin="anonymous" />
+        integrity="sha256-L/W5Wfqfa0sdBNIKN9cG6QA5F2qx4qICmU2VgLruv9Y=" crossorigin="anonymous" /> --}}
     <link rel="stylesheet" href="/stylesheets/pushy{{config.env}}.css">
     {{#if admin}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gijgo/1.9.13/combined/css/gijgo.min.css"
@@ -37,31 +44,24 @@
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tokenfield/0.12.0/css/bootstrap-tokenfield.min.css"
         integrity="sha256-4qBzeX420hElp9/FzsuqUNqVobcClz1BjnXoxUDSYQ0=" crossorigin="anonymous" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
     <link rel="stylesheet" href="/stylesheets/codemirror-style.min.css">
-    <link rel="stylesheet" href="/stylesheets/style{{config.env}}.css">
-    <link rel="stylesheet" href="/stylesheets/main{{config.env}}.css">
-    <link rel="stylesheet" href="/stylesheets/header.css">
-    <link rel="stylesheet" href="/stylesheets/footer.css">
-    <link rel="stylesheet" href="/stylesheets/grid.css">
-    <link rel="stylesheet" href="/stylesheets/responsive.css">
-    <link rel="stylesheet" href="/stylesheets/base.css">
-    <link rel="stylesheet" href="/stylesheets/chitietsp.css">
-    <link rel="stylesheet" href="/stylesheets/zoom.css">
-    <link rel="stylesheet" href="/stylesheets/star.css">
-
-
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
-
-    <!-- <link rel="stylesheet" href="assets/fonts/fontawesome-free-5.13.0/css/all.min.css"> -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
-
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap&subset=vietnamese"
-        rel="stylesheet">
+    <link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
+    <link rel="stylesheet" href="/stylesheets/font-awesome.min.css">
+    <link rel="stylesheet" href="/stylesheets/elegant-icons.css">
+    <link rel="stylesheet" href="/stylesheets/nice-select.css">
+    <link rel="stylesheet" href="/stylesheets/jquery-ui.min.css">
+    <link rel="stylesheet" href="/stylesheets/owl.carousel.min.css">
+    <link rel="stylesheet" href="/stylesheets/slicknav.min.css">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <!-- Google Font -->
+    {{!--
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
+    --}}
     {{#if admin}}
     <link rel="stylesheet" href="/stylesheets/admin{{config.env}}.css">
     {{/if}}
+    <script src="https://js.stripe.com/v3/"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"
@@ -87,17 +87,14 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.7/js/tether.min.js"
         integrity="sha256-4lietOiwRDBKx1goZZbRiwB06L+/bPYEGDIKZt82bgg=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.min.js"></script>
-    <script src="/javascripts/jquery.bootpag.min.js"></script>
-    <script src="/javascripts/cssbeautify.min.js"></script>
-    <script src="/javascripts/wow.min.js"></script>
-    <script src="/javascripts/script.js"></script>
-    <script src="/javascripts/chitietsp.js"></script>
-
-
-    <script src="/javascripts/jqzoom.js"></script>
-
     <script src="/javascripts/common{{config.env}}.js"></script>
     <script src="/javascripts/expressCart{{config.env}}.js"></script>
+
+    {{!--
+    <script src="/javascripts/jquery-3.3.1.min.js"></script> --}}
+    <script src="/javascripts/jquery.bootpag.min.js"></script>
+    <script src="/javascripts/cssbeautify.min.js"></script>
+
     {{#if admin}}
     <script src="/javascripts/admin{{config.env}}.js"></script>
     {{/if}}
@@ -205,7 +202,7 @@
                 "description": "{{snip productDescription}}",
                 {{/if}}
                 {{#if pageUrl}}
-                "url": "{{pageUrl}}"
+                "url": "{{pageUrl}}"f
                 {{else}}
                 "url": "{{config.baseUrl}}"
                 {{/if}}
@@ -240,289 +237,206 @@
     <body>
         {{/if}}
         {{#unless admin}}
+        <!-- Page Preloder -->
+        <div id="preloder">
+            <div class="loader"></div>
+        </div>
+
+        <!-- Humberger Begin -->
+        <div class="humberger__menu__overlay"></div>
+        <div class="humberger__menu__wrapper">
+            <div class="humberger__menu__logo">
+                <a href="/"><img src="/images/img/logo.png" alt=""></a>
+            </div>
+            <div class="humberger__menu__cart">
+                <ul>
+                    <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
+                    <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+                </ul>
+                <div class="header__cart__price">item: <span>{{currencySymbol
+                        @root.config.currencySymbol}}{{formatAmount @root.session.totalCartAmount}}</span></div>
+            </div>
+            <div class="humberger__menu__widget">
+                <div class="header__top__right__language">
+                    <img src="/images/img/language.png" alt="">
+                    <div>English</div>
+                    <span class="arrow_carrot-down"></span>
+                    <ul>
+                        <li><a href="#">Spanis</a></li>
+                        <li><a href="#">English</a></li>
+                    </ul>
+                </div>
+                <div class="header__top__right__auth">
+                    <a href="#"><i class="fa fa-user"></i> Login</a>
+                </div>
+            </div>
+            <nav class="humberger__menu__nav mobile-menu">
+                <ul>
+                    <li class="active"><a href="/">Home</a></li>
+                    <li><a href="./shop-grid.html">Shop</a></li>
+                    <li><a href="#">Pages</a>
+                        <ul class="header__menu__dropdown">
+                            <li><a href="./shop-details.html">Shop Details</a></li>
+                            <li><a href="./shoping-cart.html">Shoping Cart</a></li>
+                            <li><a href="./checkout.html">Check Out</a></li>
+                            <li><a href="./blog-details.html">Blog Details</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="./blog.html">Blog</a></li>
+                    <li><a href="./contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            <div id="mobile-menu-wrap"></div>
+            <div class="header__top__right__social">
+                <a href="#"><i class="fa fa-facebook"></i></a>
+                <a href="#"><i class="fa fa-twitter"></i></a>
+                <a href="#"><i class="fa fa-linkedin"></i></a>
+                <a href="#"><i class="fa fa-pinterest-p"></i></a>
+            </div>
+            <div class="humberger__menu__contact">
+                <ul>
+                    <li><i class="fa fa-envelope"></i> hello@dcv.com</li>
+                    <li>Free Shipping for all Order of $99</li>
+                </ul>
+            </div>
+        </div>
+        <!-- Humberger End -->
+
+        <!-- Header Section Begin -->
         <header class="header">
-            <div class="grid wide">
-                <nav class="header__navbar hide-on-mobile-tablet">
-                    <ul class="header__navbar-list">
-                        <li class="header__navbar-item header__navbar-item--has-qr header__navbar-item--separate">
-                            Truy cập bằng điện thoại
-                            <div class="header__qr">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="header__qr-img" viewBox="0 0 27 27">
-                                    <path
-                                        d="M1 1h7v7h-7zM10 1h3v2h-3zM15 1h1v1h-1zM19 1h7v7h-7zM2 2v5h5v-5zM14 2h1v1h-1zM16 2h1v1h-1zM20 2v5h5v-5zM3 3h3v3h-3zM9 3h1v2h1v1h-1v3h-1zM15 3h1v1h-1zM21 3h3v3h-3zM11 4h4v1h-1v4h-1v-2h-1v-1h1v-1h-2zM17 4h1v1h-1zM15 5h1v1h-1zM16 6h1v1h-1zM11 7h1v4h2v2h-1v-1h-1v1h-3v-1h-2v-1h3v1h1v-2h-1v-1h1zM15 7h1v1h-1zM17 7h1v5h-2v-1h1v-1h-1v-2h1zM1 9h1v1h1v2h-1v1h1v2h-1v3h-1zM3 9h5v1h-1v1h-1v1h1v1h1v1h-2v-1h-1v1h-1v-1h-1v-1h1v-2h-1zM14 9h1v1h-1zM19 9h5v1h-3v1h2v1h-1v2h-1v-1h-1v-1h-1v-1h1v-1h-1zM15 10h1v1h-1zM24 10h1v1h1v3h-1v1h1v2h-1v-1h-1v-2h-1v-1h2v-1h-1zM18 12h1v1h1v1h-2v2h1v-1h1v1h2v-2h1v3h-1v1h1v-1h1v2h2v1h-3v1h3v5h-7v-1h1v-2h1v1h2v1h2v-2h-1v1h-1v-2h-1v1h-1v-1h-1v1h-2v-1h-1v1h1v1h1v1h-3v-1h-1v1h-1v1h-1v-2h1v-1h-1v-1h2v1h1v-2h1v-2h-1v-1h1v-2h-1v-1h1v-1h-1v-1h2zM14 13h1v1h-1zM8 14h2v1h-1v1h-3v-1h2zM13 14h1v1h-1zM15 14h1v1h-1zM20 14h1v1h-1zM11 15h1v4h-1v1h-1v-1h-1v-1h-3v-1h3v-1h1v1h1zM4 16h1v2h-2v-1h1zM13 16h1v1h1v2h1v2h-1v-1h-2v2h-2v-1h1v-2h2v-1h-1zM18 18v3h3v-3zM1 19h7v7h-7zM19 19h1v1h-1zM2 20v5h5v-5zM9 20h1v3h1v2h-1v-1h-1zM3 21h3v3h-3zM9 25h1v1h-1zM15 25h1v1h-1z" />
-                                </svg>
-                                {{!-- <div class="header__qr-apps">
-                                    <a href="" class="header__qr-link"><img src="/img/google_play.png" alt="Google Play"
-                                            class="header__qr-dowload-img"></a>
-                                    <a href="" class="header__qr-link"> <img src="/img/app_store.png" alt="App Store"
-                                            class="header__qr-dowload-img"></a>
-                                </div> --}}
-                            </div>
-                        </li>
-                        <li class="header__navbar-item">
-                            <span class="header__navbar-title--no-pointer">Kết nối</span>
-                            <a href="" class="header__navbar-icon-link">
-                                <i class="header__navbar-icon fab fa-facebook"></i>
-                            </a>
-                            <a href="" class="header__navbar-icon-link">
-                                <i class="header__navbar-icon fab fa-instagram"></i>
-                            </a>
-                        </li>
-                    </ul>
-                    <ul class="header__navbar-list">
-                        <li class="header__navbar-item header__navbar-item-has-notify">
-                            {{!-- <a href="" class="header__navbar-item-link">
-                                <i class="header__navbar-icon far fa-bell"></i> Thông báo
-                            </a> --}}
-                            <div class="header__notify">
-                                <header class="header__notify-header">
-                                    <h3>Thông báo mới nhận</h3>
-                                </header>
-                                <ul class="header__notify-list">
-                                    <li class="header__notify-item header__notify-item--viewed">
-                                        <a class="header__notify-link">
-                                            <img src="https://img.tickid.vn/photos/resized/200x120/83-1580794352-myphamohui-lgvina.png"
-                                                alt="" class="header__notify-img">
-                                            <div class="header__notify-info">
-                                                <span class="header__notify-name">Xác thực chính hãng nguồn gốc các sản
-                                                    phẩm ohui</span>
-                                                <span class="header__notify-descriotion">Mỹ phẩm ohui chính hãng là một
-                                                    trong những sản phẩm đang rất hot trên thị trường</span>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li class="header__notify-item">
-                                        <a class="header__notify-link">
-                                            <img src="https://img.tickid.vn/photos/resized/200x120/83-1580794352-myphamohui-lgvina.png"
-                                                alt="" class="header__notify-img">
-                                            <div class="header__notify-info">
-                                                <span class="header__notify-name">Mỹ phẩm ohui chính hãng</span>
-                                                <span class="header__notify-descriotion">Mô tả mỹ phẩm ohui chính
-                                                    hãng</span>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li class="header__notify-item">
-                                        <a class="header__notify-link">
-                                            <img src="https://img.tickid.vn/photos/resized/200x120/83-1580794352-myphamohui-lgvina.png"
-                                                alt="" class="header__notify-img">
-                                            <div class="header__notify-info">
-                                                <span class="header__notify-name">Mỹ phẩm ohui chính hãng</span>
-                                                <span class="header__notify-descriotion">Mô tả mỹ phẩm ohui chính
-                                                    hãng</span>
-                                            </div>
-                                        </a>
-                                    </li>
-                                </ul>
-                                <footer class="header__notify-footer">
-                                    <a href="" class="header__notify-footer-btn">Xem tất cả</a>
-                                </footer>
-                            </div>
-                        </li>
-                        <li class="header__navbar-item">
-                            <a href="" class="header__navbar-item-link">
-                                <i class="header__navbar-icon far fa-question-circle"></i> Trợ giúp
-                            </a>
-                        </li>
-                        {{#ifCond @root.config.enableLanguages "!=" false}}
-                        <div class=" dropdown d-none d-sm-block">
-                            <button class=" dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="false">
-                                {{!-- {{{feather 'globe'}}} --}}
-                                <i class="fas fa-globe-europe"></i>
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                {{#availableLanguages}}
-                                <li><a class="dropdown-item" href="/lang/{{this}}">{{@root.__ this}}</a></li>
-                                {{/availableLanguages}}
-                            </div>
-                        </div>
-                        {{/ifCond}}
-                        {{#if @root.session.customerPresent}}
-                        <div class="dropdown d-none d-sm-block">
-                            <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-user"></i>
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <li><a class="dropdown-item" href="/customer/account">Account</a></li>
-                                <li><a class="dropdown-item" href="/customer/logout">Logout</a></li>
-                            </div>
-                        </div>
-                        {{else}}
-                        <li class="nav-item ml-3"><a href="/customer/account"
-                                class="header__navbar-item header__navbar-item--strong header__navbar-item--separate">{{{feather
-                                'user'}}}</a>
-                        </li>
-                        {{/if}}
-                    </ul>
-                </nav>
-                <!-- header-with-search -->
-                <div class="header-with-search">
-                    <label class="header__mobile-search">
-                        <i class="fas fa-search header__mobile-search-icon"></i>
-                    </label>
-                    <div class="header__logo hide-on-tablet">
-
-
-                        <a class="header__logo-img" href="/">
-                            {{#if @root.config.cartLogo}}
-                            <img src="{{@root.config.cartLogo}}" class="header__logo-img">
-                            {{else}}
-                            <svg class="header__logo-img" xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 300.79 114.87">
-                                <defs>
-                                    <style>
-                                        .cls-1,
-                                        .cls-2 {
-                                            fill: #fff;
-                                        }
-
-                                        .cls-2 {
-                                            font-size: 12px;
-                                            font-family: MyriadPro-Regular, Myriad Pro;
-                                        }
-                                    </style>
-                                </defs>
-                                <title>vintage</title>
-                                <g id="Object">
-                                    <path class="cls-1"
-                                        d="M473.72,433.87h7.78L489.75,457c2.52-7.63,8.68-24.31,11-28.45,3.53-6.43,9.76-9.39,17.33-8.3l-.88,7.31c-4.72-.72-8,.73-10,4.57-3.89,6.9-13.63,37.17-13.68,37.42l-.52.42-6.33.16Z"
-                                        transform="translate(-423.85 -414.11)" />
-                                    <path class="cls-1"
-                                        d="M522.44,440.31h-4.78v-6.42H535v6.42H529.8v22.38h-7.36Zm-4.78,23.41H535v6.42H517.66Z"
-                                        transform="translate(-423.85 -414.11)" />
-                                    <path class="cls-1"
-                                        d="M543.77,433.82h7.52L563,455.19V433.82h7.32v36l-.52.26H562.7l-11.62-21.43v21.43h-7.31Z"
-                                        transform="translate(-423.85 -414.11)" />
-                                    <polygon class="cls-1"
-                                        points="263.56 48.67 263.56 43.26 274.51 43.26 274.51 36.15 251.9 36.15 251.9 43.26 256.2 43.26 256.2 55.88 279.9 55.88 279.9 48.67 263.56 48.67" />
-                                    <polygon class="cls-1"
-                                        points="263.63 26.77 278.62 26.77 278.62 19.63 256.39 19.63 256.39 34.83 263.63 34.83 263.63 26.77" />
-                                    <path class="cls-1" d="M588.41,441.1h-11v-7.36h29.42v7.36H595.78v29h-7.37Z"
-                                        transform="translate(-423.85 -414.11)" />
-                                    <path class="cls-1"
-                                        d="M543.93,504.64a19.1,19.1,0,1,1,19.12,19.12A19.1,19.1,0,0,1,543.93,504.64Zm30.48,0A11.39,11.39,0,1,0,563.05,516,11.37,11.37,0,0,0,574.41,504.64Z"
-                                        transform="translate(-423.85 -414.11)" />
-                                    <path class="cls-1"
-                                        d="M497.28,501.27a16.44,16.44,0,0,0-3.23-.83c-.6-.1-1.22-.15-1.76-.19s-.93-.08-1.39-.14a6,6,0,0,1-1.5-.41,4.61,4.61,0,0,1-1.83-1.43,3.67,3.67,0,0,1-.73-2v-.13c0-2.21,2.12-4,4.72-4a5.15,5.15,0,0,1,3.62,1.49,8.41,8.41,0,0,1,1.88,2.61l.06.15,6.31-3,.12-.05,0-.13c-1.51-4.62-6.42-7.85-11.95-7.85-6.87,0-12.46,4.84-12.46,10.79a9.62,9.62,0,0,0,.57,3.27,10.63,10.63,0,0,0,1.62,2.87,11.61,11.61,0,0,0,2.48,2.3,12.8,12.8,0,0,0,3.15,1.6,14.73,14.73,0,0,0,3.67.73l.88.05h.12a15.68,15.68,0,0,1,2.13.21,5.4,5.4,0,0,1,2.38,1.16,5.7,5.7,0,0,1,1.71,2.37,4.44,4.44,0,0,1,.25,1.49c0,3-2.78,5.35-6.21,5.35a6.83,6.83,0,0,1-4.72-1.86,4.82,4.82,0,0,1-.35-.41l-.19-.24a9.42,9.42,0,0,1-1.64-3.33l-.05-.18-6.47,3.08,0,.12c1.37,5.43,7,9.37,13.39,9.37,7.55,0,13.69-5.34,13.69-11.9C505.54,507.45,502.3,503.17,497.28,501.27Z"
-                                        transform="translate(-423.85 -414.11)" />
-                                    <polygon class="cls-1"
-                                        points="96.68 80.65 96.68 79.03 96.68 71.46 88.99 71.46 88.99 87.58 96.68 87.58 96.68 80.65" />
-                                    <polygon class="cls-1"
-                                        points="108.54 71.46 108.54 88.81 84.33 88.81 84.33 96.32 88.77 96.32 88.77 109.65 96.39 109.65 96.39 102.03 96.39 99.23 96.39 96.32 108.54 96.32 108.54 109.65 116.16 109.65 116.16 71.46 108.54 71.46" />
-                                    <path class="cls-1"
-                                        d="M654.79,453.07v6.54h8.29a9.87,9.87,0,0,1-7.25,3.1,10.79,10.79,0,1,1,9.7-15.51l6.43-3.53a18.12,18.12,0,1,0-16.13,26.41c6.95,0,13.35-3.49,16.29-10.47v-6.54Z"
-                                        transform="translate(-423.85 -414.11)" />
-                                    <path class="cls-1"
-                                        d="M624.5,433.74h-6.8s-8.58,26.83-12.89,36.05H637.4Zm-9.1,29.51c2.27-5.91,4.63-12.5,6-16.54l5.91,16.54Z"
-                                        transform="translate(-423.85 -414.11)" />
-                                    <path class="cls-1"
-                                        d="M604.17,485.45a24.06,24.06,0,0,0-2.55-.13H586.08v38.44h7.67V492.07h9.31a6.09,6.09,0,0,1,.34,12h-8.21v6.75h7.38c6.72,0,12.2-5.72,12.2-12.75a13.12,13.12,0,0,0-3-8.41A11.89,11.89,0,0,0,604.17,485.45Z"
-                                        transform="translate(-423.85 -414.11)" />
-                                    <path class="cls-1"
-                                        d="M450.14,445.92a26.29,26.29,0,1,0,26.29,26.29A26.29,26.29,0,0,0,450.14,445.92Zm.54,19.37a2.31,2.31,0,0,0,.51-1.5,1.67,1.67,0,0,0-1.89-1.89,1.88,1.88,0,0,0-1.4.54,1.83,1.83,0,0,0-.54,1.35,2.87,2.87,0,0,0,.33,1.35,5.94,5.94,0,0,0,1.3,1.5A6.19,6.19,0,0,0,450.68,465.29Zm-4,13.38a2,2,0,0,0,1,1.81,4.15,4.15,0,0,0,2.19.59,9.29,9.29,0,0,0,1.56-.13,8.24,8.24,0,0,0,1.5-.38L448,476.38A2.84,2.84,0,0,0,446.7,478.67Z"
-                                        transform="translate(-423.85 -414.11)" />
-                                    <rect class="cls-1" x="25.2" width="2.18" height="42" />
-                                    <rect class="cls-1" x="25.2" y="72.87" width="2.18" height="42" /><text
-                                        class="cls-2" transform="translate(211.75 92.71)">BOUTIQUE</text>
-                                    <rect class="cls-1" x="25.79" y="0.04" width="275" height="2.18" />
-                                    <rect class="cls-1" x="25.79" y="112.7" width="275" height="2.18" />
-                                    <rect class="cls-1" x="298.6" y="1.32" width="2.18" height="112.98" />
-                                </g>
-                            </svg>
-                            {{/if}}
-                        </a>
-                        {{!-- <button class="navbar-toggler" type="button" data-toggle="collapse"
-                            data-target="#navbarMenu" aria-controls="navbarMenu" aria-expanded="false"
-                            aria-label="Toggle navigation">
-                            {{{feather 'menu'}}}
-                        </button> --}}
-                    </div>
-                    <input type="checkbox" hidden name="" id="mobile-search-checkbox" class="header__search-checkbox">
-                    <div class="header__search ">
-                        <div class="header__search-input-wrap">
-                            {{!-- <input id="input-header-search" type="text" class="header__search-input"
-                                placeholder="Tìm trong shop"> --}}
-
-                            <input class=" header__search-input" name="frm_search" id="frm_search" type="search"
-                                placeholder="{{ @root.__ " Search shop" }}" aria-label="Search">
-
-                            <!-- Search history -->
-                            <div id="header__search-historys" class="header__search-history">
-                                <h3 class="header__search-history-heading">Lịch sử tìm kiếm</h3>
-                                <ul class="header__search-history-list">
-                                    <li class="header__search-history-item">
-                                        <a href="#">Máy tính Asus</a>
-                                    </li>
-                                    <li class="header__search-history-item">
-                                        <a href="#">Laptop Lenovo</a>
-                                    </li>
+            <div class="header__top">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6">
+                            <div class="header__top__left">
+                                <ul>
+                                    <li><i class="fa fa-envelope"></i> hello@dcv.com</li>
+                                    <li>Free Shipping for all Order of $99</li>
                                 </ul>
                             </div>
                         </div>
-                        <div class="header__search-select">
-                            <span class="header__search-select-label">Trong shop</span>
-                            <i class="header__search-select-icon fas fa-angle-down"></i>
-                            <ul class="header__search-option">
-                                <li class="header__search-option-item header__search-option-item--active">
-                                    <span>Trong shop</span>
-                                    <i class="fas fa-check"></i>
-                                </li>
-                                <li class="header__search-option-item">
-                                    <span>Ngoài shop</span>
-                                    <i class="fas fa-check"></i>
-                                </li>
-                            </ul>
-                        </div>
-                        <button class="header__search-btn" id="btn_search">
-                            <i class="header__search-btn-icon fas fa-search"></i>
-                        </button>
-                    </div>
-                    <div class="header__cart">
-                        <div class="header__cart-wrap">
-                            <!-- no cart : add class header__cart-list-no-cart>  -->
-                            {{#if @root.session.cart}}
-                            <li class="nav-item"><a href="/checkout/cart" class="menu-btn">
-                                    <i class="header__cart-icon fas fa-shopping-cart"></i> <span
-                                        class="header__cart-notice"
-                                        id="cart-count">{{@root.session.totalCartItems}}</span></a></li>
-                            {{else}}
-                            <li class="nav-item"><a href="/checkout/cart" class="menu-btn"></i>
-                                    <i class="header__cart-icon fas fa-shopping-cart"></i> <span
-                                        class="header__cart-notice" id="cart-count">0</span></a>
-                            </li>
-                            {{/if}}
-                        </div>
+                        <div class="col-lg-6 col-md-6">
+                            <div class="header__top__right">
+                                <div class="header__top__right__social">
+                                    <a href="#"><i class="fa fa-facebook"></i></a>
+                                    <a href="#"><i class="fa fa-twitter"></i></a>
+                                    <a href="#"><i class="fa fa-linkedin"></i></a>
+                                    <a href="#"><i class="fa fa-pinterest-p"></i></a>
+                                </div>
+                                {{#ifCond @root.config.enableLanguages "!=" false}}
+                                <div class="header__top__right__language">
+                                    <img src="/images/img/language.png" alt="">
+                                    <div>English</div>
+                                    <span class="arrow_carrot-down"></span>
+                                    <ul>
+                                        {{#availableLanguages}}
+                                        <li><a class="dropdown-item" href="/lang/{{this}}">{{@root.__ this}}</a></li>
+                                        {{/availableLanguages}}
+                                    </ul>
+                                </div>
+                                {{/ifCond}}
+                                {{#if @root.session.customerPresent}}
+                                <div class="header__top__right__auth">
+                                    <a href="/customer/account"><i class="fa fa-user"></i> Login</a>
+                                    <a href="/customer/logout"><i class="fa fa-user"></i> Logout</a>
 
+                                </div>
+                                {{else}}
+                                <div class="header__top__right__auth">
+                                    <a href="/customer/account"><i class="fa fa-user"></i> Login</a>
+                                </div>
+                                {{/if}}
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <ul class="header__sort-bar">
-                <li class="header__sort-item">
-                    <a class="header__sort-link">Liên quan</a>
-                </li>
-                <li class="header__sort-item header__sort-item--active">
-                    <a class="header__sort-link">Mới nhất</a>
-                </li>
-                <li class="header__sort-item">
-                    <a class="header__sort-link">Bán chạy</a>
-                </li>
-                <li class="header__sort-item">
-                    <a class="header__sort-link">Giá</a>
-                </li>
-            </ul>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <div class="header__logo">
+                            <a href="/"><img src="/images/img/logo.png" alt=""></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <nav class="header__menu">
+                            <ul>
+                                <li class="active"><a href="/">Home</a></li>
+                                <li><a href="/shop">Shop</a></li>
+                                <li><a href="#">Pages</a>
+                                    <ul class="header__menu__dropdown">
+                                        <li><a href="./shop-details.html">Shop Details</a></li>
+                                        <li><a href="./shoping-cart.html">Shoping Cart</a></li>
+                                        <li><a href="./checkout.html">Check Out</a></li>
+                                        <li><a href="./blog-details.html">Blog Details</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="./blog.html">Blog</a></li>
+                                <li><a href="./contact.html">Contact</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="header__cart">
+                            <ul>
+                                {{!-- <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li> --}}
+                                {{#if @root.session.cart}}
+                                <li><a href="/checkout/cart"><i class="fa fa-shopping-bag"></i> <span
+                                            id="cart-count">{{@root.session.totalCartItems}}</span></a></li>
+                                {{else}}
+                                <li><a href="/checkout/cart"><i class="fa fa-shopping-bag"></i> <span
+                                            id="cart-count">0</span></a></li>
+                                {{/if}}
+                            </ul>
+                            <div class="header__cart__price" id="total-cart-amount">
+                                <div class="cartTotalsWrapper">
+                                    {{#if @root.session.cart}}
+                                    <div class="d-flex flex-row">
+                                        <div class="cart-contents-shipping col-md-12 no-pad-right">
+                                            {{#ifCond @root.session.totalCartDiscount '>' 0}}
+                                            <div class="text-right">
+                                                Discount: <strong id="discount-amount">{{currencySymbol
+                                                    @root.config.currencySymbol}}{{formatAmount
+                                                    @root.session.totalCartDiscount}}</strong>
+                                            </div>
+                                            {{/ifCond}}
+                                            <div class="text-right">
+                                                Total:
+                                                <strong id="total-cart-amount">{{currencySymbol
+                                                    @root.config.currencySymbol}}{{formatAmount
+                                                    @root.session.totalCartAmount}}</strong>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {{else}}
+                                    <div class="text-right">
+                                        Total:
+                                        <strong id="total-cart-amount">
+                                            0 đ</strong>
+                                    </div>
+                                    {{/if}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="humberger__open">
+                    <i class="fa fa-bars"></i>
+                </div>
+            </div>
         </header>
+        <!-- Header Section End -->
+
 
         {{/unless}}
         <div class="site-overlay"></div>
         {{#unless admin}}
         {{#ifCond page '!=' 'checkout'}}
         {{#ifCond page '!=' 'pay'}}
-        <div id="cart" class="col-md-12 pad-left-12 top-pad-10 pushy pushy-right">
+        {{!-- <div id="cart" class="col-md-12 pad-left-12 top-pad-10 pushy pushy-right">
             <div class="row {{checkout}}">
                 <div class="col-sm-12 text-right">
-                    <button class="pushy-link btn btn__primary" type="button">{{{feather 'x'}}}</button>
+                    <button class="pushy-link btn btn-primary" type="button">{{{feather 'x'}}}</button>
                 </div>
             </div>
             <div class="row">
@@ -530,182 +444,129 @@
                     {{> (getTheme 'cart')}}
                     <div class="row">
                         <div class="col-sm-12 {{showCartButtons @root.session.cart}} cart-buttons">
-                            <button class="btn btn__danger float-left" id="empty-cart" type="button">{{ @root.__ "Empty
+                            <button class="btn btn-danger float-left" id="empty-cart" type="button">{{ @root.__ "Empty
                                 cart" }}</button>
-                            <a href="/checkout/information" class="btn btn__primary float-right">Checkout</a>
+                            <a href="/checkout/information" class="btn btn-primary float-right">Checkout</a>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
         {{/ifCond}}
         {{/ifCond}}
         {{/unless}}
-        <div class="container-fluid content-body h-100" id="container">
-            <div class="app__container">
-                <div class="grid wide">
 
-                    <div class="row">
+        {{{body}}}
 
-                        {{{body}}}
+        <input type="hidden" id="input_notify_message" value="{{message}}">
+        <input type="hidden" id="input_notify_messageType" value="{{messageType}}">
+        <input type="hidden" id="cartCheckout" value="{{checkout}}">
+        <input type="hidden" id="cartTheme" value="{{@root.config.theme}}">
+        <input type="hidden" id="currencySymbol" value="{{@root.config.currencySymbol}}">
+        {{#if @root.config.maxQuantity}} <input type="hidden" id="maxQuantity"
+            value="{{@root.config.maxQuantity}}">{{/if}}
+        <div id="notify_message"></div>
+        {{#if showFooter}}
+        <!-- Footer Section Begin -->
+        <footer class="footer spad">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 col-sm-6">
+                        <div class="footer__about">
+                            <div class="footer__about__logo">
+                                <a href="./index.html"><img src="/images/img/logo.png" alt=""></a>
+                            </div>
+                            <ul>
+                                <li>Address: 60-49 Road 11378 New York</li>
+                                <li>Phone: +65 11.188.888</li>
+                                <li>Email: hello@dcv.com</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-6 offset-lg-1">
+                        <div class="footer__widget">
+                            <h6>Useful Links</h6>
+                            <ul>
+                                <li><a href="#">About Us</a></li>
+                                <li><a href="#">About Our Shop</a></li>
+                                <li><a href="#">Secure Shopping</a></li>
+                                <li><a href="#">Delivery infomation</a></li>
+                                <li><a href="#">Privacy Policy</a></li>
+                                <li><a href="#">Our Sitemap</a></li>
+                            </ul>
+                            <ul>
+                                <li><a href="#">Who We Are</a></li>
+                                <li><a href="#">Our Services</a></li>
+                                <li><a href="#">Projects</a></li>
+                                <li><a href="#">Contact</a></li>
+                                <li><a href="#">Innovation</a></li>
+                                <li><a href="#">Testimonials</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-12">
+                        <div class="footer__widget">
+                            <h6>Join Our Newsletter Now</h6>
+                            <p>Get E-mail updates about our latest shop and special offers.</p>
+                            <form action="#">
+                                <input type="text" placeholder="Enter your mail">
+                                <button type="submit" class="site-btn">Subscribe</button>
+                            </form>
+                            <div class="footer__widget__social">
+                                <a href="#"><i class="fa fa-facebook"></i></a>
+                                <a href="#"><i class="fa fa-instagram"></i></a>
+                                <a href="#"><i class="fa fa-twitter"></i></a>
+                                <a href="#"><i class="fa fa-pinterest"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="footer__copyright">
+                            <div class="footer__copyright__text">
+                                <p>
+                                    <!-- Link back to dcv can't be removed. Template is licensed under CC BY 3.0. -->
+                                    Copyright &copy;
+                                    <script>document.write(new Date().getFullYear());</script> All rights reserved |
+                                    This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a
+                                        href="https://dcv.com" target="_blank">dcv</a>
+                                    <!-- Link back to dcv can't be removed. Template is licensed under CC BY 3.0. -->
+                                </p>
+                            </div>
+                            <div class="footer__copyright__payment"><img src="/images/img/payment-item.png" alt="">
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <input type="hidden" id="input_notify_message" value="{{message}}">
-            <input type="hidden" id="input_notify_messageType" value="{{messageType}}">
-            <input type="hidden" id="cartCheckout" value="{{checkout}}">
-            <input type="hidden" id="cartTheme" value="{{@root.config.theme}}">
-            <input type="hidden" id="currencySymbol" value="{{@root.config.currencySymbol}}">
-            {{#if @root.config.maxQuantity}} <input type="hidden" id="maxQuantity"
-                value="{{@root.config.maxQuantity}}">{{/if}}
-            <div id="notify_message"></div>
-            {{#if showFooter}}
-            <footer class="footer">
-                <div class="d-flex h-100">
-                    <div class="col-12 align-self-center">
-                        {{#isNull @root.config.footerHtml}}
-                        <div class="grid wide footer__content">
-                            <div class="row">
-                                <div class="col l-2-4 m-4 c-6">
-                                    <h3 class="footer__heading wow fadeInLeft" data-wow-delay="0.3s"
-                                        data-wow-duration="1s">
-                                        Chăm sóc
-                                        khách hàng</h3>
-                                    <ul class="footer-list">
-                                        <li class="footer-item wow fadeInLeft" data-wow-delay="0.3s"
-                                            data-wow-duration="1s">
-                                            <a href="" class="footer-item__link">Trung tâm trợ giúp</a>
-                                        </li>
-                                        <li class="footer-item wow fadeInLeft" data-wow-delay="0.3s"
-                                            data-wow-duration="1s">
-                                            <a href="" class="footer-item__link">Giày đẹp</a>
-                                        </li>
-                                        <li class="footer-item wow fadeInLeft" data-wow-delay="0.3s"
-                                            data-wow-duration="1s">
-                                            <a href="" class="footer-item__link">Hướng dẫn mua hàng</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="col l-2-4 m-4 c-6">
-                                    <h3 class="footer__heading wow fadeInLeft" data-wow-delay="0.5s"
-                                        data-wow-duration="1s">
-                                        Về chúng
-                                        tôi</h3>
-                                    <ul class="footer-list">
-                                        <li class="footer-item wow fadeInLeft" data-wow-delay="0.5s"
-                                            data-wow-duration="1s">
-                                            <a href="" class="footer-item__link">Giới thiệu</a>
-                                        </li>
-                                        <li class="footer-item wow fadeInLeft" data-wow-delay="0.5s"
-                                            data-wow-duration="1s">
-                                            <a href="" class="footer-item__link">Tuyển dụng</a>
-                                        </li>
-                                        <li class="footer-item wow fadeInLeft" data-wow-delay="0.5s"
-                                            data-wow-duration="1s">
-                                            <a href="" class="footer-item__link">Điều khoản</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="col l-2-4 m-4 c-6">
-                                    <h3 class="footer__heading wow fadeInLeft" data-wow-delay="0.7s"
-                                        data-wow-duration="1s">
-                                        Danh mục
-                                    </h3>
-                                    <ul class="footer-list">
-                                        <li class="footer-item wow fadeInLeft" data-wow-delay="0.7s"
-                                            data-wow-duration="1s">
-                                            <a href="" class="footer-item__link">Laptop lenovo</a>
-                                        </li>
-                                        <li class="footer-item wow fadeInLeft" data-wow-delay="0.7s"
-                                            data-wow-duration="1s">
-                                            <a href="" class="footer-item__link">Laptop dell</a>
-                                        </li>
-                                        <li class="footer-item wow fadeInLeft" data-wow-delay="0.7s"
-                                            data-wow-duration="1s">
-                                            <a href="" class="footer-item__link">Laptop asus</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="col l-2-4 m-4 c-6">
-                                    <h3 class="footer__heading wow fadeInLeft" data-wow-delay="0.9s"
-                                        data-wow-duration="1s">
-                                        Theo dõi
-                                    </h3>
-                                    <ul class="footer-list">
-                                        <li class="footer-item wow fadeInLeft" data-wow-delay="0.9s"
-                                            data-wow-duration="1s">
-                                            <a href="" class="footer-item__link">
-                                                <i class="footer-item__icon fab fa-facebook"></i> Facebook
-                                            </a>
-                                        </li>
-                                        <li class="footer-item wow fadeInLeft" data-wow-delay="0.9s"
-                                            data-wow-duration="1s">
-                                            <a href="" class="footer-item__link">
-                                                <i class="footer-item__icon fab fa-instagram"></i> Instagram
-                                            </a>
-                                        </li>
-                                        <li class="footer-item wow fadeInLeft" data-wow-delay="0.9s"
-                                            data-wow-duration="1s">
-                                            <a href="" class="footer-item__link">
-                                                <i class="footer-item__icon fab fa-linkedin"></i> Likedin
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="col l-2-4 m-8 c-12">
-                                    <h3 class="footer__heading wow fadeInLeft" data-wow-delay="1.1s"
-                                        data-wow-duration="1.1s">Vào
-                                        cửa hàng trên điện thoại</h3>
-                                    <div class="footer__dowload wow fadeInLeft" data-wow-delay="1.1s"
-                                        data-wow-duration="1.1s">
-
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="footer__dowload-qr"
-                                            viewBox="0 0 27 27">
-                                            <path
-                                                d="M1 1h7v7h-7zM10 1h3v2h-3zM15 1h1v1h-1zM19 1h7v7h-7zM2 2v5h5v-5zM14 2h1v1h-1zM16 2h1v1h-1zM20 2v5h5v-5zM3 3h3v3h-3zM9 3h1v2h1v1h-1v3h-1zM15 3h1v1h-1zM21 3h3v3h-3zM11 4h4v1h-1v4h-1v-2h-1v-1h1v-1h-2zM17 4h1v1h-1zM15 5h1v1h-1zM16 6h1v1h-1zM11 7h1v4h2v2h-1v-1h-1v1h-3v-1h-2v-1h3v1h1v-2h-1v-1h1zM15 7h1v1h-1zM17 7h1v5h-2v-1h1v-1h-1v-2h1zM1 9h1v1h1v2h-1v1h1v2h-1v3h-1zM3 9h5v1h-1v1h-1v1h1v1h1v1h-2v-1h-1v1h-1v-1h-1v-1h1v-2h-1zM14 9h1v1h-1zM19 9h5v1h-3v1h2v1h-1v2h-1v-1h-1v-1h-1v-1h1v-1h-1zM15 10h1v1h-1zM24 10h1v1h1v3h-1v1h1v2h-1v-1h-1v-2h-1v-1h2v-1h-1zM18 12h1v1h1v1h-2v2h1v-1h1v1h2v-2h1v3h-1v1h1v-1h1v2h2v1h-3v1h3v5h-7v-1h1v-2h1v1h2v1h2v-2h-1v1h-1v-2h-1v1h-1v-1h-1v1h-2v-1h-1v1h1v1h1v1h-3v-1h-1v1h-1v1h-1v-2h1v-1h-1v-1h2v1h1v-2h1v-2h-1v-1h1v-2h-1v-1h1v-1h-1v-1h2zM14 13h1v1h-1zM8 14h2v1h-1v1h-3v-1h2zM13 14h1v1h-1zM15 14h1v1h-1zM20 14h1v1h-1zM11 15h1v4h-1v1h-1v-1h-1v-1h-3v-1h3v-1h1v1h1zM4 16h1v2h-2v-1h1zM13 16h1v1h1v2h1v2h-1v-1h-2v2h-2v-1h1v-2h2v-1h-1zM18 18v3h3v-3zM1 19h7v7h-7zM19 19h1v1h-1zM2 20v5h5v-5zM9 20h1v3h1v2h-1v-1h-1zM3 21h3v3h-3zM9 25h1v1h-1zM15 25h1v1h-1z" />
-                                        </svg>
-                                        {{!-- <div class="footer__dowload-apps">
-                                            <a href="" class="footer__dowload-app-link"><img src="/img/google_play.png"
-                                                    alt="Google play" class="footer__dowload-app-img"></a>
-                                            <a href="" class="footer__dowload-app-link"><img src="/img/app_store.png"
-                                                    alt="App store" class="footer__dowload-app-img"></a>
-                                        </div> --}}
-                                    </div>
-                                </div>
-                            </div>
+        </footer>
+        <!-- Footer Section End -->
+        {{/if}}
+        <script src="/javascripts/pushy.min.js"></script>
+        {{#if admin}}
+        {{> partials/globalSearchModal}}
+        {{> partials/validationModal}}
+        {{> partials/variantModal}}
+        {{> partials/variantEditModal}}
+        {{/if}}
+        {{> partials/confirmModal}}
+        {{#if @root.config.modules.enabled.reviews}}
+        {{> partials/reviewModal}}
+        {{/if}}
+        <script>
+            feather.replace();
+        </script>
 
 
-                        </div>
-                        <div class="footer__bottom">
-                            <div class="grid wide">
-                                <p class="footer__text wow fadeIn" data-wow-delay="1.5s" data-wow-duration="1.6s">@
-                                    2020 -
-                                    Bản quyền
-                                    thuộc về công ty Hiếu Hiếu</p>
-                            </div>
-                        </div>
-                        {{else}}
-                        {{{@root.config.footerHtml}}}
-                        {{/isNull}}
-                    </div>
-                </div>
-            </footer>
-            {{/if}}
-            <script src="/javascripts/pushy.min.js"></script>
-            {{#if admin}}
-            {{> partials/globalSearchModal}}
-            {{> partials/validationModal}}
-            {{> partials/variantModal}}
-            {{> partials/variantEditModal}}
-            {{/if}}
-            {{> partials/confirmModal}}
-            {{#if @root.config.modules.enabled.reviews}}
-            {{> partials/reviewModal}}
-            {{/if}}
-            <script>
-                feather.replace();
-            </script>
 
+        <script src="/javascripts/bootstrap.min.js"></script>
+        <script src="/javascripts/jquery.nice-select.min.js"></script>
+        <script src="/javascripts/jquery-ui.min.js"></script>
+        <script src="/javascripts/jquery.slicknav.js"></script>
+        <script src="/javascripts/mixitup.min.js"></script>
+        <script src="/javascripts/owl.carousel.min.js"></script>
+        <script src="/javascripts/main.js"></script>
     </body>
 
 </html>

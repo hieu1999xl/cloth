@@ -162,12 +162,12 @@ $(document).ready(function () {
                 url: route,
                 data: {
                     email: $('#shipEmail').val(),
-                    company: $('#shipCompany').val(),
+                    // company: $('#shipCompany').val(),
                     firstName: $('#shipFirstname').val(),
                     lastName: $('#shipLastname').val(),
                     address1: $('#shipAddr1').val(),
                     address2: $('#shipAddr2').val(),
-                    country: $('#shipCountry').val(),
+                    // country: $('#shipCountry').val(),
                     state: $('#shipState').val(),
                     postcode: $('#shipPostcode').val(),
                     phone: $('#shipPhoneNumber').val(),
@@ -702,53 +702,45 @@ function updateCartDiv() {
                     if (item.variantId) {
                         variantHtml += `<strong>Option:</strong> ${item.variantTitle}`;
                     }
-                    var productImage = `<img class="img-fluid" src="/uploads/placeholder.png" alt="${item.title} product image"></img>`;
+                    var productImage = `<img class="min_with" src="/uploads/placeholder.png" alt="${item.title} product image"></img>`;
                     if (item.productImage) {
-                        productImage = `<img class="img-fluid" src="${item.productImage}" alt="${item.title} product image"></img>`;
+                        productImage = `<img class="min_with" src="${item.productImage}" alt="${item.title} product image"></img>`;
                     }
 
                     // Setup the product html
                     productHtml += `
-                <div class="d-flex flex-row bottom-pad-15">
-                    <div class="p-2 cart-product">
-                        <div class="row h-200">
-                            <div class="col-4 col-md-3 no-pad-left">
+               
+                    <div class="cart-product">
+                       
+                        <tr>
+                        <td class="shoping__cart__item">
                                 ${productImage}
-                            </div>
-                            <div class="col-8 col-md-9">
-                                <div class="row">
-                                    <div class="col-12 no-pad-left mt-md-4">
-                                        <h6><a href="/product/${item.link}">${item.title}</a></h6>
-                                        ${variantHtml}
-                                    </div>
-                                    <div class="col-12 col-md-6 no-pad-left mb-2">
-                                        <div class="input-group">
-                                            <div class="input-group-prepend">
-                                                <button class="btn btn-primary btn-qty-minus" type="button">-</button>
-                                            </div>
-                                            <input 
-                                                type="number" 
-                                                class="form-control cart-product-quantity text-center"
-                                                data-cartid="${cartId}"
-                                                data-id="${item.productId}" 
-                                                maxlength="2" 
-                                                value="${item.quantity}"
-                                            >
-                                            <div class="input-group-append">
-                                                <button class="btn btn-primary btn-qty-add" type="button">+</button>
-                                            </div>
+                                ${item.title}
+                                ${variantHtml}
+                            </td>                       
+                            <td class="shoping__cart__quantity">
+                                    <div class="quantity">
+                                        <div class="pro-qty">
+                                            <span class="dec qtybtn btn-qty-minus">-</span>
+                                            <input class="cart-product-quantity" type="text"
+                                            data-cartid="${cartId}"
+                                            data-id="${item.productId}" 
+                                            maxlength="2" 
+                                            value="${item.quantity}">
+                                            <span class="inc qtybtn btn-qty-add">+</span>
                                         </div>
                                     </div>
-                                    <div class="col-4 col-md-2 no-pad-left">
-                                        <button class="btn btn-danger btn-delete-from-cart" data-cartid="${cartId}" type="button"><i class="feather" data-feather="trash-2" data-cartid="${cartId}"></i></button>
-                                    </div>
-                                    <div class="col-8 col-md-4 align-self-center text-right">
-                                        <strong class="my-auto">${productTotalAmount} ${result.currencySymbol}</strong>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                            </td>   
+                           
+                                     <td class="shoping__cart__total">
+                                     ${productTotalAmount} ${result.currencySymbol}
+                            </td>
+                            <td class="shoping__cart__item__close">
+                            <span class="icon_close btn-delete-from-cart" data-cartid="${cartId}" 
+                                type="button"></span>
+                             </td>
+                                </tr>
+                   
                 </div>`;
                 });
 

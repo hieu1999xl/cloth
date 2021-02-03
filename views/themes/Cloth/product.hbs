@@ -1,534 +1,346 @@
-{{> themes/Cloth/front-menu}}
-<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
-<div class="app__container product-details">
-    <div class="grid wide">
-        <div class="product__details">
-            <div class="product__details-title">
-                <ul class="product__details-title-list">
-                    <li class="product__details-title-item">
-                        <a href="/" class="product__details-title-link">Trang chủ</a>
-                    </li>
-                    <li class="product__details-title-item">
-                        <a href="" class="product__details-title-link">Sản phẩm</a>
-                    </li>
-                    <li class="product__details-title-item">
-                        <a href="" class="product__details-title-link">{{result.productTitle}}</a>
-                    </li>
-                </ul>
-            </div>
-            <div class="product__details-content">
-                <div class="product__details-content-wapper">
-                    <div class="row">
-                        <div class="col l-4 m-12 c-12">
-                            <div class="product__details-img-wapper">
-                                <!-- <div class="product__details-img" style="background-image: url(assets/img/laptop1.jpg);">
-
-                                        </div> -->
-                                <div class="bzoom_wrap">
-                                    <ul id="bzoom">
-                                        {{!-- <li>
-                                            {{#if result.productImage}}
-                                            <div class="title-image-container">
-                                                <div class="image-prev image-button"> {{{feather 'chevron-left'}}}</div>
-                                                <img class="bzoom_thumb_image" src="{{result.productImage}}"
-                                                    title="first img" />
-                                                <img class="bzoom_big_image" src="{{result.productImage}}" />
-                                                <div class="image-next image-button"> {{{feather 'chevron-right'}}}
-                                                </div>
-                                            </div>
-                                            {{else}}
-                                            <div class="title-image-container">
-                                                <img src="/uploads/unplash1.jpg" id="product-title-image"
-                                                    class="product-title-image img-fluid" alt="...">
-                                            </div>
-                                            {{/if}} --}}
-
-                                        </li>
-                                        {{#ifCond @root.images.length '>' 0}}
-
-                                        {{#each @root.images}}
-
-                                        <li>
-                                            <img class="bzoom_thumb_image" src="{{this.path}}" />
-                                            <img class="bzoom_big_image" src="{{this.path}}" />
-
-                                        </li>
-
-                                        {{/each}}
-
-                                        {{/ifCond}}
-
-
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col l-8 m-12 c-12">
-                            <div class="product__details-name">
-                                <h1>{{result.productTitle}}
-                                </h1>
-                            </div>
-                            {{!-- <div class="evaluate">
-                                <p class="evaluate-content product-code">MÃ SP:<span>latop01</span></p>
-                                <p class="evaluate-content product-evaluate"><span>99</span>Đánh giá</p>
-                                <p class="evaluate-content product-view">Lượt xem<span>298.998</span></p>
-                                <div class="evaluate-content evaluate-btn">
-                                    <button><i class="fas fa-check"></i> Thích 989</button>
-                                    <button><i class="fab fa-facebook"></i> Chia sẻ</button>
-                                </div>
-                            </div> --}}
-                            <div class="row">
-                                <div class="col l-8 m-12 c-12">
-                                    <div class="specifi">
-                                        <h1>Thông số sản phẩm</h1>
-                                        <ul class="specifi__list">
-                                            {{{fixTags result.productDescription}}}
-                                        </ul>
-
-                                    </div>
-                                    <div class="guar-price-promotion">
-                                        <h1 class="guar">Đổi trả:
-                                            <span>7 ngày</span>
-                                        </h1>
-                                        <div class="price">
-                                            <table style="width:100%; border-radius: 5px; padding: 10px 20px;">
-                                                <tbody>
-                                                    <tr>
-                                                        <td>Giá bán:</td>
-                                                        <td style="position:relative;">
-
-                                                            {{#if variants}}
-
-                                                            <b class="" style="font-size: 24px;color: #666;">
-                                                                {{variants.0.price}} {{currencySymbol
-                                                                config.currencySymbol}}
-                                                            </b>
-                                                            {{else}}
-
-                                                            <b class="" style="font-size: 24px;color: #666;">
-                                                                {{formatAmount result.productPrice}}
-                                                                {{currencySymbol config.currencySymbol}}
-                                                            </b>
-                                                            {{/if}}
-                                                        </td>
-
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Số lượng</td>
-                                                        <td>
-                                                            <div class="col-md-10 productOptions">
-                                                                <div class="input-group">
-                                                                    <div class="input-group-prepend">
-                                                                        <button class=" btn__primary qty-btn-minus"
-                                                                            type="button">-</button>
-                                                                    </div>
-                                                                    <input type="number"
-                                                                        class="form-control add-color text-center"
-                                                                        id="product_quantity" maxlength="3" value="1">
-                                                                    <div class="input-group-append">
-                                                                        <button class=" btn__primary qty-btn-plus"
-                                                                            type="button">+</button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-
-                                                    </tr>
-                                                    <tr>
-                                                        <td>{{#if result.productComment}}Ghi chú {{/if}}</td>
-                                                        <td>
-                                                            {{#if result.productComment}}
-                                                            <div class="col-md-10">
-
-                                                                <textarea class="form-control"
-                                                                    id="product_comment"></textarea>
-                                                            </div>
-                                                            {{/if}}
-                                                        </td>
-                                                    </tr>
-
-                                                </tbody>
-                                            </table>
-                                        </div>
-
-                                        <div class="price-hot">
-                                            <p>
-                                                <span class="price-hot__hot">Hot</span>
-                                                <span><a href="">Chính sách bảo hành vàng dành cho doanh
-                                                        nghiệp</a></span>
-                                            </p>
-                                            <p>
-                                                <span class="price-hot__hot">Hot</span>
-                                                <span><a href="">Vận chuyển hàng nhanh chóng cho bạn</a></span>
-                                            </p>
-                                        </div>
-                                        <div class="promotion">
-                                            <div class="promotion__present">
-                                                <span>
-                                                    <i class="fas fa-gift"></i>
-                                                    Chương trình khuyến mãi
-                                                </span>
-                                            </div>
-                                            <ul class="promotion__present-content">
-                                                <h2>Giảm ngay 15% với mọi đơn hàng</h2>
-                                                <li class="promotion__present-content-item">
-                                                    Mua 1 tặng 1 với khách hàng thân thiết.
-                                                </li>
-                                                <li class="promotion__present-content-item">
-                                                    Tặng ngay voucher cho <span>01</span> lần mua hàng tiếp theo
-
-                                                </li>
-
-
-                                            </ul>
-                                        </div>
-                                        <div class="btn-purchase">
-                                            {{#if variants}}
-                                            <h4 class="col-md-10 product-option">{{ @root.__ "Options" }}</h4>
-                                            <div class="col-md-10">
-                                                <select id="product_variant" class="form-control">
-                                                    {{#each variants}}
-                                                    <option value="{{this._id}}" data-price="{{this.price}}">
-                                                        {{this.title}}</option>
-                                                    {{/each}}
-                                                </select>
-                                            </div>
-                                            {{/if}}
-                                            {{#if config.trackStock}}
-                                            {{#ifCond result.productStock '==' 0}}
-                                            <div class="col-md-10">
-                                                <h4 class="text-danger text-center">
-                                                    Out of stock
-                                                </h4>
-                                            </div>
-                                            {{/ifCond}}
-                                            {{/if}}
-
-
-                                            <div class="btn-purchase-top  btnAddToCart">
-
-                                                <a class="buynow btn-block product-add-to-cart" href="#">
-                                                    <span>Đặt mua ngay</span>Giao hàng tận nơi nhanh chóng
-                                                </a>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col l-4 m-0 c-0">
-                                    <div class="showroom">
-                                        <div class="showroom__title">
-                                            <h1><i class="fas fa-warehouse"></i>Thông tin cửa hàng</h1>
-
-                                        </div>
-                                        <div class="showroom__content">
-                                            <span>Hàng đang có tại showroom:</span>
-                                            <ul class="showroom__list">
-                                                <li class="showroom__item">
-                                                    <a href="" class="showroom__link">191 Lê văn cường - Hai
-                                                        bà trưng - Hà nội</a>
-                                                </li>
-                                                <li class="showroom__item">
-                                                    <a href="" class="showroom__link">291 Lê văn cường -
-                                                        Đống đa - Hà nội</a>
-                                                </li>
-                                                <li class="showroom__item">
-                                                    <a href="" class="showroom__link">391 Lê văn cường - Cầu
-                                                        giấy - Hà nội</a>
-                                                </li>
-                                                <li class="showroom__item">
-                                                    <a href="" class="showroom__link">491 Lê văn cường - Nam
-                                                        từ liêm - Hà nội</a>
-                                                </li>
-                                                <li class="showroom__item">
-                                                    <a href="" class="showroom__link">591 Lê văn cường -
-                                                        Thái hà - Hà nội</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="showroom">
-                                        <div class="showroom__title">
-                                            <h1><i class="fas fa-money-bill-wave"></i>Chính sách bán hàng
-                                            </h1>
-
-                                        </div>
-                                        <div class="showroom__content">
-                                            <ul class="showroom__list">
-                                                <li class="showroom__item">
-                                                    <a href="" class="showroom__link showroom__link-sales">Sản phẩm
-                                                        chính hãng 100%</a>
-                                                </li>
-                                                <li class="showroom__item">
-                                                    <a href="" class="showroom__link showroom__link-sales">Bán hàng
-                                                        online toàn quốc</a>
-                                                </li>
-                                                <li class="showroom__item">
-                                                    <a href="" class="showroom__link showroom__link-sales">Mua hàng
-                                                        trả góp lãi suất 0%</a>
-                                                </li>
-                                                <li class="showroom__item">
-                                                    <a href="" class="showroom__link showroom__link-sales">Trả bảo
-                                                        hành tận nơi sử dụng</a>
-                                                </li>
-                                                <li class="showroom__item">
-                                                    <a href="" class="showroom__link showroom__link-sales">Bảo hành
-                                                        tận nơi cho doanh nghiệp</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="showroom">
-                                        <div class="showroom__title">
-                                            <h1><i class="fas fa-shipping-fast"></i>Chính sách giao hàng
-                                            </h1>
-
-                                        </div>
-                                        <div class="showroom__content">
-
-                                            <ul class="showroom__list">
-                                                <li class="showroom__item">
-                                                    <a href="" class="showroom__link showroom__link-impart">Giao
-                                                        hàng trước trả tiền sau COD</a>
-                                                </li>
-                                                <li class="showroom__item">
-                                                    <a href="" class="showroom__link showroom__link-impart">Miễn
-                                                        phí giao hàng (bán kính 20km) với đơn hàng trên
-                                                        500.000 đ</a>
-                                                </li>
-                                                <li class="showroom__item">
-                                                    <a href="" class="showroom__link showroom__link-impart">
-                                                        Miễn phí giao hàng 300km với khách hàng Games Net,
-                                                        Doanh Nghiệp, Dự Án</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+<!-- Hero Section Begin -->
+<section class="hero hero-normal">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="hero__categories">
+                    <div class="hero__categories__all">
+                        <i class="fa fa-bars"></i>
+                        <span>All departments</span>
                     </div>
+                    <ul>
+                        <li><a href="#">Fresh Meat</a></li>
+                        <li><a href="#">Vegetables</a></li>
+                        <li><a href="#">Fruit & Nut Gifts</a></li>
+                        <li><a href="#">Fresh Berries</a></li>
+                        <li><a href="#">Ocean Foods</a></li>
+                        <li><a href="#">Butter & Eggs</a></li>
+                        <li><a href="#">Fastfood</a></li>
+                        <li><a href="#">Fresh Onion</a></li>
+                        <li><a href="#">Papayaya & Crisps</a></li>
+                        <li><a href="#">Oatmeal</a></li>
+                        <li><a href="#">Fresh Bananas</a></li>
+                    </ul>
                 </div>
             </div>
-            <div class="product-introduction">
-                <div id="btn-active" class="product-introduction__link">
-                    <a href="#Detailed-introduction-id" class="product-intro__btn product-intro__btn--active">Giới thiệu
-                        sản phẩm</a>
-
-                    <a href="#video" class="product-intro__btn">Sản phẩm liên quan</a>
-                    <a href="#product-reviews" class="product-intro__btn">Đánh giá</a>
-                    <a href="#Question" class="product-intro__btn">Hỏi đáp</a>
-                </div>
-                <div id="Detailed-introduction-id" class="Detailed-introduction">
-                    <p>{{{fixTags result.productDescription}}}</p>
-                    <p>
-                        <img src="{{result.productImage}}" alt="">
-                    </p>
-
-                </div>
-
-                <div id="video" class="specifications">
-                    {{#if config.showRelatedProducts}}
-                    {{#if relatedProducts}}
-                    <div class="col-sm-12 mt-5">
-                        <h4>Sẩn phẩm liên quan</h4>
-                        <div class="row">
-                            {{#each relatedProducts}}
-                            <div class="col-md-3">
-                                <div>
-                                    {{#if productPermalink}}
-                                    <div class="product-wrapper">
-                                        <a href="/product/{{this.productPermalink}}">
-                                            <div class="vertical-center img-thumbnail">
-                                                {{#if productImage}}
-                                                <img class="img-fluid" src="{{this.productImage}}" alt="...">
-                                                {{else}}
-                                                <img class="img-fluid" src="/uploads/unplash1.jpg" alt="...">
-                                                {{/if}}
-                                            </div>
-                                            <h3 class="product-title product-title-home top-pad-10">
-                                                {{this.productTitle}}
-                                            </h3>
-                                        </a>
-                                    </div>
-                                    {{else}}
-                                    <a href="/product/{{this._id}}">
-                                        <div class="vertical-center img-thumbnail">
-                                            {{#if productImage}}
-                                            <img class="img-fluid" src="{{this.productImage}}" alt="...">
-                                            {{else}}
-                                            <img class="img-fluid" src="/uploads/unplash1.jpg" alt="...">
-                                            {{/if}}
-                                        </div>
-                                        <h3 class="product-title product-title-home top-pad-10">
-                                            {{this.productTitle}}
-                                        </h3>
-                                    </a>
-                                    {{/if}}
-                                    <h3 class="product-price mp-0 text-center">
-                                        {{currencySymbol ../config.currencySymbol}}{{formatAmount productPrice}}
-                                    </h3>
-                                    <p class="text-center">
-                                        {{#if productPermalink}}
-                                        <a class="btn btn__primary" href="/product/{{this.productPermalink}}">{{
-                                            @root.__ "View" }}</a>
-                                        {{else}}
-                                        <a class="btn btn__primary" href="/product/{{this._id}}">{{ @root.__ "View"
-                                            }}</a>
-                                        {{/if}}
-                                    </p>
-                                </div>
+            <div class="col-lg-9">
+                <div class="hero__search">
+                    <div class="hero__search__form">
+                        <form action="#">
+                            <div class="hero__search__categories">
+                                All Categories
+                                <span class="arrow_carrot-down"></span>
                             </div>
-                            {{/each}}
+                            <input type="text" placeholder="What do yo u need?">
+                            <button type="submit" class="site-btn">SEARCH</button>
+                        </form>
+                    </div>
+                    <div class="hero__search__phone">
+                        <div class="hero__search__phone__icon">
+                            <i class="fa fa-phone"></i>
+                        </div>
+                        <div class="hero__search__phone__text">
+                            <h5>+65 11.188.888</h5>
+                            <span>support 24/7 time</span>
                         </div>
                     </div>
-                    {{/if}}
-                    {{/if}}
                 </div>
-                <div id="product-reviews" class="specifications">
-                    <h1 class="product-reviews-title">Đánh giá và nhận xét về {{result.productTitle}}</h1>
-                    <div class="comment">
-                        <div class="comment-form">
-                            {{!-- <div class="comment-form__img">
-                                <img src="assets/img/custom.jpg" alt="">
-                            </div> --}}
-
-                            <form action="" class="rating-form">
-
-                                <div class="comment-form__content">
-                                    <input type="text" class="form-control" id="review-title" placeholder="Love it.">
-                                    {{!-- <input type="number" class="form-control" id="review-rating" placeholder="5">
-                                    --}}
-
-                                    <textarea onclick="funtionform()" name="" placeholder="Mời bạn để lại bình luận"
-                                        id="review-description" name="review-description"></textarea>
-                                    <!-- <input type="checkbox" class="check-comment-form" id="check-comment"> -->
-
-                                    <div id="form-input--hide" class="form-input">
-                                        <div class="form-input__rating">
-
-                                            <fieldset class="form-group" id="review-rating">
-
-                                                <legend class="form-legend">Rating:</legend>
-
-                                                <div class="form-item">
-
-                                                    <input id="rating-5" name="rating" type="radio" value="5" />
-                                                    <label for="rating-5">
-                                                        <span class="rating-star">
-                                                            <i class="fa fa-star-o"></i>
-                                                            <i class="fa fa-star"></i>
-                                                        </span>
-
-                                                    </label>
-                                                    <input id="rating-4" name="rating" type="radio" value="4" />
-                                                    <label for="rating-4">
-                                                        <span class="rating-star">
-                                                            <i class="fa fa-star-o"></i>
-                                                            <i class="fa fa-star"></i>
-                                                        </span>
-
-                                                    </label>
-                                                    <input id="rating-3" name="rating" type="radio" value="3" />
-                                                    <label for="rating-3">
-                                                        <span class="rating-star">
-                                                            <i class="fa fa-star-o"></i>
-                                                            <i class="fa fa-star"></i>
-                                                        </span>
-
-                                                    </label>
-                                                    <input id="rating-2" name="rating" type="radio" value="2" />
-                                                    <label for="rating-2" data-value="2">
-                                                        <span class="rating-star">
-                                                            <i class="fa fa-star-o"></i>
-                                                            <i class="fa fa-star"></i>
-                                                        </span>
-
-                                                    </label>
-                                                    <input id="rating-1" name="rating" type="radio" value="1" />
-                                                    <label for="rating-1">
-                                                        <span class="rating-star">
-                                                            <i class="fa fa-star-o"></i>
-                                                            <i class="fa fa-star"></i>
-                                                        </span>
-
-                                                    </label>
-
-
-                                                </div>
-
-                                            </fieldset>
-
-                                        </div>
-                                        <div class="form-input__button" id="addReview">
-                                            <button>Gửi bình luận</button>
-                                        </div>
-                                        <div class="form-input__link">
-                                            <a onclick="funtionclose()">Đóng bình luận</a>
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                            </form>
-
-                        </div>
-
-                        <!-- comment và trả lời comment -->
-                        <div class="reply-comment">
-                            <div class="item-comment">
-                                <div class="item-comment__avatar">
-                                    <div class="comment-form__img">
-                                        {{!-- <img src="assets/img/custom.jpg" alt=""> --}}
-                                    </div>
-                                </div>
-                                {{#each @root.reviews.reviews}}
-                                <div class="item-comment__content">
-                                    <div class="item-comment__name">
-                                        <span>{{this.title}}</span>
-                                        <p>{{this.description}}</p>
-                                    </div>
-                                    <div class="item-comment__info">
-                                        <span>{{timeAgo this.date}}</span>
-                                        <div class="item-comment__rep">
-                                            <a href="">Trả lời</a>
-                                        </div>
-                                    </div>
-
-
-                                </div>
-                                {{/each}}
-                            </div>
-                        </div>
-                        <!-- comment và trả lời comment -->
-                    </div>
-                </div>
-                <div id="Question" class="specifications">
-                    <h1 class="Question__h1">Hỏi đáp về{{result.productTitle}}</h1>
-                    <div class="comment-facebook">
-                        <div id="fb-root"></div>
-                        <script async defer crossorigin="anonymous"
-                            src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v6.0&appId=580750925983459&autoLogAppEvents=1"></script>
-                        <div class="fb-comments" data-href="https://facebook.com/hieuhieu/" data-width="100%"
-                            data-numposts="5"></div>
-                    </div>
-                </div>
-
             </div>
         </div>
     </div>
-</div>
+</section>
+<!-- Hero Section End -->
 
-<script type="text/javascript">
-    $("#bzoom").zoom({
-        zoom_area_width: 300,
-        autoplay_interval: 3000,
-        small_thumbs: 4,
-        autoplay: false
-    });
-</script>
-<script>
-    new WOW().init();
-</script>
+<!-- Breadcrumb Section Begin -->
+<section class="breadcrumb-section set-bg" data-setbg="/images/img/breadcrumb.jpg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="breadcrumb__text">
+                    <h2>Vegetable’s Package</h2>
+                    <div class="breadcrumb__option">
+                        <a href="./index.html">Home</a>
+                        <a href="./index.html">Vegetables</a>
+                        <span>Vegetable’s Package</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Breadcrumb Section End -->
+
+<!-- Product Details Section Begin -->
+<section class="product-details spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-6">
+                <div class="product__details__pic">
+                    <div class="product__details__pic__item">
+                        {{#if result.productImage}}
+                        <img class="product__details__pic__item--large" src="{{result.productImage}}"
+                            id="product-title-image" alt="">
+                        {{else}}
+                        <img class="product__details__pic__item--large" src="/uploads/placeholder.png"
+                            id="product-title-image" alt="">
+                        {{/if}}
+                    </div>
+
+                    <div class="row">
+
+                    </div>
+
+                    {{#ifCond @root.images.length '>' 1}}
+                    <div class="product__details__pic__slider owl-carousel">
+                        {{#each @root.images}}
+                        <img data-imgbigurl="{{this.path}}" src="{{this.path}}" alt="">
+                        {{/each}}
+                    </div>
+                    {{/ifCond}}
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6">
+                <div class="product__details__text">
+                    <h3>{{result.productTitle}}</h3>
+                    <div class="product__details__rating">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star-half-o"></i>
+                        <span>(18 reviews)</span>
+                    </div>
+                    <div class="product__details__price">
+                        {{#if variants}}
+                        {{formatAmount variants.0.price}} {{currencySymbol config.currencySymbol}}
+                        {{else}}
+                        {{formatAmount result.productPrice}} {{currencySymbol config.currencySymbol}}
+                        {{/if}}
+                    </div>
+                    {{#if variants}}
+                    <h4 class="col-md-10 product-option">{{ @root.__ "Options" }}</h4>
+                    <div class="col-md-10">
+                        <select id="product_variant" class="form-control">
+                            {{#each variants}}
+                            <option value="{{this._id}}" data-price="{{this.price}}">{{this.title}}</option>
+                            {{/each}}
+                        </select>
+                    </div>
+                    {{/if}}
+                    <p> {{{fixTags result.productDescription}}}</p>
+                    <div class="product__details__quantity">
+                        <div class="quantity">
+                            <div class="pro-qty">
+                                <input id="product_quantity" type="number" id="product_quantity" maxlength="3"
+                                    value="1">
+                            </div>
+                        </div>
+                    </div>
+                    {{!-- <div class="input-group">
+                        <div class="input-group-prepend">
+                            <button class="btn btn-primary qty-btn-minus" type="button">-</button>
+                        </div>
+                        <input type="number" class="form-control add-color text-center" id="product_quantity"
+                            maxlength="3" value="1">
+                        <div class="input-group-append">
+                            <button class="btn btn-primary qty-btn-plus" type="button">+</button>
+                        </div>
+                    </div> --}}
+                    <a href="#" class="primary-btn product-add-to-cart">ADD TO CARD</a>
+                    <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
+                    <ul>
+                        <li><b>Availability</b> <span>In Stock</span></li>
+                        <li><b>Shipping</b> <span>01 day shipping. <samp>Free pickup today</samp></span></li>
+                        <li><b>Weight</b> <span>0.5 kg</span></li>
+                        <li><b>Share on</b>
+                            <div class="share">
+                                <a href="#"><i class="fa fa-facebook"></i></a>
+                                <a href="#"><i class="fa fa-twitter"></i></a>
+                                <a href="#"><i class="fa fa-instagram"></i></a>
+                                <a href="#"><i class="fa fa-pinterest"></i></a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div class="product__details__tab">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab"
+                                aria-selected="true">Description</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab"
+                                aria-selected="false">Information</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#tabs-3" role="tab"
+                                aria-selected="false">Reviews <span>(1)</span></a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="tabs-1" role="tabpanel">
+                            <div class="product__details__tab__desc">
+                                <h6>Products Infomation</h6>
+                                <p> {{{fixTags result.productDescription}}}</p>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="tabs-2" role="tabpanel">
+                            <div class="product__details__tab__desc">
+                                <h6>Products Infomation</h6>
+                                <p>Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui.
+                                    Pellentesque in ipsum id orci porta dapibus. Proin eget tortor risus.
+                                    Vivamus suscipit tortor eget felis porttitor volutpat. Vestibulum ac diam
+                                    sit amet quam vehicula elementum sed sit amet dui. Donec rutrum congue leo
+                                    eget malesuada. Vivamus suscipit tortor eget felis porttitor volutpat.
+                                    Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Praesent
+                                    sapien massa, convallis a pellentesque nec, egestas non nisi. Vestibulum ac
+                                    diam sit amet quam vehicula elementum sed sit amet dui. Vestibulum ante
+                                    ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;
+                                    Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula.
+                                    Proin eget tortor risus.</p>
+                                <p>Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Lorem
+                                    ipsum dolor sit amet, consectetur adipiscing elit. Mauris blandit aliquet
+                                    elit, eget tincidunt nibh pulvinar a. Cras ultricies ligula sed magna dictum
+                                    porta. Cras ultricies ligula sed magna dictum porta. Sed porttitor lectus
+                                    nibh. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a.</p>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="tabs-3" role="tabpanel">
+                            <div class="product__details__tab__desc">
+                                <h6>Products Infomation</h6>
+                                <p>Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui.
+                                    Pellentesque in ipsum id orci porta dapibus. Proin eget tortor risus.
+                                    Vivamus suscipit tortor eget felis porttitor volutpat. Vestibulum ac diam
+                                    sit amet quam vehicula elementum sed sit amet dui. Donec rutrum congue leo
+                                    eget malesuada. Vivamus suscipit tortor eget felis porttitor volutpat.
+                                    Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Praesent
+                                    sapien massa, convallis a pellentesque nec, egestas non nisi. Vestibulum ac
+                                    diam sit amet quam vehicula elementum sed sit amet dui. Vestibulum ante
+                                    ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;
+                                    Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula.
+                                    Proin eget tortor risus.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Product Details Section End -->
+
+<!-- Related Product Section Begin -->
+<section class="related-product">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-title related__product__title">
+                    <h2>Related Product</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            {{#if config.showRelatedProducts}}
+            {{#if relatedProducts}}
+            {{#each relatedProducts}}
+            <div class="col-lg-3 col-md-4 col-sm-6">
+
+                <div class="product__item">
+                    {{#if productImage}}
+                    <div class="product__item__pic set-bg" data-setbg="{{this.productImage}}">
+                        <ul class="product__item__pic__hover">
+                            <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                            <li><a href="#"><i class="fa fa-retweet"></i></a></li>
+                            <li>
+                                {{#if @root.config.showHomepageVariants}}
+                                <a data-id="{{this._id}}" href="#"><i
+                                        class="fa fa-shopping-cart add-variant-to-cart"></i></a>
+                                {{else}}
+                                <a class="fa fa-shopping-cart add-to-cart" data-id="{{this._id}}"
+                                    data-link="{{this.productPermalink}}"
+                                    data-has-variants="{{checkProductVariants this.variants}}"></a>
+                                {{/if}}
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="product__item__text">
+
+                        <h6><a href="/product/{{this.productPermalink}}">{{this.productTitle}}</a></h6>
+                        {{#if variants}}
+                        <div class="col-md-12">
+                            {{#if @root.config.showHomepageVariants}}
+                            <select id="productVariant-{{this._id}}" class="productVariant form-control mb-2">
+                                {{#each variants}}
+                                <option value="{{this._id}}" data-price="{{this.price}}">{{this.title}} -
+                                    {{currencySymbol
+                                    @root.config.currencySymbol}}{{this.price}}</option>
+                                {{/each}}
+                            </select>
+                            {{else}}
+                            <h5>
+                                {{formatAmount variants.0.price}} {{currencySymbol @root.config.currencySymbol}}
+                            </h5>
+                            {{/if}}
+                        </div>
+                        {{else}}
+                        <h5>
+                            {{formatAmount productPrice}} {{currencySymbol @root.config.currencySymbol}}
+                        </h5>
+                        {{/if}}
+                    </div>
+                    {{else}}
+                    <div class="product__item__pic set-bg" data-setbg="/uploads/placeholder.png">
+                        <ul class="product__item__pic__hover">
+                            <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                            <li><a href="#"><i class="fa fa-retweet"></i></a></li>
+                            <li>
+                                {{#if @root.config.showHomepageVariants}}
+                                <a data-id="{{this._id}}" href="#"><i
+                                        class="fa fa-shopping-cart add-variant-to-cart"></i></a>
+                                {{else}}
+                                <a class="fa fa-shopping-cart add-to-cart" data-id="{{this._id}}"
+                                    data-link="{{this.productPermalink}}"
+                                    data-has-variants="{{checkProductVariants this.variants}}"></a>
+                                {{/if}}
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="product__item__text">
+                        <h6><a href="#">{{this.productTitle}}</a></h6>
+                        {{#if variants}}
+                        <div class="col-md-12">
+                            {{#if @root.config.showHomepageVariants}}
+                            <select id="productVariant-{{this._id}}" class="productVariant form-control mb-2">
+                                {{#each variants}}
+                                <option value="{{this._id}}" data-price="{{this.price}}">{{this.title}} -
+                                    {{currencySymbol
+                                    @root.config.currencySymbol}}{{this.price}}</option>
+                                {{/each}}
+                            </select>
+                            {{else}}
+                            <h5>
+                                {{currencySymbol @root.config.currencySymbol}}{{formatAmount variants.0.price}}
+                            </h5>
+                            {{/if}}
+                        </div>
+                        {{else}}
+                        <h5>
+                            {{currencySymbol @root.config.currencySymbol}}{{formatAmount productPrice}}
+                        </h5>
+                        {{/if}}
+                    </div>
+                    {{/if}}
+                </div>
+            </div>
+            {{/each}}
+
+            {{/if}}
+            {{/if}}
+        </div>
+    </div>
+</section>
+<!-- Related Product Section End -->
 <input type="hidden" id="productId" value="{{result._id}}">
 <input type="hidden" id="currencySymbol" value="{{currencySymbol config.currencySymbol}}">

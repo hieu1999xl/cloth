@@ -1,65 +1,78 @@
 <div class="row">
-    <div class="col-sm-12 col-md-12">
-        <div class="form-group">
-            <input type="email" class="form-control customerDetails" id="shipEmail" name="shipEmail" minlength="5" placeholder="Email address" value="{{@root.session.customerEmail}}" required>
-            <div class="invalid-feedback">
-                Please enter a valid email address
-            </div>
+    <div class="col-lg-6">
+        <div class="checkout__input">
+            <p>Fist Name<span>*</span></p>
+            <input type="text" id="shipFirstname" name="shipFirstname" placeholder="First name"
+                value="{{@root.session.customerFirstname}}" required>
         </div>
     </div>
-    <div class="col-sm-12 col-md-12">
-        <div class="form-group">
-            <input type="text" class="form-control customerDetails" id="shipCompany" name="shipCompany" placeholder="Company name" value="{{@root.session.customerCompany}}">
+    <div class="col-lg-6">
+        <div class="checkout__input">
+            <p>Last Name<span>*</span></p>
+            <input type="text" id="shipLastname" name="shipLastname" placeholder="Last name"
+                value="{{@root.session.customerLastname}}" required>
         </div>
     </div>
-    <div class="col-sm-12 col-md-6">
-        <div class="form-group">
-            <input type="text" class="form-control customerDetails" id="shipFirstname" name="shipFirstname" placeholder="First name" value="{{@root.session.customerFirstname}}" required>
+</div>
+{{!-- <div class="checkout__input">
+    <p>Country<span>*</span></p>
+    <select id="shipCountry" name="shipCountry" required>
+        <option value="" disabled selected>Select Country</option>
+        {{#each countryList}}
+        <option {{selectState this @root.session.customerCountry}} value="{{this}}">{{this}}</option>
+        {{/each}}
+    </select>
+</div> --}}
+<div class="checkout__input">
+    <p>Address<span>*</span></p>
+    <input type="text" placeholder="Street Address" class="checkout__input__add" id="shipAddr1" name="shipAddr1"
+        value="{{@root.session.customerAddress1}}" required>
+    <input type="text" placeholder="Apartment, suite, unite ect (optinal)" id="shipAddr2" name="shipAddr2"
+        value="{{@root.session.customerAddress2}}">
+</div>
+<div class="checkout__input">
+    <p>Country/State<span>*</span></p>
+    <input type="text" id="shipState" name="shipState" placeholder="State" value="{{@root.session.customerState}}"
+        required>
+</div>
+<div class="checkout__input">
+    <p>Postcode / ZIP<span>*</span></p>
+    <input type="text" id="shipPostcode" name="shipPostcode" placeholder="Post code"
+        value="{{@root.session.customerPostcode}}" required>
+</div>
+<div class="row">
+    <div class="col-lg-6">
+        <div class="checkout__input">
+            <p>Phone<span>*</span></p>
+            <input type="text" id="shipPhoneNumber" name="shipPhoneNumber" placeholder="Phone number"
+                value="{{@root.session.customerPhone}}" required>
         </div>
     </div>
-    <div class="col-sm-12 col-md-6">
-        <div class="form-group">
-            <input type="text" class="form-control customerDetails" id="shipLastname" name="shipLastname" placeholder="Last name" value="{{@root.session.customerLastname}}" required>
+    <div class="col-lg-6">
+        <div class="checkout__input">
+            <p>Email<span>*</span></p>
+            <input type="email" id="shipEmail" name="shipEmail" minlength="5" placeholder="Email address"
+                value="{{@root.session.customerEmail}}" required>
         </div>
     </div>
-    <div class="col-sm-12 col-md-12">
-        <div class="form-group">
-            <input type="text" class="form-control customerDetails" id="shipAddr1" name="shipAddr1" placeholder="Address 1" value="{{@root.session.customerAddress1}}" required>
-        </div>
-    </div>
-    <div class="col-sm-12 col-md-12">
-        <div class="form-group">
-            <input type="text" class="form-control customerDetails" id="shipAddr2" name="shipAddr2" placeholder="Address 2 (optional)" value="{{@root.session.customerAddress2}}">
-        </div>
-    </div>
-    <div class="col-sm-12 col-md-12">
-        <div class="form-group">
-            <select class="form-control" id="shipCountry" name="shipCountry" required>
-                <option value="" disabled selected>Select Country</option>
-                {{#each countryList}}
-                <option {{selectState this @root.session.customerCountry}} value="{{this}}">{{this}}</option>
-                {{/each}}
-            </select>
-        </div>
-    </div>
-    <div class="col-sm-12 col-md-6">
-        <div class="form-group">
-            <input type="text" class="form-control customerDetails" id="shipState" name="shipState" placeholder="State" value="{{@root.session.customerState}}" required>
-        </div>
-    </div>
-    <div class="col-sm-12 col-md-6">
-        <div class="form-group">
-            <input type="text" class="form-control customerDetails" id="shipPostcode" name="shipPostcode" placeholder="Post code" value="{{@root.session.customerPostcode}}" required>
-        </div>
-    </div>
-    <div class="col-sm-12 col-md-12">
-        <div class="form-group">
-            <input type="number" class="form-control customerDetails" id="shipPhoneNumber" name="shipPhoneNumber" placeholder="Phone number" value="{{@root.session.customerPhone}}" required>
-        </div>
-    </div>
-    <div class="col-sm-12 col-md-12">
-        <div class="form-group">
-            <textarea class="form-control customerDetails" placeholder="Order comment" id="orderComment" name="orderComment">{{@root.session.orderComment}}</textarea>
-        </div>
-    </div>
+</div>
+{{#unless @root.session.customerPresent}}
+<div class="checkout__input__checkbox">
+    <label for="acc">
+        Create an account?
+        <input type="checkbox" id="createAccountCheckbox">
+        <span class="checkmark"></span>
+    </label>
+</div>
+<p>Create an account by entering the information below. If you are a returning customer
+    please login at the top of the page</p>
+<div class="checkout__input">
+    <p>Account Password<span>*</span></p>
+    <input type="password" id="newCustomerPassword" name="newCustomerPassword" placeholder="Password">
+</div>
+{{/unless}}
+<div class="checkout__input">
+    <p>Order notes<span>*</span></p>
+    <input type="text" placeholder="Notes about your order, e.g. special notes for delivery." id="orderComment"
+        name="orderComment">
 </div>

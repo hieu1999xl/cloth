@@ -293,10 +293,4 @@ body .popover {
   .footer {
     padding-top: 10px;
   }
-  form.form-signin {
-    padding-bottom: 17em;
-  }
-  .col-md-4.offset-md-4.top-pad-100 {
-    padding-bottom: 17em;
-}
 }

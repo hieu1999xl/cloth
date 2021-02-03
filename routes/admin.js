@@ -56,7 +56,7 @@ router.get('/admin/logout', (req, res) => {
 });
 
 // Used for tests only
-if(process.env.NODE_ENV === 'test'){
+if (process.env.NODE_ENV === 'test') {
     router.get('/admin/csrf', csrfProtection, (req, res, next) => {
         res.json({
             csrf: req.csrfToken()
@@ -70,7 +70,7 @@ router.get('/admin/login', async (req, res) => {
 
     const userCount = await db.users.countDocuments({});
     // we check for a user. If one exists, redirect to login form otherwise setup
-    if(userCount && userCount > 0){
+    if (userCount && userCount > 0) {
         // set needsSetup to false as a user exists
         req.session.needsSetup = false;
         res.render('login', {
@@ -82,7 +82,7 @@ router.get('/admin/login', async (req, res) => {
             helpers: req.handlebars.helpers,
             showFooter: 'showFooter'
         });
-    }else{
+    } else {
         // if there are no users set the "needsSetup" session
         req.session.needsSetup = true;
         res.redirect('/admin/setup');
@@ -94,7 +94,7 @@ router.post('/admin/login_action', async (req, res) => {
     const db = req.app.db;
 
     const user = await db.users.findOne({ userEmail: mongoSanitize(req.body.email) });
-    if(!user || user === null){
+    if (!user || user === null) {
         res.status(400).json({ message: 'A user with that email does not exist.' });
         return;
     }
@@ -102,7 +102,7 @@ router.post('/admin/login_action', async (req, res) => {
     // we have a user under that email so we compare the password
     bcrypt.compare(req.body.password, user.userPassword)
         .then((result) => {
-            if(result){
+            if (result) {
                 req.session.user = req.body.email;
                 req.session.usersName = user.usersName;
                 req.session.userId = user._id.toString();
@@ -123,7 +123,7 @@ router.get('/admin/setup', async (req, res) => {
     // dont allow the user to "re-setup" if a user exists.
     // set needsSetup to false as a user exists
     req.session.needsSetup = false;
-    if(userCount === 0){
+    if (userCount === 0) {
         req.session.needsSetup = true;
         res.render('setup', {
             title: 'Setup',
@@ -152,13 +152,13 @@ router.post('/admin/setup_action', async (req, res) => {
 
     // check for users
     const userCount = await db.users.countDocuments({});
-    if(userCount === 0){
+    if (userCount === 0) {
         // email is ok to be used.
-        try{
+        try {
             await db.users.insertOne(doc);
             res.status(200).json({ message: 'User account inserted' });
             return;
-        }catch(ex){
+        } catch (ex) {
             console.error(colors.red(`Failed to insert user: ${ex}`));
             res.status(200).json({ message: 'Setup failed' });
             return;
@@ -178,32 +178,36 @@ router.get('/admin/dashboard', csrfProtection, restrict, async (req, res) => {
         }),
         ordersCount: await db.orders.countDocuments({}),
         ordersAmount: await db.orders.aggregate([{ $match: {} },
-            { $group: { _id: null, sum: { $sum: '$orderTotal' } }
+        {
+            $group: { _id: null, sum: { $sum: '$orderTotal' } }
         }]).toArray(),
         productsSold: await db.orders.aggregate([{ $match: {} },
-            { $group: { _id: null, sum: { $sum: '$orderProductCount' } }
+        {
+            $group: { _id: null, sum: { $sum: '$orderProductCount' } }
         }]).toArray(),
         topProducts: await db.orders.aggregate([
             { $project: { _id: 0 } },
             { $project: { o: { $objectToArray: '$orderProducts' } } },
             { $unwind: '$o' },
-            { $group: {
+            {
+                $group: {
                     _id: '$o.v.title',
                     productImage: { $last: '$o.v.productImage' },
                     count: { $sum: '$o.v.quantity' }
-            } },
+                }
+            },
             { $sort: { count: -1 } },
             { $limit: 5 }
         ]).toArray()
     };
 
     // Fix aggregate data
-    if(dashboardData.ordersAmount.length > 0){
+    if (dashboardData.ordersAmount.length > 0) {
         dashboardData.ordersAmount = dashboardData.ordersAmount[0].sum;
     }
-    if(dashboardData.productsSold.length > 0){
+    if (dashboardData.productsSold.length > 0) {
         dashboardData.productsSold = dashboardData.productsSold[0].sum;
-    }else{
+    } else {
         dashboardData.productsSold = 0;
     }
 
@@ -252,7 +256,7 @@ router.post('/admin/createApiKey', restrict, checkAccess, async (req, res) => {
         returnOriginal: false
     });
 
-    if(result.value && result.value.apiKey){
+    if (result.value && result.value.apiKey) {
         res.status(200).json({ message: 'API Key generated', apiKey: result.value.apiKey });
         return;
     }
@@ -262,7 +266,7 @@ router.post('/admin/createApiKey', restrict, checkAccess, async (req, res) => {
 // settings update
 router.post('/admin/settings/update', restrict, checkAccess, (req, res) => {
     const result = updateConfig(req.body);
-    if(result === true){
+    if (result === true) {
         req.app.config = getConfig();
         res.status(200).json({ message: 'Settings successfully updated' });
         return;
@@ -328,7 +332,7 @@ router.get('/admin/settings/pages/edit/:page', csrfProtection, restrict, checkAc
     const db = req.app.db;
     const page = await db.pages.findOne({ _id: getId(req.params.page) });
     const menu = sortMenu(await getMenu(db));
-    if(!page){
+    if (!page) {
         res.status(404).render('error', {
             title: '404 Error - Page not found',
             config: req.app.config,
@@ -366,27 +370,27 @@ router.post('/admin/settings/page', restrict, checkAccess, async (req, res) => {
         pageContent: req.body.pageContent
     };
 
-    if(req.body.pageId){
+    if (req.body.pageId) {
         // existing page
         const page = await db.pages.findOne({ _id: getId(req.body.pageId) });
-        if(!page){
+        if (!page) {
             res.status(400).json({ message: 'Page not found' });
             return;
         }
 
-        try{
+        try {
             const updatedPage = await db.pages.findOneAndUpdate({ _id: getId(req.body.pageId) }, { $set: doc }, { returnOriginal: false });
             res.status(200).json({ message: 'Page updated successfully', pageId: req.body.pageId, page: updatedPage.value });
-        }catch(ex){
+        } catch (ex) {
             res.status(400).json({ message: 'Error updating page. Please try again.' });
         }
-    }else{
+    } else {
         // insert page
-        try{
+        try {
             const newDoc = await db.pages.insertOne(doc);
             res.status(200).json({ message: 'New page successfully created', pageId: newDoc.insertedId });
             return;
-        }catch(ex){
+        } catch (ex) {
             res.status(400).json({ message: 'Error creating page. Please try again.' });
         }
     }
@@ -397,16 +401,16 @@ router.post('/admin/settings/page/delete', restrict, checkAccess, async (req, re
     const db = req.app.db;
 
     const page = await db.pages.findOne({ _id: getId(req.body.pageId) });
-    if(!page){
+    if (!page) {
         res.status(400).json({ message: 'Page not found' });
         return;
     }
 
-    try{
+    try {
         await db.pages.deleteOne({ _id: getId(req.body.pageId) }, {});
         res.status(200).json({ message: 'Page successfully deleted' });
         return;
-    }catch(ex){
+    } catch (ex) {
         res.status(400).json({ message: 'Error deleting page. Please try again.' });
     }
 });
@@ -414,7 +418,7 @@ router.post('/admin/settings/page/delete', restrict, checkAccess, async (req, re
 // new menu item
 router.post('/admin/settings/menu/new', restrict, checkAccess, (req, res) => {
     const result = newMenu(req);
-    if(result === false){
+    if (result === false) {
         res.status(400).json({ message: 'Failed creating menu.' });
         return;
     }
@@ -424,7 +428,7 @@ router.post('/admin/settings/menu/new', restrict, checkAccess, (req, res) => {
 // update existing menu item
 router.post('/admin/settings/menu/update', restrict, checkAccess, (req, res) => {
     const result = updateMenu(req);
-    if(result === false){
+    if (result === false) {
         res.status(400).json({ message: 'Failed updating menu.' });
         return;
     }
@@ -434,7 +438,7 @@ router.post('/admin/settings/menu/update', restrict, checkAccess, (req, res) => 
 // delete menu item
 router.post('/admin/settings/menu/delete', restrict, checkAccess, (req, res) => {
     const result = deleteMenu(req, req.body.menuId);
-    if(result === false){
+    if (result === false) {
         res.status(400).json({ message: 'Failed deleting menu.' });
         return;
     }
@@ -444,7 +448,7 @@ router.post('/admin/settings/menu/delete', restrict, checkAccess, (req, res) => 
 // We call this via a Ajax call to save the order from the sortable list
 router.post('/admin/settings/menu/saveOrder', restrict, checkAccess, (req, res) => {
     const result = orderMenu(req, res);
-    if(result === false){
+    if (result === false) {
         res.status(400).json({ message: 'Failed saving menu order' });
         return;
     }
@@ -458,14 +462,14 @@ router.post('/admin/validatePermalink', async (req, res) => {
     const db = req.app.db;
 
     let query = {};
-    if(typeof req.body.docId === 'undefined' || req.body.docId === ''){
+    if (typeof req.body.docId === 'undefined' || req.body.docId === '') {
         query = { productPermalink: req.body.permalink };
-    }else{
+    } else {
         query = { productPermalink: req.body.permalink, _id: { $ne: getId(req.body.docId) } };
     }
 
     const products = await db.products.countDocuments(query);
-    if(products && products > 0){
+    if (products && products > 0) {
         res.status(400).json({ message: 'Permalink already exists' });
         return;
     }
@@ -514,8 +518,8 @@ router.get('/admin/settings/discount/edit/:id', csrfProtection, restrict, checkA
 router.post('/admin/settings/discount/update', restrict, checkAccess, async (req, res) => {
     const db = req.app.db;
 
-     // Doc to insert
-     const discountDoc = {
+    // Doc to insert
+    const discountDoc = {
         discountId: req.body.discountId,
         code: req.body.code,
         type: req.body.type,
@@ -526,19 +530,19 @@ router.post('/admin/settings/discount/update', restrict, checkAccess, async (req
 
     // Validate the body again schema
     const schemaValidate = validateJson('editDiscount', discountDoc);
-    if(!schemaValidate.result){
+    if (!schemaValidate.result) {
         res.status(400).json(schemaValidate.errors);
         return;
     }
 
     // Check start is after today
-    if(moment(discountDoc.start).isBefore(moment())){
+    if (moment(discountDoc.start).isBefore(moment())) {
         res.status(400).json({ message: 'Discount start date needs to be after today' });
         return;
     }
 
     // Check end is after the start
-    if(!moment(discountDoc.end).isAfter(moment(discountDoc.start))){
+    if (!moment(discountDoc.end).isAfter(moment(discountDoc.start))) {
         res.status(400).json({ message: 'Discount end date needs to be after start date' });
         return;
     }
@@ -548,7 +552,7 @@ router.post('/admin/settings/discount/update', restrict, checkAccess, async (req
         code: discountDoc.code,
         _id: { $ne: getId(discountDoc.discountId) }
     });
-    if(checkCode){
+    if (checkCode) {
         res.status(400).json({ message: 'Discount code already exists' });
         return;
     }
@@ -556,10 +560,10 @@ router.post('/admin/settings/discount/update', restrict, checkAccess, async (req
     // Remove discountID
     delete discountDoc.discountId;
 
-    try{
+    try {
         await db.discounts.updateOne({ _id: getId(req.body.discountId) }, { $set: discountDoc }, {});
         res.status(200).json({ message: 'Successfully saved', discount: discountDoc });
-    }catch(ex){
+    } catch (ex) {
         res.status(400).json({ message: 'Failed to save. Please try again' });
     }
 });
@@ -593,7 +597,7 @@ router.post('/admin/settings/discount/create', csrfProtection, restrict, checkAc
 
     // Validate the body again schema
     const schemaValidate = validateJson('newDiscount', discountDoc);
-    if(!schemaValidate.result){
+    if (!schemaValidate.result) {
         res.status(400).json(schemaValidate.errors);
         return;
     }
@@ -602,19 +606,19 @@ router.post('/admin/settings/discount/create', csrfProtection, restrict, checkAc
     const checkCode = await db.discounts.countDocuments({
         code: discountDoc.code
     });
-    if(checkCode){
+    if (checkCode) {
         res.status(400).json({ message: 'Discount code already exists' });
         return;
     }
 
     // Check start is after today
-    if(moment(discountDoc.start).isBefore(moment())){
+    if (moment(discountDoc.start).isBefore(moment())) {
         res.status(400).json({ message: 'Discount start date needs to be after today' });
         return;
     }
 
     // Check end is after the start
-    if(!moment(discountDoc.end).isAfter(moment(discountDoc.start))){
+    if (!moment(discountDoc.end).isAfter(moment(discountDoc.start))) {
         res.status(400).json({ message: 'Discount end date needs to be after start date' });
         return;
     }
@@ -628,11 +632,11 @@ router.post('/admin/settings/discount/create', csrfProtection, restrict, checkAc
 router.delete('/admin/settings/discount/delete', restrict, checkAccess, async (req, res) => {
     const db = req.app.db;
 
-    try{
+    try {
         await db.discounts.deleteOne({ _id: getId(req.body.discountId) }, {});
         res.status(200).json({ message: 'Discount code successfully deleted' });
         return;
-    }catch(ex){
+    } catch (ex) {
         res.status(400).json({ message: 'Error deleting discount code. Please try again.' });
     }
 });
@@ -642,14 +646,14 @@ const upload = multer({ dest: 'public/uploads/' });
 router.post('/admin/file/upload', restrict, checkAccess, upload.single('uploadFile'), async (req, res) => {
     const db = req.app.db;
 
-    if(req.file){
+    if (req.file) {
         const file = req.file;
 
         // Get the mime type of the file
         const mimeType = mime.lookup(file.originalname);
 
         // Check for allowed mime type and file size
-        if(!allowedMimeType.includes(mimeType) || file.size > fileSizeLimit){
+        if (!allowedMimeType.includes(mimeType) || file.size > fileSizeLimit) {
             // Remove temp file
             fs.unlinkSync(file.path);
 
@@ -660,7 +664,7 @@ router.post('/admin/file/upload', restrict, checkAccess, upload.single('uploadFi
 
         // get the product form the DB
         const product = await db.products.findOne({ _id: getId(req.body.productId) });
-        if(!product){
+        if (!product) {
             // delete the temp file.
             fs.unlinkSync(file.path);
 
@@ -682,7 +686,7 @@ router.post('/admin/file/upload', restrict, checkAccess, upload.single('uploadFi
         const dest = fs.createWriteStream(path.join(uploadDir, file.originalname.replace(/ /g, '_')));
         const pipeline = util.promisify(stream.pipeline);
 
-        try{
+        try {
             await pipeline(
                 fs.createReadStream(file.path),
                 dest
@@ -692,15 +696,15 @@ router.post('/admin/file/upload', restrict, checkAccess, upload.single('uploadFi
             fs.unlinkSync(file.path);
 
             // if there isn't a product featured image, set this one
-            if(!product.productImage){
+            if (!product.productImage) {
                 await db.products.updateOne({ _id: getId(req.body.productId) }, { $set: { productImage: imagePath } }, { multi: false });
             }
             res.status(200).json({ message: 'File uploaded successfully' });
-        }catch(ex){
+        } catch (ex) {
             console.log('Failed to upload the file', ex);
             res.status(400).json({ message: 'File upload error. Please try again.' });
         }
-    }else{
+    } else {
         // Return error
         console.log('fail', req.file);
         res.status(400).json({ message: 'File upload error. Please try again.' });
@@ -731,30 +735,30 @@ router.post('/admin/searchall', restrict, async (req, res, next) => {
     const productQuery = {};
 
     // If an ObjectId is detected use that
-    if(ObjectId.isValid(req.body.searchValue)){
+    if (ObjectId.isValid(req.body.searchValue)) {
         // Get customers
         customers = await db.customers.find({
             _id: ObjectId(searchValue)
         })
-        .limit(limitReturned)
-        .sort({ created: 1 })
-        .toArray();
+            .limit(limitReturned)
+            .sort({ created: 1 })
+            .toArray();
 
         // Get orders
         orders = await db.orders.find({
             _id: ObjectId(searchValue)
         })
-        .limit(limitReturned)
-        .sort({ orderDate: 1 })
-        .toArray();
+            .limit(limitReturned)
+            .sort({ orderDate: 1 })
+            .toArray();
 
         // Get products
         products = await db.products.find({
             _id: ObjectId(searchValue)
         })
-        .limit(limitReturned)
-        .sort({ productAddedDate: 1 })
-        .toArray();
+            .limit(limitReturned)
+            .sort({ productAddedDate: 1 })
+            .toArray();
 
         return res.status(200).json({
             customers,
@@ -764,14 +768,14 @@ router.post('/admin/searchall', restrict, async (req, res, next) => {
     }
 
     // If email address is detected
-    if(emailRegex.test(req.body.searchValue)){
+    if (emailRegex.test(req.body.searchValue)) {
         customerQuery.email = searchValue;
         orderQuery.orderEmail = searchValue;
-    }else if(numericRegex.test(req.body.searchValue)){
+    } else if (numericRegex.test(req.body.searchValue)) {
         // If a numeric value is detected
         orderQuery.amount = req.body.searchValue;
         productQuery.productPrice = req.body.searchValue;
-    }else{
+    } else {
         // String searches
         customerQuery.$or = [
             { firstName: { $regex: new RegExp(searchValue, 'img') } },
@@ -788,27 +792,27 @@ router.post('/admin/searchall', restrict, async (req, res, next) => {
     }
 
     // Get customers
-    if(Object.keys(customerQuery).length > 0){
+    if (Object.keys(customerQuery).length > 0) {
         customers = await db.customers.find(customerQuery)
-        .limit(limitReturned)
-        .sort({ created: 1 })
-        .toArray();
+            .limit(limitReturned)
+            .sort({ created: 1 })
+            .toArray();
     }
 
     // Get orders
-    if(Object.keys(orderQuery).length > 0){
+    if (Object.keys(orderQuery).length > 0) {
         orders = await db.orders.find(orderQuery)
-        .limit(limitReturned)
-        .sort({ orderDate: 1 })
-        .toArray();
+            .limit(limitReturned)
+            .sort({ orderDate: 1 })
+            .toArray();
     }
 
     // Get products
-    if(Object.keys(productQuery).length > 0){
+    if (Object.keys(productQuery).length > 0) {
         products = await db.products.find(productQuery)
-        .limit(limitReturned)
-        .sort({ productAddedDate: 1 })
-        .toArray();
+            .limit(limitReturned)
+            .sort({ productAddedDate: 1 })
+            .toArray();
     }
 
     return res.status(200).json({
