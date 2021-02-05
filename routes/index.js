@@ -154,6 +154,8 @@ router.get('/emptycart', async (req, res, next) => {
     emptyCart(req, res, '');
 });
 
+
+
 router.get('/checkout/information', async (req, res, next) => {
     const config = req.app.config;
 
@@ -235,6 +237,21 @@ router.get('/checkout/cart', (req, res) => {
 
     res.render(`${config.themeViews}checkout-cart`, {
         title: 'Checkout - Cart',
+        page: req.query.path,
+        config,
+        session: req.session,
+        message: clearSessionValue(req.session, 'message'),
+        messageType: clearSessionValue(req.session, 'messageType'),
+        helpers: req.handlebars.helpers,
+        showFooter: 'showFooter'
+    });
+});
+
+router.get('/contact', (req, res) => {
+    const config = req.app.config;
+
+    res.render(`${config.themeViews}contact`, {
+        title: 'Contact',
         page: req.query.path,
         config,
         session: req.session,

@@ -80,8 +80,14 @@
                                     <span class="checkmark"></span>
                                 </label>
                             </div>
-                            <button href="/checkout/shipping" id="checkoutInformation" class="site-btn">PLACE
-                                ORDER</button>
+                            <form id="shipping-form" class="shipping-form" action="/instore/checkout_action"
+                                method="post" role="form" data-toggle="validator" novalidate="true">
+                                <div class="instore_button col-sm-12 text-center">
+                                    <button id="checkout_instore" class="site-btn" type="submit">Place
+                                        order, pay
+                                        instore</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>

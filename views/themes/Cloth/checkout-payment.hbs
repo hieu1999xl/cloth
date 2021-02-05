@@ -9,7 +9,7 @@
     </nav>
     <div class="row">
         {{#if paymentMessage}}
-            <p class="text-danger text-center">{{paymentMessage}}</p>
+        <p class="text-danger text-center">{{paymentMessage}}</p>
         {{/if}}
         <div class="col-md-5">
             <div class="card top-marg-15">
@@ -17,9 +17,9 @@
                     <h5 class="card-title">{{ @root.__ "Customer details" }}</h5>
                     <ul class="list-group bottom-pad-15">
                         <li class="list-group-item">
-                            {{@root.session.customerFirstname}} {{@root.session.customerLastname}} - 
+                            {{@root.session.customerFirstname}} {{@root.session.customerLastname}} -
                             {{@root.session.customerEmail}}
-                            <span class="float-right"><a href="/checkout/information">Change</a></span>
+                            <span class="float-right"><a href="/checkout/information">Thay đổi</a></span>
                         </li>
                     </ul>
                     <ul class="list-group bottom-pad-15">
@@ -30,41 +30,43 @@
                                     {{@root.session.shippingMessage}}
                                 </div>
                                 <div class="col-md-6">
-                                    <span><strong>{{currencySymbol @root.config.currencySymbol}}{{formatAmount @root.session.totalCartShipping}}</strong></span>
-                                    <span class="float-right"><a href="/checkout/shipping">Change</a></span>
+                                    <span><strong>{{currencySymbol @root.config.currencySymbol}}{{formatAmount
+                                            @root.session.totalCartShipping}}</strong></span>
+                                    <span class="float-right"><a href="/checkout/shipping">Thay đổi</a></span>
                                 </div>
                             </div>
                         </li>
                         {{else}}
-                        <li class="list-group-item">FREE shipping <span class="float-right"><a href="/checkout/shipping">Change</a></span></li>
+                        <li class="list-group-item">Miễn Phí vận chuyển <span class="float-right"><a
+                                    href="/checkout/shipping">Thay đổi</a></span></li>
                         {{/ifCond}}
                     </ul>
                     {{#if @root.config.modules.loaded.discount}}
                     <div class="input-group bottom-pad-15">
-                        <input class="form-control" id="discountCode" type="search" placeholder="{{ @root.__ "Discount code" }}" value="{{@root.session.discountCode}}">
+                        <input class="form-control" id="discountCode" type="search" placeholder="{{ @root.__ " Discount
+                            code" }}" value="{{@root.session.discountCode}}">
                         <div class="input-group-append">
-                            <button class="btn btn-outline-success" id="addDiscountCode">{{ @root.__ "Apply" }}</button>
+                            <button class="btn btn__success" id="addDiscountCode">{{ @root.__ "Apply" }}</button>
                         </div>
                         <div class="input-group-append">
-                            <button class="btn btn-outline-danger" id="removeDiscountCode">{{{feather 'x'}}}</button>
+                            <button class="btn btn__danger" id="removeDiscountCode">{{{feather 'x'}}}</button>
                         </div>
                     </div>
                     {{/if}}
-                    <div id="payment-form" class="payment-form">
-                    {{#if session.customerPresent}}
-                        <ul class="list-group bottom-pad-15">
-                            {{#each config.paymentGateway}}
-                            <li class="list-group-item">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        {{> (partial this) }}
-                                    </div>
-                                </div>
-                            </li>
-                            {{/each}}
-                        </ul>
-                    {{/if}}
-                    </div>
+                    <form id="shipping-form" class="shipping-form"
+                        action="/{{config.paymentGateway}}/checkout_action{{@root.paymentType}}" method="post"
+                        role="form" data-toggle="validator" novalidate="false">
+                        {{#if session.customerPresent}}
+                        {{> (partial config.paymentGateway) }}
+                        {{/if}}
+                    </form>
+                    <form id="shipping-form" class="shipping-form" action="/instore/checkout_action" method="post"
+                        role="form" data-toggle="validator" novalidate="true">
+                        <div class="instore_button col-sm-12 text-center">
+                            <button id="checkout_instore" class="btn btn-outline-success" type="submit">Place order, pay
+                                instore</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

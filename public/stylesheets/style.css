@@ -1542,6 +1542,7 @@ ol {
 
 .product__item__pic__hover {
 	position: absolute;
+	cursor: pointer;
 	left: 0;
 	bottom: -50px;
 	width: 100%;
@@ -3517,4 +3518,12 @@ ul.pagination.bootpag a {
 /* min with cart */
 img.min_with {
     width: 100px;
+}
+
+.login_form {
+    padding: 5em 0em;
+}
+
+li.list_style {
+    list-style: none;
 }

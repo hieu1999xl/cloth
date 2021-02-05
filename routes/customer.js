@@ -520,6 +520,7 @@ router.get('/customer/login', async (req, res, next) => {
         title: 'Customer login',
         config: req.app.config,
         session: req.session,
+        showFooter: 'showFooter',
         message: clearSessionValue(req.session, 'message'),
         messageType: clearSessionValue(req.session, 'messageType'),
         helpers: req.handlebars.helpers
