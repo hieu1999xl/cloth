@@ -1129,7 +1129,39 @@ router.get('/shop:page?', async (req, res, next) => {
     const db = req.app.db;
     const config = req.app.config;
     const numberProducts = config.productsPerPage ? config.productsPerPage : 6;
+    const topData = {
+        topProducts: await db.orders.aggregate([
+            { $project: { _id: 0 } },
+            { $project: { o: { $objectToArray: '$orderProducts' } } },
+            { $unwind: '$o' },
+            {
+                $group: {
+                    _id: '$o.v.title',
+                    productImage: { $last: '$o.v.productImage' },
+                    count: { $sum: '$o.v.quantity' }
+                }
+            },
+            { $sort: { count: -1 } },
+            { $limit: 3 }
+        ]).toArray()
+    }
+    const topData1 = {
+        topProducts: await db.orders.aggregate([
+            { $project: { _id: 0 } },
+            { $project: { o: { $objectToArray: '$orderProducts' } } },
+            { $unwind: '$o' },
+            {
+                $group: {
+                    _id: '$o.v.title',
 
+                    productImage: { $last: '$o.v.productImage' },
+                    count: { $sum: '$o.v.quantity' }
+                }
+            },
+            { $sort: { count: 1 } },
+            { $limit: 3 }
+        ]).toArray()
+    }
     // if no page is specified, just render page 1 of the cart
     if (!req.params.page) {
         Promise.all([
@@ -1148,6 +1180,8 @@ router.get('/shop:page?', async (req, res, next) => {
                     theme: config.theme,
                     results: results.data,
                     session: req.session,
+                    topData,
+                    topData1,
                     message: clearSessionValue(req.session, 'message'),
                     messageType: clearSessionValue(req.session, 'messageType'),
                     config,
@@ -1201,7 +1235,56 @@ router.get('/:page?', async (req, res, next) => {
     const db = req.app.db;
     const config = req.app.config;
     const numberProducts = config.productsPerPage ? config.productsPerPage : 6;
+    const topData = {
+        topProducts: await db.orders.aggregate([
+            { $project: { _id: 0 } },
+            { $project: { o: { $objectToArray: '$orderProducts' } } },
+            { $unwind: '$o' },
+            {
+                $group: {
+                    _id: '$o.v.title',
+                    productImage: { $last: '$o.v.productImage' },
+                    count: { $sum: '$o.v.quantity' }
+                }
+            },
+            { $sort: { count: -1 } },
+            { $limit: 3 }
+        ]).toArray()
+    }
+    const topData1 = {
+        topProducts: await db.orders.aggregate([
+            { $project: { _id: 0 } },
+            { $project: { o: { $objectToArray: '$orderProducts' } } },
+            { $unwind: '$o' },
+            {
+                $group: {
+                    _id: '$o.v.title',
 
+                    productImage: { $last: '$o.v.productImage' },
+                    count: { $sum: '$o.v.quantity' }
+                }
+            },
+            { $sort: { count: 1 } },
+            { $limit: 3 }
+        ]).toArray()
+    }
+    // const newProduct = {
+    //     topProducts: await db.products.aggregate([
+    //         { $project: { _id: 0 } },
+    //         { $project: { o: { $objectToArray: '$products' } } },
+    //         { $unwind: '$o' },
+    //         {
+    //             $group: {
+    //                 _id: '$o.v.title',
+
+    //                 productImage: { $last: '$o.v.productImage' },
+    //                 date: { $sum: '$o.v.productAddedDate' }
+    //             }
+    //         },
+    //         { $sort: { date: 1 } },
+    //         { $limit: 3 }
+    //     ]).toArray()
+    // }
     // if no page is specified, just render page 1 of the cart
     if (!req.params.page) {
         Promise.all([
@@ -1218,6 +1301,9 @@ router.get('/:page?', async (req, res, next) => {
                 res.render(`${config.themeViews}index`, {
                     title: `${config.cartTitle} - Shop`,
                     theme: config.theme,
+                    topData,
+                    topData1,
+
                     results: results.data,
                     session: req.session,
                     message: clearSessionValue(req.session, 'message'),
@@ -1249,6 +1335,8 @@ router.get('/:page?', async (req, res, next) => {
                 page: page,
                 searchTerm: req.params.page,
                 session: req.session,
+                topData,
+                topData1,
                 message: clearSessionValue(req.session, 'message'),
                 messageType: clearSessionValue(req.session, 'messageType'),
                 config: req.app.config,

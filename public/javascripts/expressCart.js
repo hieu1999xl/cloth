@@ -176,7 +176,7 @@ $(document).ready(function () {
                 }
             })
                 .done(function () {
-                    window.location = '/checkout/shipping';
+                    window.location = '/checkout/payment';
                 })
                 .fail(function (msg) {
                     showNotification(msg.responseJSON.message, 'danger');

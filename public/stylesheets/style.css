@@ -3527,3 +3527,89 @@ img.min_with {
 li.list_style {
     list-style: none;
 }
+
+
+/* style form  */
+
+.file-form {
+	padding-left: 15px;
+	padding-right: 15px;
+  }
+  .editor_btn_action {
+	border-top-left-radius: 4px !important;
+	border-bottom-left-radius: 4px !important;
+  }
+  .dropup-list {
+	padding-bottom: 5px;
+	margin-right: 10px;
+	margin-left: 10px;
+	margin-top: 10px;
+  }
+  #notify_message {
+	position: fixed;
+	display: none;
+	z-index: 9999;
+	padding-top: 10px;
+	height: 50px;
+	bottom: 0px;
+	width: 100%;
+	text-align: center;
+	font-size: 22px;
+  }
+  .input-group .form-control {
+	z-index: 1;
+  }
+  .btn-file {
+	position: relative;
+	overflow: hidden;
+  }
+  .btn-file input[type=file] {
+	position: absolute;
+	top: 0;
+	right: 0;
+	min-width: 100%;
+	min-height: 100%;
+	font-size: 100px;
+	text-align: right;
+	filter: alpha(opacity=0);
+	opacity: 0;
+	outline: none;
+	background: white;
+	cursor: inherit;
+	display: block;
+  }
+  .offcanvas-element {
+	z-index: 100;
+	background-color: #ffffff;
+  }
+  .product-item {
+	padding-left: 0px;
+	padding-right: 0px;
+  }
+  input:focus {
+	outline: none;
+	background: #fbfbe9;
+  }
+  input + label {
+	display: block;
+	cursor: text;
+	transition: 0.15s ease-out all;
+	position: absolute;
+	top: 0.9em;
+	left: 1.3em;
+  }
+  .floatLabel {
+	top: 0.1em;
+	left: 32px;
+	font-size: 0.7em;
+	color: #999999;
+	font-weight: normal;
+	transition: 0.15s ease-out all;
+  }
+  input.form-control.customerDetails {
+	padding-bottom: 5px;
+  }
+
+  .instore_button.col-sm-12.text-center {
+    margin-top: 1em;
+}

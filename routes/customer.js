@@ -238,6 +238,7 @@ router.get('/customer/account', async (req, res) => {
         messageType: clearSessionValue(req.session, 'messageType'),
         countryList: getCountryList(),
         config: req.app.config,
+        showFooter: 'showFooter',
         helpers: req.handlebars.helpers
     });
 });

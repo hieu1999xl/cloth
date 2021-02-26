@@ -100,17 +100,12 @@
                         <span>All departments</span>
                     </div>
                     <ul>
-                        <li><a href="#">Fresh Meat</a></li>
-                        <li><a href="#">Vegetables</a></li>
-                        <li><a href="#">Fruit & Nut Gifts</a></li>
-                        <li><a href="#">Fresh Berries</a></li>
-                        <li><a href="#">Ocean Foods</a></li>
-                        <li><a href="#">Butter & Eggs</a></li>
-                        <li><a href="#">Fastfood</a></li>
-                        <li><a href="#">Fresh Onion</a></li>
-                        <li><a href="#">Papayaya & Crisps</a></li>
-                        <li><a href="#">Oatmeal</a></li>
-                        <li><a href="#">Fresh Bananas</a></li>
+                        {{#each menu.items}}
+                        <li {{#menuMatch this.title @root.searchTerm}}{{/menuMatch}} {{#menuMatch this.title
+                            @root.title}}{{/menuMatch}}>
+                            <a href="{{this.link}}">{{this.title}}</a>
+                        </li>
+                        {{/each}}
                     </ul>
                 </div>
             </div>
@@ -122,8 +117,8 @@
                                 All Categories
                                 <span class="arrow_carrot-down"></span>
                             </div>
-                            <input type="text" placeholder="What do yo u need?">
-                            <button type="submit" class="site-btn">SEARCH</button>
+                            <input name="frm_search" id="frm_search" type="search" placeholder="What do yo u need?">
+                            <button type="submit" id="btn_search" class="site-btn">SEARCH</button>
                         </form>
                     </div>
                     <div class="hero__search__phone">
@@ -169,19 +164,15 @@
                     <div class="sidebar__item">
                         <h4>Department</h4>
                         <ul>
-                            <li><a href="#">Fresh Meat</a></li>
-                            <li><a href="#">Vegetables</a></li>
-                            <li><a href="#">Fruit & Nut Gifts</a></li>
-                            <li><a href="#">Fresh Berries</a></li>
-                            <li><a href="#">Ocean Foods</a></li>
-                            <li><a href="#">Butter & Eggs</a></li>
-                            <li><a href="#">Fastfood</a></li>
-                            <li><a href="#">Fresh Onion</a></li>
-                            <li><a href="#">Papayaya & Crisps</a></li>
-                            <li><a href="#">Oatmeal</a></li>
+                            {{#each menu.items}}
+                            <li {{#menuMatch this.title @root.searchTerm}}{{/menuMatch}} {{#menuMatch this.title
+                                @root.title}}{{/menuMatch}}>
+                                <a href="{{this.link}}">{{this.title}}</a>
+                            </li>
+                            {{/each}}
                         </ul>
                     </div>
-                    <div class="sidebar__item">
+                    {{!-- <div class="sidebar__item">
                         <h4>Price</h4>
                         <div class="price-range-wrap">
                             <div class="price-range ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content"
@@ -236,7 +227,7 @@
                                 <input type="radio" id="green">
                             </label>
                         </div>
-                    </div>
+                    </div> --}}
                     <div class="sidebar__item">
                         <h4>Popular Size</h4>
                         <div class="sidebar__item__size">
@@ -269,62 +260,50 @@
                             <h4>Latest Products</h4>
                             <div class="latest-product__slider owl-carousel">
                                 <div class="latest-prdouct__slider__item">
+                                    {{#if topData.topProducts}}
+                                    {{#each topData.topProducts}}
                                     <a href="#" class="latest-product__item">
                                         <div class="latest-product__item__pic">
-                                            <img src="/images/img/latest-product/lp-1.jpg" alt="">
+                                            {{#if this.productImage}}
+                                            <img style="max-width: 110px" src="{{this.productImage}}"
+                                                alt="{{this._id}}">
+                                            {{else}}
+                                            <img src="/images/placeholder.png" alt="{{this._id}}">
+                                            {{/if}}
                                         </div>
                                         <div class="latest-product__item__text">
-                                            <h6>Crab Pool Security</h6>
-                                            <span>$30.00</span>
+                                            <h6>{{this._id}}</h6>
+                                            <span> {{this.productPrice}}</span>
                                         </div>
+
                                     </a>
-                                    <a href="#" class="latest-product__item">
-                                        <div class="latest-product__item__pic">
-                                            <img src="/images/img/latest-product/lp-2.jpg" alt="">
-                                        </div>
-                                        <div class="latest-product__item__text">
-                                            <h6>Crab Pool Security</h6>
-                                            <span>$30.00</span>
-                                        </div>
-                                    </a>
-                                    <a href="#" class="latest-product__item">
-                                        <div class="latest-product__item__pic">
-                                            <img src="/images/img/latest-product/lp-3.jpg" alt="">
-                                        </div>
-                                        <div class="latest-product__item__text">
-                                            <h6>Crab Pool Security</h6>
-                                            <span>$30.00</span>
-                                        </div>
-                                    </a>
+                                    {{/each}}
+                                    {{else}}
+                                    <h5 class="mt-3 mb-1 text-danger">Nothing to see yet. Do some orders.</h5>
+                                    {{/if}}
                                 </div>
                                 <div class="latest-prdouct__slider__item">
+                                    {{#if topData1.topProducts}}
+                                    {{#each topData1.topProducts}}
                                     <a href="#" class="latest-product__item">
                                         <div class="latest-product__item__pic">
-                                            <img src="/images/img/latest-product/lp-1.jpg" alt="">
+                                            {{#if this.productImage}}
+                                            <img style="max-width: 110px" src="{{this.productImage}}"
+                                                alt="{{this._id}}">
+                                            {{else}}
+                                            <img src="/images/placeholder.png" alt="{{this._id}}">
+                                            {{/if}}
                                         </div>
                                         <div class="latest-product__item__text">
-                                            <h6>Crab Pool Security</h6>
-                                            <span>$30.00</span>
+                                            <h6>{{this._id}}</h6>
+                                            <span>{{this.productPrice}}</span>
                                         </div>
+
                                     </a>
-                                    <a href="#" class="latest-product__item">
-                                        <div class="latest-product__item__pic">
-                                            <img src="/images/img/latest-product/lp-2.jpg" alt="">
-                                        </div>
-                                        <div class="latest-product__item__text">
-                                            <h6>Crab Pool Security</h6>
-                                            <span>$30.00</span>
-                                        </div>
-                                    </a>
-                                    <a href="#" class="latest-product__item">
-                                        <div class="latest-product__item__pic">
-                                            <img src="/images/img/latest-product/lp-3.jpg" alt="">
-                                        </div>
-                                        <div class="latest-product__item__text">
-                                            <h6>Crab Pool Security</h6>
-                                            <span>$30.00</span>
-                                        </div>
-                                    </a>
+                                    {{/each}}
+                                    {{else}}
+                                    <h5 class="mt-3 mb-1 text-danger">Nothing to see yet. Do some orders.</h5>
+                                    {{/if}}
                                 </div>
                             </div>
                         </div>

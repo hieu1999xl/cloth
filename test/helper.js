@@ -36,14 +36,14 @@ const setup = (db) => {
         db.sessions.deleteMany({}, {}),
         db.reviews.deleteMany({}, {})
     ])
-    .then(() => {
-        return Promise.all([
-            db.users.insertMany(addApiKey(jsonData.users)),
-            db.customers.insertMany(jsonData.customers),
-            db.products.insertMany(fixProductDates(jsonData.products)),
-            db.discounts.insertMany(fixDiscountDates(jsonData.discounts))
-        ]);
-    });
+        .then(() => {
+            return Promise.all([
+                db.users.insertMany(addApiKey(jsonData.users)),
+                db.customers.insertMany(jsonData.customers),
+                db.products.insertMany(fixProductDates(jsonData.products)),
+                db.discounts.insertMany(fixDiscountDates(jsonData.discounts))
+            ]);
+        });
 };
 
 const runBefore = async () => {
@@ -64,18 +64,19 @@ const runBefore = async () => {
             g.users = await g.db.users.find({}).toArray();
 
             // Insert variants using product ID's
-            for(const variant of jsonData.variants){
+            for (const variant of jsonData.variants) {
                 variant.product = g.products[getRandom(g.products.length)]._id;
                 await g.db.variants.insertOne(variant);
             };
             g.variants = await g.db.variants.find({}).toArray();
 
             // Insert orders using product ID's
-            for(const order of jsonData.orders){
+            for (const order of jsonData.orders) {
                 order.orderProducts.push({
                     productId: g.products[0]._id,
                     title: g.products[0].productTitle,
                     quantity: 1,
+                    productPrice: g.products[0].productPrice,
                     totalItemPrice: g.products[0].productPrice,
                     variant: g.variants[0]._id,
                     productImage: g.products[0].productImage,
@@ -87,7 +88,7 @@ const runBefore = async () => {
             g.orders = await g.db.orders.find({}).toArray();
 
             // Fix reviews
-            for(const review of jsonData.reviews){
+            for (const review of jsonData.reviews) {
                 review.date = new Date();
                 review.product = g.products[0]._id;
                 review.customer = g.customers[0]._id;
@@ -97,7 +98,7 @@ const runBefore = async () => {
 
             // Get csrf token
             const csrf = await g.request
-            .get('/admin/csrf');
+                .get('/admin/csrf');
             g.csrf = csrf.body.csrf;
 
             // Index everything

@@ -226,5 +226,12 @@
 	"Add to\r\n                        cart": "Add to\r\n                        cart",
 	"Change\r\n                                customer": "Change\r\n                                customer",
 	"Reviews can be filtered by: review title or review description\r\n            keywords": "Reviews can be filtered by: review title or review description\r\n            keywords",
-	"Recent reviews": "Recent reviews"
+	"Recent reviews": "Recent reviews",
+	"Products\r\n                            ordered": "Products\r\n                            ordered",
+	"Product GTIN": "Product GTIN",
+	"The Serial number, GTIN or Barcode": "The Serial number, GTIN or Barcode",
+	"Product Brand": "Product Brand",
+	"The brand of the product": "The brand of the product",
+	"This element is critical for search engine optimisation. Cart title is displayed if\r\n                    your logo is hidden.": "This element is critical for search engine optimisation. Cart title is displayed if\r\n                    your logo is hidden.",
+	"This URL is used in sitemaps and when your customer returns from completing their\r\n                    payment.": "This URL is used in sitemaps and when your customer returns from completing their\r\n                    payment."
 }

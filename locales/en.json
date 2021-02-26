@@ -239,5 +239,11 @@
 	"This element is critical for search engine optimisation. Cart title is displayed if\r\n                    your logo is hidden.": "This element is critical for search engine optimisation. Cart title is displayed if\r\n                    your logo is hidden.",
 	"This URL is used in sitemaps and when your customer returns from completing their\r\n                    payment.": "This URL is used in sitemaps and when your customer returns from completing their\r\n                    payment.",
 	" Discount code": " Discount code",
-	" Discount\r\n                            code": " Discount\r\n                            code"
+	" Discount\r\n                            code": " Discount\r\n                            code",
+	"Products\r\n                                                    ordered": "Products\r\n                                                    ordered",
+	"Products\r\n                                        ordered": "Products\r\n                                        ordered",
+	"Products\r\n                            ordered": "Products\r\n                            ordered",
+	"Proceed\r\n                                to payment": "Proceed\r\n                                to payment",
+	"Proceed\r\n                                    to payment": "Proceed\r\n                                    to payment",
+	"Tag words used to indexed products, making them easier to find and\r\n                    filter.": "Tag words used to indexed products, making them easier to find and\r\n                    filter."
 }
