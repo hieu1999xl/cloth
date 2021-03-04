@@ -27,6 +27,7 @@
   },
   "dependencies": {
     "@adyen/api-library": "^2.1.7",
+    "@elastic/elasticsearch": "^7.11.0",
     "ajv": "^6.10.2",
     "ajv-errors": "^1.0.1",
     "async": "^2.6.3",
@@ -70,6 +71,8 @@
     "nodemailer": "^4.7.0",
     "numeral": "^2.0.6",
     "object-hash": "^2.0.1",
+    "passport": "^0.4.0",
+    "passport-facebook": "^3.0.0",
     "paypal-rest-sdk": "^1.6.9",
     "qs": "^6.7.0",
     "rand-token": "^0.4.0",
@@ -83,9 +86,7 @@
     "stripe": "^7.12.0",
     "uglifycss": "0.0.27",
     "xml-js": "^1.6.11",
-    "yenv": "^2.1.1",
-    "passport": "^0.4.0",
-    "passport-facebook": "^3.0.0"
+    "yenv": "^2.1.1"
   },
   "devDependencies": {
     "ava": "^3.13.0",

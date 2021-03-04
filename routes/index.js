@@ -1,3 +1,8 @@
+'use strict'
+
+const { Client } = require('@elastic/elasticsearch')
+const client = new Client({ node: 'http://localhost:9200' })
+
 const express = require('express');
 const router = express.Router();
 const colors = require('colors');
@@ -940,6 +945,7 @@ router.post('/product/addreview', async (req, res, next) => {
 
 // search products
 router.get('/search/:searchTerm/:pageNum?', (req, res) => {
+
     const db = req.app.db;
     const searchTerm = req.params.searchTerm;
     const productsIndex = req.app.productsIndex;
@@ -956,17 +962,46 @@ router.get('/search/:searchTerm/:pageNum?', (req, res) => {
         pageNum = req.params.pageNum;
     }
 
+
+
     Promise.all([
         paginateProducts(true, db, pageNum, { _id: { $in: lunrIdArray } }, getSort()),
         getMenu(db)
+
     ])
         .then(([results, menu]) => {
             // If JSON query param return json instead
+
+            async function run() {
+                // Let's search!
+                const { body } = await client.search({
+                    index: 'ogani',
+                    body: {
+                        query: {
+                            match: {
+                                productPrice: searchTerm,
+
+                            }
+                        }
+                    }
+                })
+                console.log(body.hits.hits)
+                return body.hits.hits
+                if (req.query.json === 'true') {
+                    res.status(200).json(results.data);
+                    return;
+
+                }
+                console.log(results.data)
+            }
+            run().catch(console.log)
             if (req.query.json === 'true') {
                 res.status(200).json(results.data);
                 return;
             }
 
+
+            console.log(results.data)
             res.render(`${config.themeViews}shop`, {
                 title: 'Results',
                 results: results.data,

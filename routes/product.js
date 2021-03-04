@@ -1,3 +1,8 @@
+'use strict'
+
+const { Client } = require('@elastic/elasticsearch')
+const client = new Client({ node: 'http://localhost:9200' })
+
 const express = require('express');
 const { restrict, checkAccess } = require('../lib/auth');
 const {
@@ -96,7 +101,28 @@ router.get('/admin/product/new', restrict, checkAccess, (req, res) => {
 // insert new product form action
 router.post('/admin/product/insert', restrict, checkAccess, async (req, res) => {
     const db = req.app.db;
-
+    async function run() {
+        // Let's start by indexing some data
+        await client.index({
+            index: 'ogani',
+            body: {
+                productPermalink: req.body.productPermalink,
+                productTitle: cleanHtml(req.body.productTitle),
+                productPrice: req.body.productPrice,
+                productDescription: cleanHtml(req.body.productDescription),
+                productGtin: cleanHtml(req.body.productGtin),
+                productBrand: cleanHtml(req.body.productBrand),
+                productPublished: convertBool(req.body.productPublished),
+                productTags: req.body.productTags,
+                productComment: checkboxBool(req.body.productComment),
+                productAddedDate: new Date(),
+                productStock: safeParseInt(req.body.productStock) || null,
+                productStockDisable: convertBool(req.body.productStockDisable)
+            }
+        })
+        console.log(body.hits.hits)
+    }
+    run().catch(console.log)
     const doc = {
         productPermalink: req.body.productPermalink,
         productTitle: cleanHtml(req.body.productTitle),

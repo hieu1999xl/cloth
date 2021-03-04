@@ -179,27 +179,27 @@
             <div class="categories__slider owl-carousel">
                 <div class="col-lg-3">
                     <div class="categories__item set-bg" data-setbg="/images/img/categories/cat-1.jpg">
-                        <h5><a href="#">Fresh Fruit</a></h5>
+                        <h5><a href="/category/fruit">Trái cây</a></h5>
                     </div>
                 </div>
                 <div class="col-lg-3">
                     <div class="categories__item set-bg" data-setbg="/images/img/categories/cat-2.jpg">
-                        <h5><a href="#">Dried Fruit</a></h5>
+                        <h5><a href="/category/nuts">Sữa hạt</a></h5>
                     </div>
                 </div>
                 <div class="col-lg-3">
                     <div class="categories__item set-bg" data-setbg="/images/img/categories/cat-3.jpg">
-                        <h5><a href="#">Vegetables</a></h5>
+                        <h5><a href="/category/vegetables">Rau củ quả</a></h5>
                     </div>
                 </div>
                 <div class="col-lg-3">
                     <div class="categories__item set-bg" data-setbg="/images/img/categories/cat-4.jpg">
-                        <h5><a href="#">drink fruits</a></h5>
+                        <h5><a href="/category/juice">Nước ép</a></h5>
                     </div>
                 </div>
                 <div class="col-lg-3">
                     <div class="categories__item set-bg" data-setbg="/images/img/categories/cat-5.jpg">
-                        <h5><a href="#">drink fruits</a></h5>
+                        <h5><a href="/category/freshmeat">Thịt bò</a></h5>
                     </div>
                 </div>
             </div>
@@ -593,5 +593,9 @@
         </div>
     </div>
 </section>
-
+<input type="hidden" id="itemsPerPage" value="{{productsPerPage}}">
+<input type="hidden" id="pageNum" value="{{pageNum}}">
+<input type="hidden" id="totalItemCount" value="{{totalProductCount}}">
+<input type="hidden" id="paginateUrl" value="{{paginateUrl}}">
+<input type="hidden" id="searchTerm" value="{{searchTerm}}">
 <!-- Blog Section End -->
