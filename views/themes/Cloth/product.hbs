@@ -28,7 +28,7 @@
                     <div class="hero__search__form">
                         <form action="#">
                             <div class="hero__search__categories">
-                                All Categories
+                                Toàn cửa hàng
                                 <span class="arrow_carrot-down"></span>
                             </div>
                             <input type="text" placeholder="What do yo u need?">
@@ -149,15 +149,22 @@
                     <a href="#" class="primary-btn product-add-to-cart">ADD TO CARD</a>
                     <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
                     <ul>
-                        <li><b>Availability</b> <span>In Stock</span></li>
-                        <li><b>Shipping</b> <span>01 day shipping. <samp>Free pickup today</samp></span></li>
-                        <li><b>Weight</b> <span>0.5 kg</span></li>
-                        <li><b>Share on</b>
+                        <li><b>Thương Hiệu</b> <span>Ogani</span></li>
+                        <li><b>Vận chuyển</b> <span>Vận chuyển trong ngày.</span></li>
+                        <li><b>Khối lượng</b> <span>1 Túi</span></li>
+                        <li><b>Chia sẻ</b>
                             <div class="share">
-                                <a href="#"><i class="fa fa-facebook"></i></a>
+                                <div id="fb-root">
+                                </div>
+                                <div class="fb-share-button"
+                                    data-href="https://oganiviet.herokuapp.com/{{this.productPermalink}}"
+                                    data-layout="button_count">
+                                </div>
+                                {{!-- <a class="fb-share-button" data-href="https://oganiviet.herokuapp.com/"
+                                    data-layout="button_count"><i class="fa fa-facebook"></i></a>
                                 <a href="#"><i class="fa fa-twitter"></i></a>
                                 <a href="#"><i class="fa fa-instagram"></i></a>
-                                <a href="#"><i class="fa fa-pinterest"></i></a>
+                                <a href="#"><i class="fa fa-pinterest"></i></a> --}}
                             </div>
                         </li>
                     </ul>
@@ -176,7 +183,8 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" data-toggle="tab" href="#tabs-3" role="tab"
-                                aria-selected="false">Reviews <span>(1)</span></a>
+                                aria-selected="false">Reviews
+                                <span>(1)</span></a>
                         </li>
                     </ul>
                     <div class="tab-content">
@@ -341,6 +349,9 @@
         </div>
     </div>
 </section>
+
+
+</script>
 <!-- Related Product Section End -->
 <input type="hidden" id="productId" value="{{result._id}}">
 <input type="hidden" id="currencySymbol" value="{{currencySymbol config.currencySymbol}}">

@@ -11,6 +11,13 @@
     <meta name="keywords" content="Ogani, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta property="og:url" content="http://localhost:3000/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Nông sản sạch cho mọi nhà" />
+    <meta property="og:description"
+        content="Sản phẩm được sản xuất theo quy trình VIETGAP, đảm bảo an toàn, chất lượng sản phẩm." />
+    <meta property="og:image"
+        content="https://static.wikia.nocookie.net/you-zitsu/images/a/ab/Episode_010-07.jpg/revision/latest/scale-to-width-down/180?cb=20180721094243&path-prefix=vi" />
 
     {{#if admin}}
     <link rel="icon" type="image/png" href="img/logo.png" />
@@ -275,31 +282,31 @@
                     <span class="">User</span>
                     <ul>
                         <li><a class="dropdown-item" href="/customer/account"><i class="fa fa-user"></i>
-                                account</a></li>
+                                Tài Khoản</a></li>
                         <li><a class="dropdown-item" href="/customer/logout"><i class="fa fa-user"></i>
-                                Logout</a></li>
+                                Đăng Xuất</a></li>
                     </ul>
                     {{else}}
                     <a href="/customer/account"><i class="fa fa-user"></i>
-                        Login</a>
+                        Đăng Nhập</a>
                     {{/if}}
                 </div>
 
             </div>
             <nav class="humberger__menu__nav mobile-menu">
                 <ul>
-                    <li class="active"><a href="/">Home</a></li>
-                    <li><a href="/shop">Shop</a></li>
-                    <li><a href="#">Pages</a>
+                    <li class="active"><a href="/">Trang chủ</a></li>
+                    <li><a href="/shop">Cửa hàng</a></li>
+                    {{!-- <li><a href="#">Pages</a>
                         <ul class="header__menu__dropdown">
                             <li><a href="./shop-details.html">Shop Details</a></li>
                             <li><a href="./shoping-cart.html">Shoping Cart</a></li>
                             <li><a href="./checkout.html">Check Out</a></li>
                             <li><a href="./blog-details.html">Blog Details</a></li>
                         </ul>
-                    </li>
+                    </li> --}}
                     <li><a href="./blog.html">Blog</a></li>
-                    <li><a href="/contact">Contact</a></li>
+                    <li><a href="/contact">Liên hệ</a></li>
                 </ul>
             </nav>
             <div id="mobile-menu-wrap"></div>
@@ -312,7 +319,8 @@
             <div class="humberger__menu__contact">
                 <ul>
                     <li><i class="fa fa-envelope"></i> hello@dcv.com</li>
-                    <li>Free Shipping for all Order of $99</li>
+                    <li>Miễn phí vẫn chuyển với đơn hàng từ 500.000 VNĐ</li>
+
                 </ul>
             </div>
         </div>
@@ -327,7 +335,7 @@
                             <div class="header__top__left">
                                 <ul>
                                     <li><i class="fa fa-envelope"></i> hello@dcv.com</li>
-                                    <li>Free Shipping for all Order of $99</li>
+                                    <li>Miễn phí vẫn chuyển với đơn hàng từ 500.000 VNĐ</li>
                                 </ul>
                             </div>
                         </div>
@@ -354,18 +362,18 @@
 
                                 {{#if @root.session.customerPresent}}
                                 <div class="header__top__right__auth header__top__right__language">
-                                    <span class=""> User</span>
+                                    <span class=""> Người dùng</span>
                                     <ul>
                                         <li><a class="dropdown-item" href="/customer/account"><i class="fa fa-user"></i>
-                                                account</a></li>
+                                                Tài Khoản</a></li>
                                         <li><a class="dropdown-item" href="/customer/logout"><i class="fa fa-user"></i>
-                                                Logout</a></li>
+                                                Đăng xuất</a></li>
                                     </ul>
                                 </div>
                                 {{else}}
                                 <div class="header__top__right__auth">
                                     <li class="list_style"><a href="/customer/account"><i class="fa fa-user"></i>
-                                            Login</a></li>
+                                            Đăng Nhập</a></li>
                                 </div>
                                 {{/if}}
                             </div>
@@ -383,18 +391,18 @@
                     <div class="col-lg-6">
                         <nav class="header__menu">
                             <ul>
-                                <li class="active"><a href="/">Home</a></li>
-                                <li><a href="/shop">Shop</a></li>
-                                <li><a href="#">Pages</a>
+                                <li class="active"><a href="/">Trang chủ</a></li>
+                                <li><a href="/shop">Cửa hàng</a></li>
+                                {{!-- <li><a href="#">Pages</a>
                                     <ul class="header__menu__dropdown">
                                         <li><a href="./shop-details.html">Shop Details</a></li>
                                         <li><a href="./shoping-cart.html">Shoping Cart</a></li>
                                         <li><a href="./checkout.html">Check Out</a></li>
                                         <li><a href="./blog-details.html">Blog Details</a></li>
                                     </ul>
-                                </li>
+                                </li> --}}
                                 <li><a href="./blog.html">Blog</a></li>
-                                <li><a href="/contact">Contact</a></li>
+                                <li><a href="/contact">Liên hệ</a></li>
                             </ul>
                         </nav>
                     </div>
@@ -477,118 +485,118 @@
         {{/ifCond}}
         {{/ifCond}}
         {{/unless}}
-
-        {{{body}}}
-
-        <input type="hidden" id="input_notify_message" value="{{message}}">
-        <input type="hidden" id="input_notify_messageType" value="{{messageType}}">
-        <input type="hidden" id="cartCheckout" value="{{checkout}}">
-        <input type="hidden" id="cartTheme" value="{{@root.config.theme}}">
-        <input type="hidden" id="currencySymbol" value="{{@root.config.currencySymbol}}">
-        {{#if @root.config.maxQuantity}} <input type="hidden" id="maxQuantity"
-            value="{{@root.config.maxQuantity}}">{{/if}}
-        <div id="notify_message"></div>
-        {{#if showFooter}}
-        <!-- Footer Section Begin -->
-        <footer class="footer spad">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-3 col-md-6 col-sm-6">
-                        <div class="footer__about">
-                            <div class="footer__about__logo">
-                                <a href="/"><img src="/images/img/logo.png" alt=""></a>
-                            </div>
-                            <ul>
-                                <li>Address: 60-49 Road 11378 New York</li>
-                                <li>Phone: +65 11.188.888</li>
-                                <li>Email: hello@dcv.com</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 col-sm-6 offset-lg-1">
-                        <div class="footer__widget">
-                            <h6>Useful Links</h6>
-                            <ul>
-                                <li><a href="#">About Us</a></li>
-                                <li><a href="#">About Our Shop</a></li>
-                                <li><a href="#">Secure Shopping</a></li>
-                                <li><a href="#">Delivery infomation</a></li>
-                                <li><a href="#">Privacy Policy</a></li>
-                                <li><a href="#">Our Sitemap</a></li>
-                            </ul>
-                            <ul>
-                                <li><a href="#">Who We Are</a></li>
-                                <li><a href="#">Our Services</a></li>
-                                <li><a href="#">Projects</a></li>
-                                <li><a href="#">Contact</a></li>
-                                <li><a href="#">Innovation</a></li>
-                                <li><a href="#">Testimonials</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-12">
-                        <div class="footer__widget">
-                            <h6>Join Our Newsletter Now</h6>
-                            <p>Get E-mail updates about our latest shop and special offers.</p>
-                            <form action="#">
-                                <input type="text" placeholder="Enter your mail">
-                                <button type="submit" class="site-btn">Subscribe</button>
-                            </form>
-                            <div class="footer__widget__social">
-                                <a href="#"><i class="fa fa-facebook"></i></a>
-                                <a href="#"><i class="fa fa-instagram"></i></a>
-                                <a href="#"><i class="fa fa-twitter"></i></a>
-                                <a href="#"><i class="fa fa-pinterest"></i></a>
+        <!-- Your share button code -->
+        < {{{body}}} <input type="hidden" id="input_notify_message" value="{{message}}">
+            <input type="hidden" id="input_notify_messageType" value="{{messageType}}">
+            <input type="hidden" id="cartCheckout" value="{{checkout}}">
+            <input type="hidden" id="cartTheme" value="{{@root.config.theme}}">
+            <input type="hidden" id="currencySymbol" value="{{@root.config.currencySymbol}}">
+            {{#if @root.config.maxQuantity}} <input type="hidden" id="maxQuantity"
+                value="{{@root.config.maxQuantity}}">{{/if}}
+            <div id="notify_message"></div>
+            {{#if showFooter}}
+            <!-- Footer Section Begin -->
+            <footer class="footer spad">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <div class="footer__about">
+                                <div class="footer__about__logo">
+                                    <a href="/"><img src="/images/img/logo.png" alt=""></a>
+                                </div>
+                                <ul>
+                                    <li>Address: Số 62 Nguyễn Huy Tưởng</li>
+                                    <li>Phone: +84 965.105.459</li>
+                                    <li>Email: hello@dcv.com</li>
+                                </ul>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="footer__copyright">
-                            <div class="footer__copyright__text">
-                                <p>
-                                    <!-- Link back to dcv can't be removed. Template is licensed under CC BY 3.0. -->
-                                    Copyright &copy;
-                                    <script>document.write(new Date().getFullYear());</script> All rights reserved |
-                                    This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a
-                                        href="https://dcv.com" target="_blank">dcv</a>
-                                    <!-- Link back to dcv can't be removed. Template is licensed under CC BY 3.0. -->
+                        <div class="col-lg-4 col-md-6 col-sm-6 offset-lg-1">
+                            <div class="footer__widget">
+                                <h6>Thông tin</h6>
+                                <ul>
+                                    <li><a href="#">Về chúng tôi</a></li>
+                                    <li><a href="#">Về cửa hàng của chúng tôi</a></li>
+                                    <li><a href="#">Mua sắm an toàn</a></li>
+                                    <li><a href="#">Thông tin giao hàng</a></li>
+                                    <li><a href="#">Chính sách bảo mật</a></li>
+                                    <li><a href="#">Sơ đồ</a></li>
+                                </ul>
+                                <ul>
+                                    <li><a href="#">Chúng tôi là ai</a></li>
+                                    <li><a href="#">Dịch vụ của chúng tôi</a></li>
+                                    <li><a href="#">Dự án</a></li>
+                                    <li><a href="#">Liên hệ</a></li>
+                                    <li><a href="#">Sự đổi mới</a></li>
+                                    <li><a href="#">Lời chứng thực</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-12">
+                            <div class="footer__widget">
+                                <h6>Nhận thông báo của chúng tôi</h6>
+                                <p>Nhận cập nhật qua email về cửa hàng mới nhất của chúng tôi và các ưu đãi đặc biệt.
                                 </p>
+                                <form action="#">
+                                    <input type="text" placeholder="Nhập mail của bạn">
+                                    <button type="submit" class="site-btn">Đăng ký</button>
+                                </form>
+                                <div class="footer__widget__social">
+                                    <a href="#"><i class="fa fa-facebook"></i></a>
+                                    <a href="#"><i class="fa fa-instagram"></i></a>
+                                    <a href="#"><i class="fa fa-twitter"></i></a>
+                                    <a href="#"><i class="fa fa-pinterest"></i></a>
+                                </div>
                             </div>
-                            <div class="footer__copyright__payment"><img src="/images/img/payment-item.png" alt="">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="footer__copyright">
+                                <div class="footer__copyright__text">
+                                    <p>
+                                        <!-- Link back to dcv can't be removed. Template is licensed under CC BY 3.0. -->
+                                        Copyright &copy;
+                                        <script>document.write(new Date().getFullYear());</script> All rights reserved |
+                                        This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a
+                                            href="https://dcv.com" target="_blank">dcv</a>
+                                        <!-- Link back to dcv can't be removed. Template is licensed under CC BY 3.0. -->
+                                    </p>
+                                </div>
+                                <div class="footer__copyright__payment"><img src="/images/img/payment-item.png" alt="">
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </footer>
-        <!-- Footer Section End -->
-        {{/if}}
-        <script src="/javascripts/pushy.min.js"></script>
-        {{#if admin}}
-        {{> partials/globalSearchModal}}
-        {{> partials/validationModal}}
-        {{> partials/variantModal}}
-        {{> partials/variantEditModal}}
-        {{/if}}
-        {{> partials/confirmModal}}
-        {{#if @root.config.modules.enabled.reviews}}
-        {{> partials/reviewModal}}
-        {{/if}}
-        <script>
-            feather.replace();
-        </script>
+            </footer>
+            <!-- Footer Section End -->
+            {{/if}}
+            <script src="/javascripts/pushy.min.js"></script>
+            {{#if admin}}
+            {{> partials/globalSearchModal}}
+            {{> partials/validationModal}}
+            {{> partials/variantModal}}
+            {{> partials/variantEditModal}}
+            {{/if}}
+            {{> partials/confirmModal}}
+            {{#if @root.config.modules.enabled.reviews}}
+            {{> partials/reviewModal}}
+            {{/if}}
+            <script>
+                feather.replace();
+            </script>
 
 
 
-        <script src="/javascripts/bootstrap.min.js"></script>
-        <script src="/javascripts/jquery.nice-select.min.js"></script>
-        <script src="/javascripts/jquery-ui.min.js"></script>
-        <script src="/javascripts/jquery.slicknav.js"></script>
-        <script src="/javascripts/mixitup.min.js"></script>
-        <script src="/javascripts/owl.carousel.min.js"></script>
-        <script src="/javascripts/main.js"></script>
+            <script src="/javascripts/bootstrap.min.js"></script>
+            <script src="/javascripts/jquery.nice-select.min.js"></script>
+            <script src="/javascripts/jquery-ui.min.js"></script>
+            <script src="/javascripts/jquery.slicknav.js"></script>
+            <script src="/javascripts/mixitup.min.js"></script>
+            <script src="/javascripts/owl.carousel.min.js"></script>
+            <script src="/javascripts/main.js"></script>
+
     </body>
 
 </html>

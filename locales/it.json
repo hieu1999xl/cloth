@@ -233,5 +233,8 @@
 	"Product Brand": "Product Brand",
 	"The brand of the product": "The brand of the product",
 	"This element is critical for search engine optimisation. Cart title is displayed if\r\n                    your logo is hidden.": "This element is critical for search engine optimisation. Cart title is displayed if\r\n                    your logo is hidden.",
-	"This URL is used in sitemaps and when your customer returns from completing their\r\n                    payment.": "This URL is used in sitemaps and when your customer returns from completing their\r\n                    payment."
+	"This URL is used in sitemaps and when your customer returns from completing their\r\n                    payment.": "This URL is used in sitemaps and when your customer returns from completing their\r\n                    payment.",
+	"Tag words used to indexed products, making them easier to find and\r\n                    filter.": "Tag words used to indexed products, making them easier to find and\r\n                    filter.",
+	" Discount code": " Discount code",
+	"Proceed\r\n                                to payment": "Proceed\r\n                                to payment"
 }
