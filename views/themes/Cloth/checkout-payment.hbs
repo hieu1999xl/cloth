@@ -6,7 +6,7 @@
                 <div class="hero__categories">
                     <div class="hero__categories__all">
                         <i class="fa fa-bars"></i>
-                        <span>All departments</span>
+                        <span>Danh Mục</span>
                     </div>
                     <ul>
                         {{#each menu.items}}
@@ -26,7 +26,7 @@
                                 Toàn cửa hàng
                                 <span class="arrow_carrot-down"></span>
                             </div>
-                            <input name="frm_search" id="frm_search" type="search" placeholder="What do yo u need?">
+                            <input name="frm_search" id="frm_search" type="search" placeholder="What do you need?">
                             <button type="submit" id="btn_search" class="site-btn">SEARCH</button>
                         </form>
                     </div>
@@ -35,8 +35,8 @@
                             <i class="fa fa-phone"></i>
                         </div>
                         <div class="hero__search__phone__text">
-                            <h5>+65 11.188.888</h5>
-                            <span>support 24/7 time</span>
+                            <h5>0965.105.459</h5>
+                            <span>Hỗ trợ 24/07</span>
                         </div>
                     </div>
                 </div>
@@ -73,7 +73,7 @@
 
         <div class="card top-marg-15">
             <div class="card-body">
-                <h5 class="card-title">{{ @root.__ "Customer details" }}</h5>
+                <h5 class="card-title">Thông tin khách hàng}</h5>
                 <ul class="list-group bottom-pad-15">
                     <li class="list-group-item">
                         {{@root.session.customerFirstname}} {{@root.session.customerLastname}} -
@@ -111,9 +111,7 @@
                 <form id="shipping-form" class="shipping-form" action="/instore/checkout_action" method="post"
                     role="form" data-toggle="validator" novalidate="true">
                     <div class="instore_button col-sm-12 text-center">
-                        <button id="checkout_instore" class="site-btn" type="submit">Place order,
-                            pay
-                            instore</button>
+                        <button id="checkout_instore" class="site-btn" type="submit">Thanh toán</button>
                     </div>
                 </form>
             </div>

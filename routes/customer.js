@@ -682,12 +682,12 @@ router.post('/customer/reset/:token', async (req, res) => {
 
         // TODO: Should fix this to properly handle result
         sendEmail(mailOpts.to, mailOpts.subject, mailOpts.body);
-        req.session.message = 'Password successfully updated';
+        req.session.message = 'Cập nhật mật khẩu thành công';
         req.session.message_type = 'success';
         return res.redirect('/checkout/payment');
     } catch (ex) {
         console.log('Unable to reset password', ex);
-        req.session.message = 'Unable to reset password';
+        req.session.message = 'Không thể reset mật khẩu';
         req.session.message_type = 'danger';
         return res.redirect('/forgot');
     }

@@ -266,8 +266,8 @@
             <div class="humberger__menu__widget">
                 {{#ifCond @root.config.enableLanguages "!=" false}}
                 <div class="header__top__right__language">
-                    <img src="/images/img/language.png" alt="">
-                    <div>English</div>
+                    <img style="width:20px" src="/images/img/vietnam.jpg" alt="">
+                    <div>Tiếng Việt</div>
                     <span class="arrow_carrot-down"></span>
                     <ul>
                         {{#availableLanguages}}
@@ -305,7 +305,7 @@
                             <li><a href="./blog-details.html">Blog Details</a></li>
                         </ul>
                     </li> --}}
-                    <li><a href="./blog.html">Blog</a></li>
+                    <li><a href="./blog.html">Thông tin</a></li>
                     <li><a href="/contact">Liên hệ</a></li>
                 </ul>
             </nav>
@@ -349,8 +349,8 @@
                                 </div>
                                 {{#ifCond @root.config.enableLanguages "!=" false}}
                                 <div class="header__top__right__language">
-                                    <img src="/images/img/language.png" alt="">
-                                    <div>English</div>
+                                    <img style="width:20px" src="/images/img/vietnam.jpg" alt="">
+                                    <div>Tiếng Việt</div>
                                     <span class="arrow_carrot-down"></span>
                                     <ul>
                                         {{#availableLanguages}}
@@ -401,7 +401,7 @@
                                         <li><a href="./blog-details.html">Blog Details</a></li>
                                     </ul>
                                 </li> --}}
-                                <li><a href="./blog.html">Blog</a></li>
+                                <li><a href="/">Thông tin</a></li>
                                 <li><a href="/contact">Liên hệ</a></li>
                             </ul>
                         </nav>
@@ -431,7 +431,7 @@
                                             </div>
                                             {{/ifCond}}
                                             <div class="text-right">
-                                                Total:
+                                                Giá tiền:
                                                 <strong id="total-cart-amount">{{currencySymbol
                                                     @root.config.currencySymbol}}{{formatAmount
                                                     @root.session.totalCartAmount}}</strong>
@@ -440,7 +440,7 @@
                                     </div>
                                     {{else}}
                                     <div class="text-right">
-                                        Total:
+                                        Giá tiền
                                         <strong id="total-cart-amount">
                                             0 đ</strong>
                                     </div>

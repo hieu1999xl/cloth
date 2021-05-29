@@ -6,39 +6,39 @@
                 <div class="float-right">
                     <button id="" class="btn btn-outline-success" type="submit">Add discount</button>
                 </div>
-                <h2>{{ @root.__ "New discount" }}</h2>
+                <h2>Tạo mã giảm giá</h2>
             </div>
         </div>
         <div class="col-12">
             <div class="form-group">
-                <label for="discountCode" class="control-label">{{ @root.__ "Discount code" }} *</label>
+                <label for="discountCode" class="control-label">Mã giảm giá*</label>
                 <input type="text" id="discountCode" class="form-control" minlength="1" maxlength="50" placeholder="CODE20" required/>
             </div>
         </div>
         <div class="col-12">
             <div class="form-group">
-                <label for="discountType" class="control-label">{{ @root.__ "Discount type" }} *</label>
+                <label for="discountType" class="control-label">Kiểu mã giảm giá *</label>
                 <select class="form-control" id="discountType">
-                    <option value="amount" selected>{{ @root.__ "Amount" }}</option>
-                    <option value="percent">{{ @root.__ "Percent" }}</option>
+                    <option value="amount" selected>Giá tiền</option>
+                    <option value="percent">Phần trăm</option>
                 </select>
             </div>
         </div>
         <div class="col-12">
             <div class="form-group">
-                <label for="discountValue" class="control-label">{{ @root.__ "Discount value" }} *</label>
+                <label for="discountValue" class="control-label">Giá trị *</label>
                 <input type="number" id="discountValue" class="form-control" minlength="1" maxlength="50" placeholder="20" required/>
             </div>
         </div>
         <div class="col-12">
             <div class="form-group">
-                <label for="discountStart" class="control-label">{{ @root.__ "Discount start" }} *</label>
+                <label for="discountStart" class="control-label">Thời gian bắt đầu *</label>
                 <input id="discountStart" />
             </div>
         </div>
         <div class="col-12">
             <div class="form-group">
-                <label for="discountEnd" class="control-label">{{ @root.__ "Discount end" }} *</label>
+                <label for="discountEnd" class="control-label">Thời gian kết thúc*</label>
                 <input id="discountEnd" />
             </div>
         </div>

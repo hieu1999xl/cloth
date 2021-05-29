@@ -2,42 +2,40 @@
 <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
     <form id="settingsForm" data-toggle="validator">
         <div class="col-sm-12">
-            <h2>{{ @root.__ "General settings" }} <span class="float-right"><button type="submit" id="btnSettingsUpdate"
-                        class="btn btn__success">{{ @root.__ "Update" }}</button></span></h2>
+            <h2>Cài đặt chung <span class="float-right"><button type="submit" id="btnSettingsUpdate"
+                        class="btn btn-success">Cập nhật</button></span></h2>
         </div>
         <div class="col-md-12">
             <div class="form-group">
-                <label>{{ @root.__ "Cart name" }} *</label>
+                <label>Tên trang web *</label>
                 <input type="text" class="form-control" name="cartTitle" value="{{config.cartTitle}}" required>
                 <p class="help-block">
-                    {{ @root.__ "This element is critical for search engine optimisation. Cart title is displayed if
-                    your logo is hidden." }}
+                    Yếu tố này rất quan trọng cho việc tối ưu hóa công cụ tìm kiếm. Tiêu đề giỏ hàng được hiển thị nếu logo của bạn bị ẩn
                 </p>
             </div>
             <div class="form-group">
-                <label>{{ @root.__ "Cart description" }} *</label>
+                <label>Mô tả trang web *</label>
                 <input type="text" class="form-control" name="cartDescription" value="{{config.cartDescription}}"
                     required>
                 <p class="help-block">
-                    {{ @root.__ "This description shows when your website is listed in search engine results." }}</p>
+                    Mô tả này hiển thị khi trang web  được liệt kê trong kết quả của công cụ tìm kiếm.
             </div>
             <div class="form-group">
-                <label>{{ @root.__ "Cart image/logo" }}</label>
+                <label>logo</label>
                 <input type="text" class="form-control" name="cartLogo" value="{{config.cartLogo}}">
             </div>
             <div class="form-group">
-                <label>{{ @root.__ "Cart URL" }} *</label>
+                <label>Đường dẫn *</label>
                 <input type="text" class="form-control" name="baseUrl" value="{{config.baseUrl}}" required>
                 <p class="help-block">
-                    {{ @root.__ "This URL is used in sitemaps and when your customer returns from completing their
-                    payment." }}
+                    {{ @root.__ "Đường dẫn này được gọi khi khách hàng thanh toán điện tử xong" }}
                 </p>
             </div>
             <div class="form-group">
-                <label>{{ @root.__ "Cart Email" }} *</label>
+                <label>Email *</label>
                 <input type="email" class="form-control" name="emailAddress" value="{{config.emailAddress}}" required>
                 <p class="help-block">
-                    {{ @root.__ "This is used as the \"from\" email when sending receipts to your customers." }}</p>
+                    Nó được dùng để gửi mail cho khách hàng</p>
             </div>
             <div class="form-group">
                 <label>{{ @root.__ "Payment gateway" }}</label>
@@ -54,10 +52,10 @@
                 <p class="help-block">{{ @root.__ "Payment_Gateway_Info" }}</p>
             </div>
             <div class="form-group">
-                <label>{{ @root.__ "Currency symbol" }}</label>
+                <label>Ký hiệu tiền tệ</label>
                 <input type="text" class="form-control" name="currencySymbol"
                     value="{{currencySymbol config.currencySymbol}}">
-                <p class="help-block">{{ @root.__ "Set this to your currency symbol. Eg: $, £, €" }}</p>
+                <p class="help-block">"Đặt giá trị tiền tệ. ví dụ: $, £, €, đ..</p>
             </div>
             {{#ifCond config.paymentGateway '==' 'blockonomics'}}
             <div class="form-group">
@@ -71,7 +69,7 @@
             </div>
             {{/ifCond}}
             <div class="form-group">
-                <label>{{ @root.__ "Theme" }}</label>
+                <label>Giao diện</label>
                 <select class="form-control" name="theme">
                     {{#each themes}}
                     <option {{selectState this ../config.theme}} value="{{this}}">{{this}}</option>
@@ -80,7 +78,7 @@
                 <p class="help-block">{{ @root.__ "Theme_Info" }}</p>
             </div>
             <div class="form-group">
-                <label>{{ @root.__ "Products per row" }}</label>
+                <label>Số sản phẩm trên 1 hàng</label>
                 <select class="form-control" name="productsPerRow">
                     <option value="{{config.productsPerRow}}" hidden="hidden" selected="selected">
                         {{config.productsPerRow}}</option>
@@ -89,31 +87,31 @@
                     <option {{selectState '3' config.productsPerRow}}>3</option>
                     <option {{selectState '4' config.productsPerRow}}>4</option>
                 </select>
-                <p class="help-block">{{ @root.__ "The number of products to be displayed across the page." }}</p>
+               
             </div>
             <div class="form-group">
-                <label>{{ @root.__ "Products per page" }}</label>
+                <label>Số sản phẩm trên trang</label>
                 <input type="number" class="form-control" name="productsPerPage" value="{{config.productsPerPage}}">
                 <p class="help-block">{{ @root.__ "The number of products to be displayed on each page." }}</p>
             </div>
             <div class="form-group">
                 <label>{{ @root.__ "Product Order By" }}</label>
                 <select class="form-control" name="productOrderBy">
-                    <option {{selectState 'date' config.productOrderBy}} value="date">{{ @root.__ "Date" }}</option>
-                    <option {{selectState 'title' config.productOrderBy}} value="title">{{ @root.__ "Title" }}</option>
+                    <option {{selectState 'date' config.productOrderBy}} value="date">Theo ngày</option>
+                    <option {{selectState 'title' config.productOrderBy}} value="title">Theo tên</option>
                 </select>
                 <p class="help-block">
-                    {{ @root.__ "Select the field by which the product should be sorted when displayed in store." }}</p>
+                    Lựu chọn kiểu sắp xếp hàng trong cửa hàng</p>
             </div>
             <div class="form-group">
                 <label>{{ @root.__ "Product Order" }}</label>
                 <select class="form-control" name="productOrder">
                     <option {{selectState 'descending' config.productOrder}} value="descending">
-                        {{ @root.__ "Descending" }}</option>
-                    <option {{selectState 'ascending' config.productOrder}} value="ascending">{{ @root.__ "Ascending" }}
+                        Giảm xuống</option>
+                    <option {{selectState 'ascending' config.productOrder}} value="ascending">Tăng lên
                     </option>
                 </select>
-                <p class="help-block">{{ @root.__ "Select the order in which the products should be sorted." }}</p>
+                <p class="help-block">Chọn kiểu sắp xếp</p>
             </div>
             <div class="form-group">
                 <label>Footer HTML</label>
@@ -126,11 +124,11 @@
                 <textarea class="form-control" rows="3" id="googleAnalytics"
                     name="googleAnalytics">{{googleAnalytics}}</textarea>
                 <input type="hidden" id="googleAnalytics_input" name="googleAnalytics_input">
-                <p class="help-block">{{{ @root.__ "Google_Analytics_Info" }}}
+                <p class="help-block">
                 </p>
             </div>
             <div class="form-group">
-                <label>{{ @root.__ "Custom CSS" }}</label>
+                <label>Css</label>
                 <textarea class="form-control" rows="10" id="customCss" name="customCss">{{config.customCss}}</textarea>
                 <input type="hidden" id="customCss_input" name="customCss_input">
             </div>
@@ -163,7 +161,7 @@
                     autocomplete="off" required>
             </div>
             <div class="form-group">
-                <button id="sendTestEmail" class="btn btn__success">{{ @root.__ "Send test email" }}</button>
+                <button id="sendTestEmail" class="btn btn-success">{{ @root.__ "Send test email" }}</button>
             </div>
         </div>
     </form>

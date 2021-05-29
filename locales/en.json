@@ -245,5 +245,8 @@
 	"Products\r\n                            ordered": "Products\r\n                            ordered",
 	"Proceed\r\n                                to payment": "Proceed\r\n                                to payment",
 	"Proceed\r\n                                    to payment": "Proceed\r\n                                    to payment",
-	"Tag words used to indexed products, making them easier to find and\r\n                    filter.": "Tag words used to indexed products, making them easier to find and\r\n                    filter."
+	"Tag words used to indexed products, making them easier to find and\r\n                    filter.": "Tag words used to indexed products, making them easier to find and\r\n                    filter.",
+	"Đăng nhập với tài khoản quản trị": "Đăng nhập với tài khoản quản trị",
+	"Hãy đăng nhập để quản lý đơn hàng của bạn": "Hãy đăng nhập để quản lý đơn hàng của bạn",
+	"Đường dẫn này được gọi khi khách hàng thanh toán điện tử xong": "Đường dẫn này được gọi khi khách hàng thanh toán điện tử xong"
 }

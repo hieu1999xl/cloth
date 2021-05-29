@@ -8,12 +8,12 @@
                         @root.__ "Upload image" }}</button>
                     <button id="productUpdate" class="btn btn-outline-success">{{ @root.__ "Save product" }}</button>
                 </div>
-                <h2>{{ @root.__ "Edit product" }}</h2>
+                <h2>Sửa thông tin sản phẩm</h2>
             </div>
         </div>
         <div class="col-12">
             <div class="form-group">
-                <label for="productTitle" class="control-label">{{ @root.__ "Product title" }} *</label>
+                <label for="productTitle" class="control-label">Tên sản phẩm *</label>
                 <input type="text" id="productTitle" class="form-control" minlength="5" maxlength="200"
                     value="{{result.productTitle}}" required />
             </div>
@@ -21,7 +21,7 @@
         <div class="row ml-0 mr-0">
             <div class="col-sm-3">
                 <div class="form-group">
-                    <label for="productPrice" class="control-label">{{ @root.__ "Product price" }} *</label>
+                    <label for="productPrice" class="control-label">Giá *</label>
                     <div class="input-group">
                         <div class="input-group-prepend">
                             <label class="input-group-text">{{currencySymbol config.currencySymbol}}</label>
@@ -33,25 +33,25 @@
             </div>
             <div class="col-sm-3">
                 <div class="form-group">
-                    <label for="productPublished" class="control-label">{{ @root.__ "Status" }} *</label>
+                    <label for="productPublished" class="control-label">Trạng Thái *</label>
                     <select class="form-control" id="productPublished">
-                        <option value="true" {{selectState result.productPublished "true" }}>{{ @root.__ "Published" }}
+                        <option value="true" {{selectState result.productPublished "true" }}>Công khai
                         </option>
-                        <option value="false" {{selectState result.productPublished "false" }}>{{ @root.__ "Draft" }}
+                        <option value="false" {{selectState result.productPublished "false" }}>Khóa
                         </option>
                     </select>
                 </div>
             </div>
             <div class="col-sm-3">
                 <div class="form-group">
-                    <label for="productGtin" class="control-label">{{ @root.__ "Product GTIN" }}</label>
+                    <label for="productGtin" class="control-label">GTIN</label>
                     <input type="number" id="productGtin" class="form-control" value="{{result.productGtin}}"
                         step="any" />
                 </div>
             </div>
             <div class="col-sm-3">
                 <div class="form-group">
-                    <label for="productBrand" class="control-label">{{ @root.__ "Product Brand" }}</label>
+                    <label for="productBrand" class="control-label">Thương hiệu</label>
                     <input type="text" id="productBrand" class="form-control" value="{{result.productBrand}}" />
                 </div>
             </div>
@@ -78,7 +78,7 @@
         {{/if}}
         <div class="col-12">
             <div class="form-group">
-                <label for="productDescription" class="control-label">{{ @root.__ "Product description" }} *</label>
+                <label for="productDescription" class="control-label">Mô tả *</label>
                 <textarea minlength="5" rows="10" id="productDescription" class="form-control"
                     required>{{result.productDescription}}</textarea>
             </div>
@@ -94,7 +94,7 @@
                             "Validate" }}</button>
                     </div>
                 </div>
-                <p class="help-block">{{ @root.__ "This sets a readable URL for the product" }}</p>
+                <p class="help-block">Bạn có thể đặt đường dẫn cho sản phẩm</p>
             </div>
         </div>
         <div class="col-12">
@@ -103,12 +103,12 @@
                 <ul class="list-group" id="product_opt_wrapper">
                     <li class="list-group-item bg-secondary">
                         <div class="row">
-                            <div class='col-sm-3'>Title</div>
-                            <div class='col-sm-3'>Price</div>
-                            <div class='col-sm-3'>Stock</div>
+                            <div class='col-sm-3'>Tên</div>
+                            <div class='col-sm-3'>Giá</div>
+                            <div class='col-sm-3'>Số lượng</div>
                             <div class='col-sm-3 text-right'>
                                 <a href="#" data-toggle="modal" data-target="#variantModal"
-                                    class="btn btn-outline-success">{{ @root.__ "Add" }}</a>
+                                    class="btn btn-outline-success">Thêm</a>
                             </div>
                         </div>
                     </li>
@@ -138,13 +138,12 @@
                     {{else}}
                     <li class="list-group-item">
                         <div class="row">
-                            <div class='col-sm-12 text-center'>No current variants</div>
+                            <div class='col-sm-12 text-center'>Không có thuộc tính</div>
                         </div>
                     </li>
                     {{/if}}
                 </ul>
-                <p class="help-block">{{ @root.__ "Here you can set variants for your product. Eg: Size, color, style"
-                    }}</p>
+                <p class="help-block">Ở đây bạn có thể đặt thuộc tính của sản phẩm như: kích thước, màu...</p>
             </div>
         </div>
         {{!-- {{#contains config.paymentGateway 'stripe'}}
@@ -160,39 +159,36 @@
         {{/contains}} --}}
         <div class="col-12">
             <div class="form-group">
-                <label for="productComment" class="control-label">{{ @root.__ "Allow comment" }}</label>
+                <label for="productComment" class="control-label">Cho phép ghi chú</label>
                 <div class="checkbox">
                     <label>
                         <input class="productComment" type="checkbox" {{checkedState result.productComment}}
                             id="productComment">
                     </label>
                 </div>
-                <p class="help-block">{{ @root.__ "Allow free form comments when adding products to cart" }}</p>
+                <p class="help-block">Cho phép để lại ghi chú khi thêm sản phẩm vào giỏ hàng</p>
             </div>
         </div>
         <div class="col-12">
             <div class="form-group">
-                <label for="productTags" class="control-label">{{ @root.__ "Product tag words" }}</label>
+                <label for="productTags" class="control-label">Từ khóa</label>
                 <input type="text" class="form-control" id="productTags" value="{{result.productTags}}">
-                <p class="help-block">{{ @root.__ "Tag words used to indexed products, making them easier to find and
-                    filter." }}</p>
+                <p class="help-block">Thêm từ khóa vào sản phẩm để tìm kiếm sản phẩm dễ hơn</p>
             </div>
         </div>
         <div class="col-sm-12">
             <div id="product-images">
-                <h2>{{ @root.__ "Product images" }}</h2>
+                <h2>Ảnh sản phẩm</h2>
                 {{#if images}}
                 <div class="row">
                     {{#each images}}
                     <div class="col-sm-3">
                         <p>
-                            <a data-id="{{this.path}}" class="btn-delete-image btn btn-outline-danger">{{ @root.__
-                                "Delete" }}</a>
+                            <a data-id="{{this.path}}" class="btn-delete-image btn btn-outline-danger">Xóa</a>
                             {{#ifCond this.productImage '==' true}}
                             <span class="label label-info">{{ @root.__ "main image" }}</span>
                             {{else}}
-                            <a data-id="{{../this.path}}" class="set-as-main-image btn btn-outline-success">{{ @root.__
-                                "Set as main image" }}</a>
+                            <a data-id="{{../this.path}}" class="set-as-main-image btn btn-outline-success">Đặt làm ảnh chính</a>
                             {{/ifCond}}
                         </p>
                         <img src="{{this.path}}" class="product-main-image img-fluid">
@@ -200,7 +196,7 @@
                     {{/each}}
                 </div>
                 {{else}}
-                <h4 class="text-warning">{{ @root.__ "No images have been uploaded for this product" }}</h4>
+                <h4 class="text-warning">Không có ảnh nào</h4>
                 {{/if}}
             </div>
         </div>
@@ -217,17 +213,17 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
                         class="sr-only">Close</span></button>
-                <h4 class="modal-title" id="myModalLabel">{{ @root.__ "Product image upload" }}</h4>
+                <h4 class="modal-title" id="myModalLabel">Cập nhật ảnh</h4>
             </div>
             <div class="modal-body">
                 <span class="btn btn-outline-info btn-file">
-                    {{ @root.__ "Select file" }}<input type="file" name="uploadFile" id="uploadFile" form="uploadForm">
+                    Chọn ảnh<input type="file" name="uploadFile" id="uploadFile" form="uploadForm">
                 </span>
                 <input type="hidden" id="productId" name="productId" value="{{result._id}}" />
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                <button type="button" id="uploadButton" class="btn btn-outline-primary">{{ @root.__ "Upload" }}</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
+                <button type="button" id="uploadButton" class="btn btn-outline-primary">Cập nhật</button>
             </div>
         </div>
     </div>
