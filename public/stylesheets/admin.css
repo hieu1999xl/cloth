@@ -213,6 +213,9 @@ body .popover {
     position: sticky;
   }
 }
+.nice-select {
+  width: 100% !important;
+}
 .sidebar .nav-link {
   font-weight: 400;
   color: #333;

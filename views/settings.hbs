@@ -38,7 +38,7 @@
                     Nó được dùng để gửi mail cho khách hàng</p>
             </div>
             <div class="form-group">
-                <label>{{ @root.__ "Payment gateway" }}</label>
+                <label>Phương thức thanh toán</label>
                 <select class="form-control" name="paymentGateway">
                     <option {{selectState 'paypal' config.paymentGateway}} value="paypal">Paypal</option>
                     <option {{selectState 'stripe' config.paymentGateway}} value="stripe">Stripe</option>
@@ -49,7 +49,7 @@
                     <option {{selectState 'blockonomics' config.paymentGateway}} value="blockonomics">Blockonomics
                     </option>
                 </select>
-                <p class="help-block">{{ @root.__ "Payment_Gateway_Info" }}</p>
+             
             </div>
             <div class="form-group">
                 <label>Ký hiệu tiền tệ</label>
@@ -65,7 +65,7 @@
                     <option {{selectState 'EUR' config.currencyISO}} value="EUR">EUR</option>
                     <option {{selectState 'GBP' config.currencyISO}} value="GBP">GBP</option>
                 </select>
-                <p class="help-block">{{ @root.__ "Currency used for Blockonomics conversion" }}</p>
+               
             </div>
             {{/ifCond}}
             <div class="form-group">
@@ -75,7 +75,7 @@
                     <option {{selectState this ../config.theme}} value="{{this}}">{{this}}</option>
                     {{/each}}
                 </select>
-                <p class="help-block">{{ @root.__ "Theme_Info" }}</p>
+               
             </div>
             <div class="form-group">
                 <label>Số sản phẩm trên 1 hàng</label>
@@ -92,10 +92,10 @@
             <div class="form-group">
                 <label>Số sản phẩm trên trang</label>
                 <input type="number" class="form-control" name="productsPerPage" value="{{config.productsPerPage}}">
-                <p class="help-block">{{ @root.__ "The number of products to be displayed on each page." }}</p>
+              
             </div>
             <div class="form-group">
-                <label>{{ @root.__ "Product Order By" }}</label>
+                <label>Sắp xếp theo ngày/theo tên</label>
                 <select class="form-control" name="productOrderBy">
                     <option {{selectState 'date' config.productOrderBy}} value="date">Theo ngày</option>
                     <option {{selectState 'title' config.productOrderBy}} value="title">Theo tên</option>
@@ -104,7 +104,7 @@
                     Lựu chọn kiểu sắp xếp hàng trong cửa hàng</p>
             </div>
             <div class="form-group">
-                <label>{{ @root.__ "Product Order" }}</label>
+                <label>Sắp xếp theo giá tiền</label>
                 <select class="form-control" name="productOrder">
                     <option {{selectState 'descending' config.productOrder}} value="descending">
                         Giảm xuống</option>
@@ -113,7 +113,7 @@
                 </select>
                 <p class="help-block">Chọn kiểu sắp xếp</p>
             </div>
-            <div class="form-group">
+            {{!-- <div class="form-group">
                 <label>Footer HTML</label>
                 <textarea class="form-control codemirrorArea" rows="5" id="footerHtml"
                     name="footerHtml">{{footerHtml}}</textarea>
@@ -126,7 +126,7 @@
                 <input type="hidden" id="googleAnalytics_input" name="googleAnalytics_input">
                 <p class="help-block">
                 </p>
-            </div>
+            </div> --}}
             <div class="form-group">
                 <label>Css</label>
                 <textarea class="form-control" rows="10" id="customCss" name="customCss">{{config.customCss}}</textarea>
