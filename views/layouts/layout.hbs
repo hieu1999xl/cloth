@@ -425,7 +425,7 @@
                                         <div class="cart-contents-shipping col-md-12 no-pad-right">
                                             {{#ifCond @root.session.totalCartDiscount '>' 0}}
                                             <div class="text-right">
-                                                Discount: <strong id="discount-amount">{{currencySymbol
+                                                Giảm giá: <strong id="discount-amount">{{currencySymbol
                                                     @root.config.currencySymbol}}{{formatAmount
                                                     @root.session.totalCartDiscount}}</strong>
                                             </div>

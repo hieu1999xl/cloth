@@ -21,13 +21,12 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <h6><span class="icon_tag_alt"></span> Have a coupon? <a href="/checkout/cart">Click here</a> to enter
-                    your code
+                <h6><span class="icon_tag_alt"></span> Bạn có mã giảm giá <a href="/checkout/cart">Click chọn</a> Để nhập mã giảm giá
                 </h6>
             </div>
         </div>
         <div class="checkout__form">
-            <h4>Billing Details</h4>
+            <h4>Chi Tiết Thanh Toán</h4>
             <form action="#">
                 <div class="row">
                     <div class="col-lg-8 col-md-6">
@@ -54,8 +53,8 @@
                     </div>
                     <div class="col-lg-4 col-md-6">
                         <div class="checkout__order">
-                            <h4>Your Order</h4>
-                            <div class="checkout__order__products">Products <span>Total</span></div>
+                            <h4>Hóa đơn</h4>
+                            <div class="checkout__order__products">Sản phẩm <span>Tổng tiền</span></div>
                             <ul>
                                 {{#each @root.session.cart}}
                                 <li>{{this.title}} <span> {{currencySymbol @root.config.currencySymbol}}{{formatAmount
@@ -79,11 +78,11 @@
                                     @root.config.currencySymbol}}{{formatAmount @root.session.totalCartDiscount}}</span>
                             </div>
                             {{/ifCond}}
-                            <div class="checkout__order__total">Total <span>{{currencySymbol
+                            <div class="checkout__order__total">Tổng tiền <span>{{currencySymbol
                                     @root.config.currencySymbol}}{{formatAmount
                                     @root.session.totalCartAmount}}</span></div>
                             {{/if}}
-                            <p>Lorem ipsum dolor sit amet, consectetur adip elit, sed do eiusmod tempor incididunt
+                            {{!-- <p>Lorem ipsum dolor sit amet, consectetur adip elit, sed do eiusmod tempor incididunt
                                 ut labore et dolore magna aliqua.</p>
                             <div class="checkout__input__checkbox">
                                 <label for="payment">
@@ -98,7 +97,7 @@
                                     <input type="checkbox" id="paypal">
                                     <span class="checkmark"></span>
                                 </label>
-                            </div>
+                            </div> --}}
                             {{!-- <form id="shipping-form" class="shipping-form" action="/instore/checkout_action"
                                 method="post" role="form" data-toggle="validator" novalidate="true">
                                 <div class="instore_button col-sm-12 text-center">
@@ -110,8 +109,7 @@
                                         instore</button>
                                 </div>
                             </form> --}}
-                            <a href="/checkout/payment" id="checkoutInformation" class="site-btn">{{ @root.__ "Proceed
-                                to payment" }}</a>
+                            <a href="/checkout/payment" id="checkoutInformation" class="site-btn">TIẾN HÀNG THANH TOÁN</a>
                             {{!-- <form id="shipping-form" class="shipping-form"
                                 action="/{{config.paymentGateway}}/checkout_action{{@root.paymentType}}" method="post"
                                 role="form" data-toggle="validator" novalidate="false">

@@ -72,7 +72,7 @@
                                     <div class="card-body">
                                         <ul class="list-group">
                                             <li class="list-group-item list-group-input-pad">
-                                                <strong> Order status: </strong><span class="text-{{getStatusColor this.orderStatus}} float-right">{{this.orderStatus}}</span>
+                                                <strong> Trạng thái </strong><span class="text-{{getStatusColor this.orderStatus}} float-right">{{this.orderStatus}}</span>
                                             </li>
                                             <li class="list-group-item"><strong> Thời gian: </strong><span class="float-right">{{formatDate result.orderDate "DD/MM/YYYY hh:mmA"}}</span></li>
                                             <li class="list-group-item"><strong> ID: </strong><span class="float-right">{{this._id}}</span></li>
@@ -85,9 +85,9 @@
                                             {{#if this.orderBlockonomicsTxid }}
                                             <li class="list-group-item"><strong> {{ @root.__ "Order Blockonomics Txid" }}: </strong><span class="float-right">{{this.orderBlockonomicsTxid}}</span></li>
                                             {{/if}}
-                                            <li class="list-group-item"><strong> Giá tiền: </strong><span class="float-right">{{currencySymbol config.currencySymbol}}{{formatAmount (math this.orderTotal '-' this.orderShipping)}}</span></li>
-                                            <li class="list-group-item"><strong> Phí vận chuyển: </strong><span class="float-right">{{currencySymbol config.currencySymbol}}{{formatAmount this.orderShipping}}</span></li>
-                                            <li class="list-group-item"><strong> Tổng giá tiền: </strong><span class="float-right">{{currencySymbol config.currencySymbol}}{{formatAmount this.orderTotal}}</span></li>
+                                            <li class="list-group-item"><strong> Giá tiền: </strong><span class="float-right">{{formatAmount (math this.orderTotal '-' this.orderShipping)}}đ</span></li>
+                                            <li class="list-group-item"><strong> Phí vận chuyển: </strong><span class="float-right">{{formatAmount this.orderShipping}}đ</span></li>
+                                            <li class="list-group-item"><strong> Tổng giá tiền: </strong><span class="float-right">{{formatAmount this.orderTotal}}đ</span></li>
                                             <li class="list-group-item"><strong> Email: </strong><span class="float-right">{{this.orderEmail}}</span></li>
                                             <li class="list-group-item"><strong> Công ty: </strong><span class="float-right">{{this.orderCompany}}</span></li>
                                             <li class="list-group-item"><strong> Họ: </strong><span class="float-right">{{this.orderFirstname}}</span></li>

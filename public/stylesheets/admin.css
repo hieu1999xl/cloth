@@ -94,6 +94,12 @@ body {
 .admin-card-body {
   padding: 5px;
 }
+a {
+  color: black;
+}
+a:hover {
+  color: black;
+}
 /* Fixes summernote editor issue: https://github.com/summernote/summernote/issues/2516 */
 body .popover {
   display: none !important;

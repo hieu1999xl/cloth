@@ -116,7 +116,7 @@
                             {{/ifCond}}
                             {{#ifCond @root.session.totalCartDiscount '>' 0}}
                             <li>
-                                Discount: <span id="discount-amount">{{currencySymbol
+                                Giảm giá: <span id="discount-amount">{{currencySymbol
                                     @root.config.currencySymbol}}{{formatAmount @root.session.totalCartDiscount}}</span>
                             </li>
                             {{/ifCond}}

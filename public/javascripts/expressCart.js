@@ -692,7 +692,7 @@ function updateCartDiv() {
       if (session.totalCartDiscount > 0) {
         discountTotal = `
                 <div class="text-right">
-                    Discount: <strong id="discount-amount">${discountTotalAmt} ${result.currencySymbol}</strong>
+                    Giảm giá: <strong id="discount-amount">${discountTotalAmt} ${result.currencySymbol}</strong>
                 </div>`;
       }
 

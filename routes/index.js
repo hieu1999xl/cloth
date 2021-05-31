@@ -954,7 +954,7 @@ router.post("/product/addreview", async (req, res, next) => {
       });
     }
     return res.json({
-      message: "Review successfully submitted",
+      message: "Đánh giá sản phẩm đã được gửi",
     });
   }
   return res.status(400).json({

@@ -128,7 +128,7 @@ router.post("/admin/order/create", async (req, res, next) => {
   const orderDoc = {
     orderPaymentId: getId(),
     orderPaymentGateway: "Instore",
-    orderPaymentMessage: "Your payment was successfully completed",
+    orderPaymentMessage: "Thanh toán của bạn thành công",
     orderTotal: req.session.totalCartAmount,
     orderShipping: req.session.totalCartShipping,
     orderItemCount: req.session.totalCartItems,
@@ -162,7 +162,7 @@ router.post("/admin/order/create", async (req, res, next) => {
     indexOrders(req.app).then(() => {
       // set the results
       req.session.messageType = "success";
-      req.session.message = "Your order was successfully placed. Payment for your order will be completed instore.";
+      req.session.message = "Đơn hàng của bạn đã được đặt thành công.";
       req.session.paymentEmailAddr = newDoc.ops[0].orderEmail;
       req.session.paymentApproved = true;
       req.session.paymentDetails = `<p><strong>Order ID: </strong>${orderId}</p>
@@ -191,7 +191,7 @@ router.post("/admin/order/create", async (req, res, next) => {
 
       // redirect to outcome
       res.status(200).json({
-        message: "Order created successfully",
+        message: "Đơn đặt hàng tạo thành công",
         orderId,
       });
     });
@@ -247,13 +247,13 @@ router.get("/admin/order/delete/:id", restrict, async (req, res) => {
     indexOrders(req.app).then(() => {
       if (req.apiAuthenticated) {
         res.status(200).json({
-          message: "Order successfully deleted",
+          message: "Đơn hàng xóa thành công",
         });
         return;
       }
 
       // redirect home
-      req.session.message = "Order successfully deleted";
+      req.session.message = "Đơn hàng xóa thành công";
       req.session.messageType = "success";
       res.redirect("/admin/orders");
     });

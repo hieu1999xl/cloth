@@ -44,7 +44,7 @@ test("[Fail] Add quantity which exceeds the maxQuantity", async (t) => {
 
 test("[Success] Empty cart", async (t) => {
   const res = await g.request.post("/product/emptycart").expect(200);
-  t.deepEqual(res.body.message, "Cart successfully emptied");
+  t.deepEqual(res.body.message, "Giỏ hàng đã dược loại bỏ");
 });
 
 test("[Success] Add product to cart", async (t) => {
@@ -171,7 +171,7 @@ test("[Fail] Try add more than the variant stock", async (t) => {
 
   // Empty our cart
   const emptyCart = await g.request.post("/product/emptycart").expect(200);
-  t.deepEqual(emptyCart.body.message, "Cart successfully emptied");
+  t.deepEqual(emptyCart.body.message, "Giỏ hàng đã được loại bỏ");
 
   // Add more than we have in stock
   const addToCart = await g.request
@@ -206,7 +206,7 @@ test("[Fail] Try hold stock then add more stock than available", async (t) => {
 
   // Empty our cart
   const emptyCart = await g.request.post("/product/emptycart").expect(200);
-  t.deepEqual(emptyCart.body.message, "Cart successfully emptied");
+  t.deepEqual(emptyCart.body.message, "Giỏ hàng đã được loại bỏ");
 
   // Add lesser amount than stock on hand
   await g.request
@@ -251,7 +251,7 @@ test("[Success] Hold some stock add more stock which is less than total", async 
 
   // Empty our cart
   const emptyCart = await g.request.post("/product/emptycart").expect(200);
-  t.deepEqual(emptyCart.body.message, "Cart successfully emptied");
+  t.deepEqual(emptyCart.body.message, "Giỏ hàng đã được loại bỏ");
 
   // Add lesser amount than stock on hand
   await g.request
