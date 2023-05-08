@@ -1,8 +1,8 @@
 {
-    "vnp_TmnCode": "BS4JP6BD",
-    "vnp_HashSecret": "0TTP50A82JSC4M7HGK59K2M0BVGGXZVT",
-    "vnp_Url": "http://sandbox.vnpayment.vn/paymentv2/vpcpay.html",
-    "vnp_ReturnUrl": "http://localhost:3000/",
+    "vnp_TmnCode": "Z0AMKLEV",
+    "vnp_HashSecret": "YLFTLITQWYYPYTCZGZPCAUQDBTHFPTZL",
+    "vnp_Url": "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html",
+    "vnp_ReturnUrl": "https://nodecloth.herokuapp.com/",
     "orderStatus": "Pending",
     "buttonText": "Place order, pay instore",
     "resultMessage": "The order is place. Please pay for your order instore on pickup."
