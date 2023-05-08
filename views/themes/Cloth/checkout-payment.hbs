@@ -6,7 +6,7 @@
                 <div class="hero__categories">
                     <div class="hero__categories__all">
                         <i class="fa fa-bars"></i>
-                        <span>Danh Mục</span>
+                        <span>All departments</span>
                     </div>
                     <ul>
                         {{#each menu.items}}
@@ -23,7 +23,7 @@
                     <div class="hero__search__form">
                         <form action="#">
                             <div class="hero__search__categories">
-                                Toàn cửa hàng
+                                All Categories
                                 <span class="arrow_carrot-down"></span>
                             </div>
                             <input name="frm_search" id="frm_search" type="search" placeholder="What do you need?">
@@ -36,7 +36,7 @@
                         </div>
                         <div class="hero__search__phone__text">
                             <h5>0965.105.459</h5>
-                            <span>Hỗ trợ 24/07</span>
+                            <span>support 24/7 time</span>
                         </div>
                     </div>
                 </div>
@@ -73,12 +73,12 @@
 
         <div class="card top-marg-15">
             <div class="card-body">
-                <h5 class="card-title">Thông tin khách hàng}</h5>
+                <h5 class="card-title">Customer information</h5>
                 <ul class="list-group bottom-pad-15">
                     <li class="list-group-item">
                         {{@root.session.customerFirstname}} {{@root.session.customerLastname}} -
                         {{@root.session.customerEmail}}
-                        <span class="float-right"><a href="/checkout/information">Thay đổi</a></span>
+                        <span class="float-right"><a href="/checkout/information">Change</a></span>
                     </li>
                 </ul>
                 <ul class="list-group bottom-pad-15">
@@ -91,13 +91,13 @@
                             <div class="col-md-6">
                                 <span><strong>{{currencySymbol @root.config.currencySymbol}}{{formatAmount
                                         @root.session.totalCartShipping}}</strong></span>
-                                <span class="float-right"><a href="/checkout/shipping">Thay đổi</a></span>
+                                <span class="float-right"><a href="/checkout/shipping">Change</a></span>
                             </div>
                         </div>
                     </li>
                     {{else}}
-                    <li class="list-group-item">Miễn Phí vận chuyển <span class="float-right"><a
-                                href="/checkout/shipping">Thay đổi</a></span></li>
+                    <li class="list-group-item">Free shipping <span class="float-right"><a
+                                href="/checkout/shipping">Change</a></span></li>
                     {{/ifCond}}
                 </ul>
 
@@ -111,7 +111,7 @@
                 <form id="shipping-form" class="shipping-form" action="/instore/checkout_action" method="post"
                     role="form" data-toggle="validator" novalidate="true">
                     <div class="instore_button col-sm-12 text-center">
-                        <button id="checkout_instore" class="site-btn" type="submit">Thanh toán</button>
+                        <button id="checkout_instore" class="site-btn" type="submit">Payment</button>
                     </div>
                 </form>
             </div>

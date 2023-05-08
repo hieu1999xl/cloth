@@ -147,5 +147,5 @@ test("[Success] Delete a product", async (t) => {
     .expect(200);
 
   // Check the returned message
-  t.deepEqual(res.body.message, "Xóa sản phẩm thành công");
+  t.deepEqual(res.body.message, "Delete product successfully");
 });

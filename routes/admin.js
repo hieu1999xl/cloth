@@ -272,7 +272,7 @@ router.post("/admin/settings/update", restrict, checkAccess, (req, res) => {
   const result = updateConfig(req.body);
   if (result === true) {
     req.app.config = getConfig();
-    res.status(200).json({ message: "Cập nhật thàng công" });
+    res.status(200).json({ message: "Update successful" });
     return;
   }
   res.status(400).json({ message: "Permission denied" });
@@ -388,7 +388,7 @@ router.post("/admin/settings/page", restrict, checkAccess, async (req, res) => {
         { $set: doc },
         { returnOriginal: false }
       );
-      res.status(200).json({ message: "Cập nhật thành cồng", pageId: req.body.pageId, page: updatedPage.value });
+      res.status(200).json({ message: "Update successful", pageId: req.body.pageId, page: updatedPage.value });
     } catch (ex) {
       res.status(400).json({ message: "Error updating page. Please try again." });
     }
@@ -396,7 +396,7 @@ router.post("/admin/settings/page", restrict, checkAccess, async (req, res) => {
     // insert page
     try {
       const newDoc = await db.pages.insertOne(doc);
-      res.status(200).json({ message: "Trang mới đã được tạo", pageId: newDoc.insertedId });
+      res.status(200).json({ message: "New page created", pageId: newDoc.insertedId });
       return;
     } catch (ex) {
       res.status(400).json({ message: "Error creating page. Please try again." });
@@ -416,7 +416,7 @@ router.post("/admin/settings/page/delete", restrict, checkAccess, async (req, re
 
   try {
     await db.pages.deleteOne({ _id: getId(req.body.pageId) }, {});
-    res.status(200).json({ message: "Xóa thành côn" });
+    res.status(200).json({ message: "Delete successfully" });
     return;
   } catch (ex) {
     res.status(400).json({ message: "Error deleting page. Please try again." });
@@ -430,7 +430,7 @@ router.post("/admin/settings/menu/new", restrict, checkAccess, (req, res) => {
     res.status(400).json({ message: "Failed creating menu." });
     return;
   }
-  res.status(200).json({ message: "Tạo mới thành công." });
+  res.status(200).json({ message: "Successful new creation" });
 });
 
 // update existing menu item
@@ -440,7 +440,7 @@ router.post("/admin/settings/menu/update", restrict, checkAccess, (req, res) => 
     res.status(400).json({ message: "Failed updating menu." });
     return;
   }
-  res.status(200).json({ message: "Cập nhật thành công" });
+  res.status(200).json({ message: "Update successful" });
 });
 
 // delete menu item
@@ -450,7 +450,7 @@ router.post("/admin/settings/menu/delete", restrict, checkAccess, (req, res) => 
     res.status(400).json({ message: "Failed deleting menu." });
     return;
   }
-  res.status(200).json({ message: "Xóa thành công." });
+  res.status(200).json({ message: "Delete successfully." });
 });
 
 // We call this via a Ajax call to save the order from the sortable list
@@ -481,7 +481,7 @@ router.post("/admin/validatePermalink", async (req, res) => {
     res.status(400).json({ message: "Permalink already exists" });
     return;
   }
-  res.status(200).json({ message: "Validate thành công" });
+  res.status(200).json({ message: "Validate successfully" });
 });
 
 // Discount codes
@@ -621,19 +621,19 @@ router.post("/admin/settings/discount/create", csrfProtection, restrict, checkAc
 
   // Check start is after today
   if (moment(discountDoc.start).isBefore(moment())) {
-    res.status(400).json({ message: "Ngày bắt đầu giảm giá phải sau ngày hôm nay" });
+    res.status(400).json({ message: "Discount start date must be after today" });
     return;
   }
 
   // Check end is after the start
   if (!moment(discountDoc.end).isAfter(moment(discountDoc.start))) {
-    res.status(400).json({ message: "Ngày kết thúc giảm giá phải sau ngày bắt đầu" });
+    res.status(400).json({ message: "The sale end date must be after the start date" });
     return;
   }
 
   // Insert discount code
   const discount = await db.discounts.insertOne(discountDoc);
-  res.status(200).json({ message: "Tạo mã giảm giá thành công", discountId: discount.insertedId });
+  res.status(200).json({ message: "Successfully generated discount code", discountId: discount.insertedId });
 });
 
 // Delete discount code
@@ -642,7 +642,7 @@ router.delete("/admin/settings/discount/delete", restrict, checkAccess, async (r
 
   try {
     await db.discounts.deleteOne({ _id: getId(req.body.discountId) }, {});
-    res.status(200).json({ message: "Xóa mã giảm giá thành công" });
+    res.status(200).json({ message: "Successfully deleted discount code" });
     return;
   } catch (ex) {
     res.status(400).json({ message: "Error deleting discount code. Please try again." });

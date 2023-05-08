@@ -666,7 +666,7 @@ router.post("/product/updatecart", async (req, res, next) => {
     }
   );
 
-  res.status(200).json({ message: "Giỏ hàng đã được cập nhật", totalCartItems: Object.keys(req.session.cart).length });
+  res.status(200).json({ message: "The shopping cart has been updated", totalCartItems: Object.keys(req.session.cart).length });
 });
 
 // Remove single product from cart
@@ -870,7 +870,7 @@ router.post("/product/addtocart", async (req, res, next) => {
   }
 
   return res.status(200).json({
-    message: "Đã thêm sản phẩm vào giỏ hàng",
+    message: "Product added to cart",
     cartId: productCartId,
     totalCartItems: req.session.totalCartItems,
   });

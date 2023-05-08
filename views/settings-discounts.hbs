@@ -1,7 +1,7 @@
 {{> partials/menu}}
 <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
     <div class="col-md-12">
-        <h2 class="clearfix">Mã giảm giá <div class="float-right"><a href="/admin/settings/discount/new" class="btn btn-outline-success">Thêm mã giảm giá</a></div></h2>
+        <h2 class="clearfix">Discount code <div class="float-right"><a href="/admin/settings/discount/new" class="btn btn-outline-success">Generate discount code</a></div></h2>
         {{#if discounts}}
             <ul class="list-group">
                 {{#each discounts}}
@@ -11,20 +11,20 @@
                                 <span><strong>{{ @root.__ "Code" }}:</strong>&nbsp; {{this.code}}</span>
                             </div>
                             <div class="col-2 mt-2">
-                                <span><strong>Kiểu:</strong>&nbsp; {{this.type}}</span>
+                                <span><strong>Type:</strong>&nbsp; {{this.type}}</span>
                             </div>
                             <div class="col-3 mt-2">
-                                <span><strong>Trạng thái:</strong>
+                                <span><strong>Status:</strong>
                                 {{#ifCond (discountExpiry this.start this.end) '===' true}}
-                                    <span class="text-success">Đang được áp dụng</span>
+                                    <span class="text-success">Currently being applied</span>
                                 {{else}}
-                                    <span class="text-danger">Đã ngừng áp dụng</span>
+                                    <span class="text-danger">stopped applying</span>
                                 {{/ifCond}}
                                 </span>
                             </div>
                             <div class="col-3 text-right">
-                                <a class="btn btn-outline-success" href="/admin/settings/discount/edit/{{this._id}}">Sửa</a>
-                                <button class="btn btn-outline-danger" id="btnDiscountDelete" data-id="{{this._id}}">Xóa</button>
+                                <a class="btn btn-outline-success" href="/admin/settings/discount/edit/{{this._id}}">Edit</a>
+                                <button class="btn btn-outline-danger" id="btnDiscountDelete" data-id="{{this._id}}">Delete</button>
                             </div>
                         </div>
                     </li>

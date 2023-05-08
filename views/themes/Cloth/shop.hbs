@@ -97,7 +97,7 @@
                 <div class="hero__categories">
                     <div class="hero__categories__all">
                         <i class="fa fa-bars"></i>
-                        <span>Danh Mục</span>
+                        <span> All departments</span>
                     </div>
                     <ul>
                         {{#each menu.items}}
@@ -114,11 +114,11 @@
                     <div class="hero__search__form">
                         <form action="#">
                             <div class="hero__search__categories">
-                                Toàn cửa hàng
+                                All Categories
                                 <span class="arrow_carrot-down"></span>
                             </div>
-                            <input name="frm_search" id="frm_search" type="search" placeholder="Nhập từ khóa tìm kiếm">
-                            <button type="submit" id="btn_search" class="site-btn">Tìm kiếm</button>
+                            <input name="frm_search" id="frm_search" type="search" placeholder="What do you need?">
+                            <button type="submit" id="btn_search" class="site-btn">Search</button>
                         </form>
                     </div>
                     <div class="hero__search__phone">
@@ -127,7 +127,7 @@
                         </div>
                         <div class="hero__search__phone__text">
                             <h5>0965.105.459</h5>
-                            <span>Hỗ trợ 24/07</span>
+                            <span>support 24/7 time</span>
                         </div>
                     </div>
                 </div>
@@ -143,10 +143,10 @@
         <div class="row">
             <div class="col-lg-12 text-center">
                 <div class="breadcrumb__text">
-                    <h2>Cửa Hàng Thực Phẩm</h2>
+                    <h2>Shop Fashion</h2>
                     <div class="breadcrumb__option">
                         <a href="./index.html">Home</a>
-                        <span>Cửa Hàng</span>
+                        <span>Shop</span>
                     </div>
                 </div>
             </div>
@@ -162,7 +162,7 @@
             <div class="col-lg-3 col-md-5">
                 <div class="sidebar">
                     <div class="sidebar__item">
-                        <h4>Danh Mục</h4>
+                        <h4>Menu</h4>
                         <ul>
                             {{#each menu.items}}
                             <li {{#menuMatch this.title @root.searchTerm}}{{/menuMatch}} {{#menuMatch this.title
@@ -257,7 +257,7 @@
                     </div> --}}
                     <div class="sidebar__item">
                         <div class="latest-product__text">
-                            <h4>SP Bán Chạy</h4>
+                            <h4>Selling products</h4>
                             <div class="latest-product__slider owl-carousel">
                                 <div class="latest-prdouct__slider__item">
                                     {{#if topData.topProducts}}
@@ -313,7 +313,7 @@
             <div class="col-lg-9 col-md-7">
                 <div class="product__discount">
                     <div class="section-title product__discount__title">
-                        <h2>Giảm Giá</h2>
+                        <h2>Discount</h2>
                     </div>
                     <div class="row">
                         <div class="product__discount__slider owl-carousel">

@@ -2,24 +2,19 @@
 <section class="hero hero-normal">
     <div class="container">
         <div class="row">
-            <div class="col-lg-3">
+                <div class="col-lg-3">
                 <div class="hero__categories">
                     <div class="hero__categories__all">
                         <i class="fa fa-bars"></i>
-                        <span>Danh Mục</span>
+                        <span> All departments</span>
                     </div>
                     <ul>
-                        <li><a href="#">Fresh Meat</a></li>
-                        <li><a href="#">Vegetables</a></li>
-                        <li><a href="#">Fruit & Nut Gifts</a></li>
-                        <li><a href="#">Fresh Berries</a></li>
-                        <li><a href="#">Ocean Foods</a></li>
-                        <li><a href="#">Butter & Eggs</a></li>
-                        <li><a href="#">Fastfood</a></li>
-                        <li><a href="#">Fresh Onion</a></li>
-                        <li><a href="#">Papayaya & Crisps</a></li>
-                        <li><a href="#">Oatmeal</a></li>
-                        <li><a href="#">Fresh Bananas</a></li>
+                        {{#each menu.items}}
+                        <li {{#menuMatch this.title @root.searchTerm}}{{/menuMatch}} {{#menuMatch this.title
+                            @root.title}}{{/menuMatch}}>
+                            <a href="{{this.link}}">{{this.title}}</a>
+                        </li>
+                        {{/each}}
                     </ul>
                 </div>
             </div>
@@ -28,7 +23,7 @@
                     <div class="hero__search__form">
                         <form action="#">
                             <div class="hero__search__categories">
-                                Toàn cửa hàng
+                                All Categories
                                 <span class="arrow_carrot-down"></span>
                             </div>
                             <input type="text" placeholder="What do you need?">
@@ -41,7 +36,7 @@
                         </div>
                         <div class="hero__search__phone__text">
                             <h5>0965.105.459</h5>
-                            <span>Hỗ trợ 24/07</span>
+                            <span>support 24/7 time</span>
                         </div>
                     </div>
                 </div>
@@ -57,11 +52,11 @@
         <div class="row">
             <div class="col-lg-12 text-center">
                 <div class="breadcrumb__text">
-                    <h2>Cửa Hàng Rau Củ</h2>
+                    <h2>Store</h2>
                     <div class="breadcrumb__option">
                         <a href="/">Home</a>
-                        <a href="/">Rau Củ</a>
-                        <span>Oganic</span>
+                        <a href="/">Fashion</a>
+                        <span>Design</span>
                     </div>
                 </div>
             </div>
@@ -146,18 +141,18 @@
                             <button class="btn btn-primary qty-btn-plus" type="button">+</button>
                         </div>
                     </div> --}}
-                    <a href="#" class="primary-btn product-add-to-cart">THÊM VÀO GIỎ HÀNG</a>
+                    <a href="#" class="primary-btn product-add-to-cart">Add To Cart</a>
                     <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
                     <ul>
-                        <li><b>Thương Hiệu</b> <span>Ogani</span></li>
-                        <li><b>Vận chuyển</b> <span>Vận chuyển trong ngày.</span></li>
-                        <li><b>Khối lượng</b> <span>1 Túi</span></li>
-                        <li><b>Chia sẻ</b>
+                        <li><b>Brand</b> <span>Fashion Design</span></li>
+                        <li><b>Ship</b> <span>Drop Ship.</span></li>
+                        <li><b>Categories</b> <span>Clothes</span></li>
+                        <li><b>Share</b>
                             <div class="share">
                                 <div id="fb-root">
                                 </div>
                                 <div class="fb-share-button"
-                                    data-href="https://oganiviet.herokuapp.com/{{this.productPermalink}}"
+                                    data-href="https://nodecloth.herokuapp.com/{{this.productPermalink}}"
                                     data-layout="button_count">
                                 </div>
                                 {{!-- <a class="fb-share-button" data-href="https://oganiviet.herokuapp.com/"
@@ -175,15 +170,15 @@
                     <ul class="nav nav-tabs" role="tablist">
                         <li class="nav-item">
                             <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab"
-                                aria-selected="true">Mô Tả</a>
+                                aria-selected="true">Description</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab"
-                                aria-selected="false">Thông Tin</a>
+                                aria-selected="false">Additional information</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" data-toggle="tab" href="#tabs-3" role="tab"
-                                aria-selected="false">Đánh Giá
+                                aria-selected="false">Customer Previews
                                 <span>(1)</span></a>
                         </li>
                     </ul>
@@ -196,7 +191,7 @@
                         </div>
                         <div class="tab-pane" id="tabs-2" role="tabpanel">
                             <div class="product__details__tab__desc">
-                                <h6>Thông tin sản phẩm</h6>
+                                <h6>Description</h6>
                                 <p>Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui.
                                     Pellentesque in ipsum id orci porta dapibus. Proin eget tortor risus.
                                     Vivamus suscipit tortor eget felis porttitor volutpat. Vestibulum ac diam
@@ -255,7 +250,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="section-title related__product__title">
-                    <h2>Sản Phẩm Liên Quan</h2>
+                    <h2>Related Products</h2>
                 </div>
             </div>
         </div>

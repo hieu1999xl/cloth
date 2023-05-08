@@ -1,26 +1,26 @@
 {{> partials/menu}}
 <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
     <div class="col-sm-12">
-        <h2>Sản phẩm</h2>
+        <h2>Product</h2>
     </div>
     <div class="col-sm-12 search_bar">
         <div class="input-group">
-            <input type="text" name="product_filter" id="product_filter" class="form-control" placeholder="Tìm kiếm sản phẩm">
+            <input type="text" name="product_filter" id="product_filter" class="form-control" placeholder="Search Product">
             <div class="input-group-append">
-                <button class="btn btn-outline-success" id="btn_product_filter">Tìm kiếm</button>
+                <button class="btn btn-outline-success" id="btn_product_filter">Search</button>
                 <a href="/admin/products" class="hidden-xs btn btn-outline-warning">{{{feather 'x-octagon'}}}</a>
             </div>
         </div>
-        <p class="text-warning top-pad-10">Có thể tìm kiểm sản phẩm theo tên sản phẩm or mô tả sản phẩm</p>
+        <p class="text-warning top-pad-10">You can search for products by product name or product description</p>
     </div>
     <div class="col-sm-12">
         <ul class="list-group">
             <li class="list-group-item">
-                <span class="float-right"><strong>đang bán</strong></span>
+                <span class="float-right"><strong>on sale</strong></span>
                 {{#ifCond resultType '==' 'filtered'}}
-                <strong>Sản phẩm - <span class="text-danger">{{ @root.__ "Filtered term" }}: {{@root.searchTerm}} </span></strong>
+                <strong>Propducts - <span class="text-danger">{{ @root.__ "Filtered term" }}: {{@root.searchTerm}} </span></strong>
                 {{else}}
-                <strong>Sản phẩm mới</strong>
+                <strong>New product</strong>
                 {{/ifCond}}
             </li>
             {{#each results}}

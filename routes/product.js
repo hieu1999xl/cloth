@@ -420,7 +420,7 @@ router.post("/admin/product/delete", restrict, checkAccess, async (req, res) => 
 
     // re-index products
     indexProducts(req.app).then(() => {
-      res.status(200).json({ message: "Xóa sản phẩm thành công" });
+      res.status(200).json({ message: "Delete product successfully" });
     });
   });
 });

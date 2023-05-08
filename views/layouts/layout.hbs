@@ -282,13 +282,13 @@
                     <span class="">User</span>
                     <ul>
                         <li><a class="dropdown-item" href="/customer/account"><i class="fa fa-user"></i>
-                                Account</a></li>
+                                Tài Khoản</a></li>
                         <li><a class="dropdown-item" href="/customer/logout"><i class="fa fa-user"></i>
-                                Logout</a></li>
+                                Đăng Xuất</a></li>
                     </ul>
                     {{else}}
                     <a href="/customer/account"><i class="fa fa-user"></i>
-                        Login</a>
+                        Đăng Nhập</a>
                     {{/if}}
                 </div>
 
@@ -318,8 +318,8 @@
             </div>
             <div class="humberger__menu__contact">
                 <ul>
-                    <li><i class="fa fa-envelope"></i> hello@me.com</li>
-                    <li> Free Shipping for all Order of $99</li>
+                    <li><i class="fa fa-envelope"></i> hello@dcv.com</li>
+                    <li>Miễn phí vẫn chuyển với đơn hàng từ 500.000 VNĐ</li>
 
                 </ul>
             </div>
@@ -334,8 +334,8 @@
                         <div class="col-lg-6 col-md-6">
                             <div class="header__top__left">
                                 <ul>
-                                    <li><i class="fa fa-envelope"></i> hello@me.com</li>
-                                    <li> Free Shipping for all Order of $99</li>
+                                    <li><i class="fa fa-envelope"></i> hello@dcv.com</li>
+                                    <li>Miễn phí vẫn chuyển với đơn hàng từ 500.000 VNĐ</li>
                                 </ul>
                             </div>
                         </div>
@@ -362,18 +362,18 @@
 
                                 {{#if @root.session.customerPresent}}
                                 <div class="header__top__right__auth header__top__right__language">
-                                    <span class=""> Người dùng</span>
+                                    <span class=""> User</span>
                                     <ul>
                                         <li><a class="dropdown-item" href="/customer/account"><i class="fa fa-user"></i>
-                                                Tài Khoản</a></li>
+                                                Account</a></li>
                                         <li><a class="dropdown-item" href="/customer/logout"><i class="fa fa-user"></i>
-                                                Đăng xuất</a></li>
+                                                Logout</a></li>
                                     </ul>
                                 </div>
                                 {{else}}
                                 <div class="header__top__right__auth">
                                     <li class="list_style"><a href="/customer/account"><i class="fa fa-user"></i>
-                                            Đăng Nhập</a></li>
+                                            Login</a></li>
                                 </div>
                                 {{/if}}
                             </div>
@@ -425,13 +425,13 @@
                                         <div class="cart-contents-shipping col-md-12 no-pad-right">
                                             {{#ifCond @root.session.totalCartDiscount '>' 0}}
                                             <div class="text-right">
-                                                Giảm giá: <strong id="discount-amount">{{currencySymbol
+                                                Item: <strong id="discount-amount">{{currencySymbol
                                                     @root.config.currencySymbol}}{{formatAmount
                                                     @root.session.totalCartDiscount}}</strong>
                                             </div>
                                             {{/ifCond}}
                                             <div class="text-right">
-                                                Giá tiền:
+                                                Item:
                                                 <strong id="total-cart-amount">{{currencySymbol
                                                     @root.config.currencySymbol}}{{formatAmount
                                                     @root.session.totalCartAmount}}</strong>
@@ -440,7 +440,7 @@
                                     </div>
                                     {{else}}
                                     <div class="text-right">
-                                        Giá tiền
+                                        Item
                                         <strong id="total-cart-amount">
                                             0 đ</strong>
                                     </div>
@@ -505,17 +505,17 @@
                                     <a href="/"><img src="/images/img/logo.png" alt=""></a>
                                 </div>
                                 <ul>
-                                    <li>Address:Hanoi. VietNam</li>
+                                    <li>Address: Hanoi. Vietnam</li>
                                     <li>Phone: +84 965.105.459</li>
-                                    <li>Email: hello@dcv.com</li>
+                                    <li>Email: hello@me.com</li>
                                 </ul>
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-6 col-sm-6 offset-lg-1">
                             <div class="footer__widget">
-                                <h6>Thông tin</h6>
+                                <h6>Useful Links</h6>
                                 <ul>
-                                    <li><a href="#">About us</a></li>
+                                    <li><a href="#">About Us</a></li>
                                     <li><a href="#">About Our Shop</a></li>
                                     <li><a href="#">Secure Shopping</a></li>
                                     <li><a href="#">Delivery infomation</a></li>
@@ -539,7 +539,7 @@
                                 </p>
                                 <form action="#">
                                     <input type="text" placeholder="Enter your mail">
-                                    <button type="submit" class="site-btn">SUBSCRIB</button>
+                                    <button type="submit" class="site-btn">SUBSCRIBE</button>
                                 </form>
                                 <div class="footer__widget__social">
                                     <a href="#"><i class="fa fa-facebook"></i></a>
@@ -559,7 +559,7 @@
                                         Copyright &copy;
                                         <script>document.write(new Date().getFullYear());</script> All rights reserved |
                                         This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a
-                                            href="https://dcv.com" target="_blank">Me</a>
+                                            href="https://dcv.com" target="_blank">me</a>
                                         <!-- Link back to dcv can't be removed. Template is licensed under CC BY 3.0. -->
                                     </p>
                                 </div>
