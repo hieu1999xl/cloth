@@ -228,11 +228,11 @@
         }
     </style>{{/if}}
     {{#if admin}}
-    <link rel="stylesheet" href="/stylesheets/admin{{config.env}}.css">
+    <link rel="stylesheet" href="/stylesheets/admin.css">
     {{else}}
     {{#if config.theme}}
-    <link rel="stylesheet" href="/{{config.theme}}/style{{config.env}}.css">
-    <script src="/{{config.theme}}/index{{config.env}}.js"></script>
+    <link rel="stylesheet" href="/{{config.theme}}/style.css">
+    <script src="/{{config.theme}}/index.js"></script>
     {{/if}}
     {{/if}}
 </head>
@@ -282,13 +282,13 @@
                     <span class="">User</span>
                     <ul>
                         <li><a class="dropdown-item" href="/customer/account"><i class="fa fa-user"></i>
-                                Tài Khoản</a></li>
+                                Account</a></li>
                         <li><a class="dropdown-item" href="/customer/logout"><i class="fa fa-user"></i>
-                                Đăng Xuất</a></li>
+                                Log out</a></li>
                     </ul>
                     {{else}}
                     <a href="/customer/account"><i class="fa fa-user"></i>
-                        Đăng Nhập</a>
+                        Log in</a>
                     {{/if}}
                 </div>
 
@@ -585,6 +585,7 @@
             {{/if}}
             <script>
                 feather.replace();
+                console.log('config.env}', config.env)
             </script>
 
 

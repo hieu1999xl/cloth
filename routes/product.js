@@ -453,7 +453,7 @@ router.post("/admin/product/setasmainimage", restrict, checkAccess, async (req, 
       { $set: { productImage: req.body.productImage } },
       { multi: false }
     );
-    res.status(200).json({ message: "Đặt ảnh chính thành công" });
+    res.status(200).json({ message: "Set main photo successfully" });
   } catch (ex) {
     res.status(400).json({ message: "Unable to set as main image. Please try again." });
   }
@@ -482,7 +482,7 @@ router.post("/admin/product/deleteimage", restrict, checkAccess, async (req, res
       if (err) {
         res.status(400).json({ message: "Image not removed, please try again." });
       } else {
-        res.status(200).json({ message: "Ảnh sản phẩm đã được xóa" });
+        res.status(200).json({ message: "Product photo has been removed" });
       }
     });
   } else {
@@ -491,7 +491,7 @@ router.post("/admin/product/deleteimage", restrict, checkAccess, async (req, res
       if (err) {
         res.status(400).json({ message: "Image not removed, please try again." });
       } else {
-        res.status(200).json({ message: "Ảnh sản phẩm đã được xóa" });
+        res.status(200).json({ message: "Product photo has been removed" });
       }
     });
   }

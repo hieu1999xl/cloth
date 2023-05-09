@@ -2,43 +2,43 @@
 <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
     <form id="settingsForm" data-toggle="validator">
         <div class="col-sm-12">
-            <h2>Cài đặt chung <span class="float-right"><button type="submit" id="btnSettingsUpdate"
-                        class="btn btn-success">Cập nhật</button></span></h2>
+            <h2>General settings <span class="float-right"><button type="submit" id="btnSettingsUpdate"
+                        class="btn btn-success">Update</button></span></h2>
         </div>
         <div class="col-md-12">
             <div class="form-group">
-                <label>Tên trang web *</label>
+                <label>Website name *</label>
                 <input type="text" class="form-control" name="cartTitle" value="{{config.cartTitle}}" required>
                 <p class="help-block">
-                    Yếu tố này rất quan trọng cho việc tối ưu hóa công cụ tìm kiếm. Tiêu đề giỏ hàng được hiển thị nếu logo của bạn bị ẩn
+                    This factor is very important for search engine optimization. Cart title is displayed if your logo is hidden
                 </p>
             </div>
             <div class="form-group">
-                <label>Mô tả trang web *</label>
+                <label>Site description*</label>
                 <input type="text" class="form-control" name="cartDescription" value="{{config.cartDescription}}"
                     required>
                 <p class="help-block">
-                    Mô tả này hiển thị khi trang web  được liệt kê trong kết quả của công cụ tìm kiếm.
+                    MThis description shows up when the site is listed in search engine results.
             </div>
             <div class="form-group">
                 <label>logo</label>
                 <input type="text" class="form-control" name="cartLogo" value="{{config.cartLogo}}">
             </div>
             <div class="form-group">
-                <label>Đường dẫn *</label>
+                <label>Path *</label>
                 <input type="text" class="form-control" name="baseUrl" value="{{config.baseUrl}}" required>
                 <p class="help-block">
-                    {{ @root.__ "Đường dẫn này được gọi khi khách hàng thanh toán điện tử xong" }}
+                    This link is called when the customer completes the electronic payment
                 </p>
             </div>
             <div class="form-group">
                 <label>Email *</label>
                 <input type="email" class="form-control" name="emailAddress" value="{{config.emailAddress}}" required>
                 <p class="help-block">
-                    Nó được dùng để gửi mail cho khách hàng</p>
+                    It is used to send emails to customers</p>
             </div>
             <div class="form-group">
-                <label>Phương thức thanh toán</label>
+                <label>Payment methods</label>
                 <select class="form-control" name="paymentGateway">
                     <option {{selectState 'paypal' config.paymentGateway}} value="paypal">Paypal</option>
                     <option {{selectState 'stripe' config.paymentGateway}} value="stripe">Stripe</option>
@@ -52,10 +52,10 @@
              
             </div>
             <div class="form-group">
-                <label>Ký hiệu tiền tệ</label>
+                <label>Currency symbol</label>
                 <input type="text" class="form-control" name="currencySymbol"
                     value="{{currencySymbol config.currencySymbol}}">
-                <p class="help-block">"Đặt giá trị tiền tệ. ví dụ: $, £, €, đ..</p>
+                <p class="help-block">"Set currency value. eg: $, £, €, e..</p>
             </div>
             {{#ifCond config.paymentGateway '==' 'blockonomics'}}
             <div class="form-group">
@@ -69,7 +69,7 @@
             </div>
             {{/ifCond}}
             <div class="form-group">
-                <label>Giao diện</label>
+                <label>Display</label>
                 <select class="form-control" name="theme">
                     {{#each themes}}
                     <option {{selectState this ../config.theme}} value="{{this}}">{{this}}</option>
@@ -78,7 +78,7 @@
                
             </div>
             <div class="form-group">
-                <label>Số sản phẩm trên 1 hàng</label>
+                <label>Number of products per row</label>
                 <select class="form-control" name="productsPerRow">
                     <option value="{{config.productsPerRow}}" hidden="hidden" selected="selected">
                         {{config.productsPerRow}}</option>
@@ -90,28 +90,28 @@
                
             </div>
             <div class="form-group">
-                <label>Số sản phẩm trên trang</label>
+                <label>Number of products on the page</label>
                 <input type="number" class="form-control" name="productsPerPage" value="{{config.productsPerPage}}">
               
             </div>
             <div class="form-group">
-                <label>Sắp xếp theo ngày/theo tên</label>
+                <label>Sort by date/by name</label>
                 <select class="form-control" name="productOrderBy">
                     <option {{selectState 'date' config.productOrderBy}} value="date">Theo ngày</option>
                     <option {{selectState 'title' config.productOrderBy}} value="title">Theo tên</option>
                 </select>
                 <p class="help-block">
-                    Lựu chọn kiểu sắp xếp hàng trong cửa hàng</p>
+                   Select the type of arrangement in the store</p>
             </div>
             <div class="form-group">
-                <label>Sắp xếp theo giá tiền</label>
+                <label>Sort by price</label>
                 <select class="form-control" name="productOrder">
                     <option {{selectState 'descending' config.productOrder}} value="descending">
-                        Giảm xuống</option>
-                    <option {{selectState 'ascending' config.productOrder}} value="ascending">Tăng lên
+                        Reduced</option>
+                    <option {{selectState 'ascending' config.productOrder}} value="ascending">Increase
                     </option>
                 </select>
-                <p class="help-block">Chọn kiểu sắp xếp</p>
+                <p class="help-block">Select sort type</p>
             </div>
             {{!-- <div class="form-group">
                 <label>Footer HTML</label>

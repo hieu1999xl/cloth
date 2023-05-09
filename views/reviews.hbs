@@ -1,27 +1,27 @@
 {{> partials/menu}}
 <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
     <div class="col-sm-12">
-        <h2>Đánh giá</h2>
+        <h2>Reviews</h2>
     </div>
     <div class="col-sm-12 search_bar">
         <div class="input-group">
             <input type="text" name="review_filter" id="review_filter" class="form-control"
-                placeholder="Tìm kiếm đánh giá">
+                placeholder="Search reviews">
             <div class="input-group-append">
                 <button class="btn btn-outline-success" id="btn_review_filter">Tìm kiếm</button>
                 <a href="/admin/reviews" class="hidden-xs btn btn-outline-warning">{{{feather 'x-octagon'}}}</a>
             </div>
         </div>
-        <p class="text-warning top-pad-10">Có thể tìm kiếm đánh giá bằng tên hoặc mô tả đánh giá</p>
+        <p class="text-warning top-pad-10">Reviews can be searched by review name or description</p>
     </div>
     <div class="col-sm-12">
         <ul class="list-group">
             <li class="list-group-item">
                 {{#ifCond resultType '==' 'filtered'}}
-                <strong>Đánh giá - <span class="text-danger">Kết quả:
+                <strong>Revews - <span class="text-danger">result:
                         {{@root.searchTerm}} </span></strong>
                 {{else}}
-                <strong>Đánh giá mới nhất</strong>
+                <strong>Latest reviews</strong>
                 {{/ifCond}}
             </li>
             {{#each results}}
@@ -42,7 +42,7 @@
                 </div>
             </li>
             {{else}}
-            <li class="list-group-item text-center">Không có đánh giá </li>
+            <li class="list-group-item text-center">There are no reviews yet </li>
             {{/each}}
         </ul>
     </div>

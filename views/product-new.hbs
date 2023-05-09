@@ -6,12 +6,12 @@
                 <div class="float-right">
                     <button id="frm_edit_product_save" class="btn btn-outline-success" type="submit">Thêm sản phẩm</button>
                 </div>
-                <h2>Sản phẩm mới</h2>
+                <h2>New product</h2>
             </div>
         </div>
         <div class="col-12">
             <div class="form-group">
-                <label for="productTitle" class="control-label">Tiêu đề *</label>
+                <label for="productTitle" class="control-label">Title *</label>
                 <input type="text" id="productTitle" class="form-control" minlength="5" maxlength="200"
                     value="{{productTitle}}" required />
             </div>
@@ -19,7 +19,7 @@
         <div class="row ml-0 mr-0">
             <div class="col-sm-4">
                 <div class="form-group">
-                    <label for="productPrice" class="control-label">Giá *</label>
+                    <label for="productPrice" class="control-label">Price *</label>
                     <div class="input-group">
                         <div class="input-group-prepend">
                             <label class="input-group-text">{{currencySymbol config.currencySymbol}}</label>
@@ -31,20 +31,20 @@
             </div>
             <div class="col-sm-4">
                 <div class="form-group">
-                    <label for="productGtin" class="control-label">GTIN (Mã vạch)</label>
+                    <label for="productGtin" class="control-label">GTIN (Barcode)</label>
                     <div class="input-group">
                         <input type="number" id="productGtin" class="form-control" step="any" value="{{productGtin}}" />
                     </div>
-                    <p class="help-block">Mã vạch của sản phẩm</p>
+                    <p class="help-block">Barcode of the product</p>
                 </div>
             </div>
             <div class="col-sm-4">
                 <div class="form-group">
-                    <label for="productBrand" class="control-label">Nhãn hiệu</label>
+                    <label for="productBrand" class="control-label">Brand</label>
                     <div class="input-group">
                         <input type="text" id="productBrand" class="form-control" value="{{productBrand}}" />
                     </div>
-                    <p class="help-block">Nhãn hiệu của sản phẩm</p>
+                    <p class="help-block">Brand of the product</p>
                 </div>
             </div>
         </div>
@@ -53,8 +53,8 @@
                 <div class="form-group">
                     <label for="productPublished" class="control-label">{{ @root.__ "Status" }}</label>
                     <select class="form-control" id="productPublished">
-                        <option value="true" selected>Công khai</option>
-                        <option value="false">Khóa</option>
+                        <option value="true" selected>Public</option>
+                        <option value="false">lock up</option>
                     </select>
                 </div>
             </div>
@@ -69,14 +69,14 @@
         {{/if}}
         <div class="col-12">
             <div class="form-group" id="editor-wrapper">
-                <label for="editor" class="control-label">Mô tả sản phẩm *</label>
+                <label for="editor" class="control-label">Product Description *</label>
                 <textarea minlength="5" rows="10" id="productDescription" class="form-control"
                     required>{{productDescription}}</textarea>
             </div>
         </div>
         <div class="col-12">
             <div class="form-group">
-                <label class="control-label">Đường dẫn</label>
+                <label class="control-label">Path</label>
                 <div class="input-group">
                     <input type="text" class="form-control" id="productPermalink"
                         placeholder="Permalink for the article" value={{productPermalink}}>
@@ -84,7 +84,7 @@
                         <button class="btn btn-outline-success" id="validatePermalink" type="button">Validate</button>
                     </div>
                 </div>
-                <p class="help-block">Tại đây đặt giá trị của sản phẩm</p>
+                <p class="help-block">Here put the value of the product</p>
             </div>
         </div>
         {{!-- {{#contains config.paymentGateway 'stripe'}}
@@ -99,21 +99,21 @@
         {{/contains}} --}}
         <div class="col-12">
             <div class="form-group">
-                <label for="productComment" class="control-label">Cho phép ghi chú</label>
+                <label for="productComment" class="control-label">Allow notes</label>
                 <div class="checkbox">
                     <label>
                         <input class="productComment" type="checkbox" {{checkedState result.productComment}}
                             id="productComment">
                     </label>
                 </div>
-                <p class="help-block">Cho phép thêm ghi chú vào sản phẩm</p>
+                <p class="help-block">allows adding notes to the product</p>
             </div>
         </div>
         <div class="col-12">
             <div class="form-group">
-                <label for="productTags" class="control-label">Từ khóa</label>
+                <label for="productTags" class="control-label">Key word</label>
                 <input type="text" class="form-control" id="productTags">
-                <p class="help-block">Nhập từ khóa để bạn có thể tìm kiếm hoặc lọc sản phẩm tốt hơn</p>
+                <p class="help-block">Enter keywords so you can search or filter products better</p>
             </div>
         </div>
     </form>
