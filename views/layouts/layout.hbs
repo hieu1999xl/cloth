@@ -264,7 +264,7 @@
                         @root.config.currencySymbol}}{{formatAmount @root.session.totalCartAmount}}</span></div>
             </div>
             <div class="humberger__menu__widget">
-                {{#ifCond @root.config.enableLanguages "!=" false}}
+                {{!-- {{#ifCond @root.config.enableLanguages "!=" false}}
                 <div class="header__top__right__language">
                     <img style="width:20px" src="/images/img/vietnam.jpg" alt="">
                     <div>Tiếng Việt</div>
@@ -275,7 +275,7 @@
                         {{/availableLanguages}}
                     </ul>
                 </div>
-                {{/ifCond}}
+                {{/ifCond}} --}}
 
                 <div class="header__top__right__auth header__top__right__language">
                     {{#if @root.session.customerPresent}}
@@ -319,7 +319,7 @@
             <div class="humberger__menu__contact">
                 <ul>
                     <li><i class="fa fa-envelope"></i> hello@dcv.com</li>
-                    <li>Miễn phí vẫn chuyển với đơn hàng từ 500.000 VNĐ</li>
+                    <li>Free still carry the opening time</li>
 
                 </ul>
             </div>
@@ -335,7 +335,7 @@
                             <div class="header__top__left">
                                 <ul>
                                     <li><i class="fa fa-envelope"></i> hello@dcv.com</li>
-                                    <li>Miễn phí vẫn chuyển với đơn hàng từ 500.000 VNĐ</li>
+                                    <li>Free still carry the opening time</li>
                                 </ul>
                             </div>
                         </div>
@@ -347,7 +347,7 @@
                                     <a href="#"><i class="fa fa-linkedin"></i></a>
                                     <a href="#"><i class="fa fa-pinterest-p"></i></a>
                                 </div>
-                                {{#ifCond @root.config.enableLanguages "!=" false}}
+                                {{!-- {{#ifCond @root.config.enableLanguages "!=" false}}
                                 <div class="header__top__right__language">
                                     <img style="width:20px" src="/images/img/vietnam.jpg" alt="">
                                     <div>Tiếng Việt</div>
@@ -358,7 +358,7 @@
                                         {{/availableLanguages}}
                                     </ul>
                                 </div>
-                                {{/ifCond}}
+                                {{/ifCond}} --}}
 
                                 {{#if @root.session.customerPresent}}
                                 <div class="header__top__right__auth header__top__right__language">
