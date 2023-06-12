@@ -15,7 +15,7 @@
     "googleAnalytics": "",
     "injectJs": "",
     "customCss": "",
-    "currencySymbol": "₫",
+    "currencySymbol": "$",
     "paymentGateway": "instore",
     "databaseConnectionString": "mongodb+srv://dbUser:Prototype.9@cluster0.rysjo.mongodb.net/expresscart?retryWrites=true&w=majority",
     "theme": "Cloth",

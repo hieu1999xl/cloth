@@ -101,9 +101,9 @@ $(document).ready(function () {
         if (!e.isDefaultPrevented()) {
             e.preventDefault();
             // set hidden elements from codemirror editors
-            $('#footerHtml_input').val($('.CodeMirror')[0].CodeMirror.getValue());
-            $('#googleAnalytics_input').val($('.CodeMirror')[1].CodeMirror.getValue());
-            $('#customCss_input').val($('.CodeMirror')[2].CodeMirror.getValue());
+            // $('#footerHtml_input').val($('.CodeMirror')[0].CodeMirror.getValue());
+            // $('#googleAnalytics_input').val($('.CodeMirror')[1].CodeMirror.getValue());
+            // $('#customCss_input').val($('.CodeMirror')[2].CodeMirror.getValue());
             $.ajax({
                 method: 'POST',
                 url: '/admin/settings/update',

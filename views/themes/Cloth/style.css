@@ -1,3 +1,10 @@
 .nice-select {
     width: 100%;
+    position: relative;
+}
+
+.list {
+    position: absolute !important;
+    height: 300px;
+    overflow-y: scroll !important;
 }
